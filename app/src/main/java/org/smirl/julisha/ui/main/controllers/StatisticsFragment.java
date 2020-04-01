@@ -26,68 +26,67 @@ import java.util.HashSet;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class StatisticsFragment extends Fragment implements Fragmentation {
+public class StatisticsFragment extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+  private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private StatisticsViewModel statisticsViewModel;
+  private StatisticsViewModel statisticsViewModel;
 
-    TableLayout tableDisplay;
+  TableLayout tableDisplay;
 
-    public static StatisticsFragment newInstance(int index) {
-        StatisticsFragment fragment = new StatisticsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
-        return fragment;
+  public static StatisticsFragment newInstance(int index) {
+    StatisticsFragment fragment = new StatisticsFragment();
+    Bundle bundle = new Bundle();
+    bundle.putInt(ARG_SECTION_NUMBER, index);
+    fragment.setArguments(bundle);
+    return fragment;
+  }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    statisticsViewModel = ViewModelProviders.of(this).get(StatisticsViewModel.class);
+    int index = 1;
+    if (getArguments() != null) {
+      index = getArguments().getInt(ARG_SECTION_NUMBER);
     }
+    statisticsViewModel.setIndex(index);
+  }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        statisticsViewModel = ViewModelProviders.of(this).get(StatisticsViewModel.class);
-        int index = 1;
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
-        }
-        statisticsViewModel.setIndex(index);
+  @Override
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    View root = inflater.inflate(R.layout.statistics_fragment_main, container, false);
+    tableDisplay = root.findViewById(R.id.tableDisplay);
+    tableDisplay.removeViews(1, tableDisplay.getChildCount() - 1);
+
+    Cases cs = Julisha.cases();
+    Provinces vl = Julisha.provinces();
+
+    HashSet<Integer> fs = cs.getProvinceIds();
+    for (final int c : fs.toArray(new Integer[]{})) {
+      try {
+        TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.item_row_model, null, false);
+        TextView tv0 = row.findViewById(R.id.tr_prov);
+
+        tv0.setText(vl.getProvince(c).nom.toUpperCase());
+        tv0.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent ii = new Intent(getActivity(), DetailsActivity.class);
+            ii.putExtra("province_id", c);
+            getContext().startActivity(ii);
+          }
+        });
+        ((TextView) row.findViewById(R.id.tr_inf)).setText(cs.numberP(c, 1) + "");
+        ((TextView) row.findViewById(R.id.tr_dec)).setText(cs.numberP(c, 2) + "");
+        ((TextView) row.findViewById(R.id.tr_guer)).setText(cs.numberP(c, 3) + "");
+
+        tableDisplay.addView(row);
+      }catch (Exception eerr){}
     }
+    return root;
+  }
 
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.statistics_fragment_main, container, false);
-        tableDisplay = root.findViewById(R.id.tableDisplay);
-       refreshMe();
-
-        return root;
-    }
-
-    @Override
-    public void refreshMe() {
-        tableDisplay.removeViews(1, tableDisplay.getChildCount()-1);
-
-        Cases cs = Julisha.cases();
-        Provinces vl = Julisha.provinces();
-
-        HashSet<Integer> fs = cs.getProvinceIds();
-        for(final int c : fs.toArray(new Integer[]{})){
-            TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.item_row_model, null, false);
-            TextView tv0 = row.findViewById(R.id.tr_prov);
-            tv0.setText(vl.getProvince(c).nom.toUpperCase());
-            tv0.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent ii = new Intent(getActivity(), DetailsActivity.class);
-                    ii.putExtra("province_id", c);
-                    getContext().startActivity(ii);
-                }
-            });
-            ((TextView)row.findViewById(R.id.tr_inf)).setText(cs.numberP(c, 1) + "");
-            ((TextView)row.findViewById(R.id.tr_dec)).setText(cs.numberP(c,2) + "");
-            ((TextView)row.findViewById(R.id.tr_guer)).setText(cs.numberP(c,3) + "");
-            tableDisplay.addView(row);
-        }
-    }
 }

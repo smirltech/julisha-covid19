@@ -22,12 +22,14 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
 import org.smirl.julisha.ui.main.models.Case;
+import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
@@ -92,7 +94,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
   @Override
   public void refreshMe() {
     CasesSummary cc = Julisha.countrySummary();
-
     infectionLabel.setText("" + cc.infected);
     deadLabel.setText("" + cc.dead);
     healedLabel.setText("" + cc.healed);
@@ -115,85 +116,107 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     Legend l = chart.getLegend();
     l.setEnabled(false);
 
+    System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(1).date);
+
     XAxis xAxis = chart.getXAxis();
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
     //xAxis.setTypeface(tfLight);
     xAxis.setTextSize(10f);
-    xAxis.setTextColor(Color.WHITE);
     xAxis.setDrawAxisLine(false);
     xAxis.setDrawGridLines(false);
-    xAxis.setTextColor(Color.rgb(255, 192, 56));
+    xAxis.setTextColor(Color.rgb(3, 3, 3));
     xAxis.setCenterAxisLabels(false);
+    xAxis.setAxisMinimum(-1f);
+    xAxis.setAxisMaximum(Julisha.caseGraphs().size() * 1f);
     xAxis.setGranularity(1f); // one hour
     xAxis.setValueFormatter(new ValueFormatter() {
-      @Override
-      public String getBarLabel(BarEntry barEntry) {
-        return super.getBarLabel(barEntry);
-      }
-    });
-   /* xAxis.setValueFormatter(new ValueFormatter() {
-
-      private final SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm", Locale.ENGLISH);
 
       @Override
       public String getFormattedValue(float value) {
-
-        long millis = TimeUnit.HOURS.toMillis((long) value);
-        return mFormat.format(new Date(millis));
+        return Julisha.caseGraphs().getCaseGraph((int) value).date;
       }
-    });*/
+    });
 
     YAxis leftAxis = chart.getAxisLeft();
     leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
     //leftAxis.setTypeface(tfLight);
-    leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+    //leftAxis.setTextColor(ColorTemplate.getHoloBlue());
     leftAxis.setDrawGridLines(false);
     leftAxis.setGranularityEnabled(true);
-    leftAxis.setAxisMinimum(0f);
-    leftAxis.setAxisMaximum(20f);
+    leftAxis.setAxisMinimum(-1f);
+    leftAxis.setAxisMaximum((float) Julisha.maxCase() + 1f);
     leftAxis.setYOffset(-9f);
-    leftAxis.setTextColor(Color.rgb(255, 192, 56));
+    leftAxis.setTextColor(Color.rgb(3, 3, 3));
 
     YAxis rightAxis = chart.getAxisRight();
     rightAxis.setEnabled(false);
   }
 
   private final int[] colors = new int[]{
-      ColorTemplate.VORDIPLOM_COLORS[0],
-      ColorTemplate.VORDIPLOM_COLORS[1],
-      ColorTemplate.VORDIPLOM_COLORS[2]
+      ColorTemplate.rgb("#0000ff"),
+      ColorTemplate.rgb("#ff0000"),
+      ColorTemplate.rgb("#00ff00")
   };
 
   private void setData() {
 
-    ArrayList<Entry> values = new ArrayList<>();
+// create a data object with the data sets
+    LineDataSet infectLD = getLineDateSet(1, colors[0]);
+    LineDataSet deadLD = getLineDateSet(2, colors[1]);
+    LineDataSet healLD = getLineDateSet(3, colors[2]);
 
-    for (Case c : Julisha.cases().casesBy(1)) {
-      values.add(new Entry(1, c.nombre)); // add one entry per hour
-    }
+    LineData data = new LineData();
 
-    // create a dataset and give it a type
-    LineDataSet d = new LineDataSet(values, "DataSet 1");
-    d.setLineWidth(2.5f);
-    d.setCircleRadius(4f);
-    d.setAxisDependency(YAxis.AxisDependency.LEFT);
-    d.setColor(ColorTemplate.getHoloBlue());
-    d.setValueTextColor(ColorTemplate.getHoloBlue());
-    d.setLineWidth(1.5f);
-    d.setDrawCircles(true);
-    d.setDrawValues(false);
-    d.setFillAlpha(65);
-    d.setFillColor(ColorTemplate.getHoloBlue());
-    d.setHighLightColor(Color.rgb(244, 117, 117));
-    d.setDrawCircleHole(false);
+    data.addDataSet(infectLD);
+    data.addDataSet(deadLD);
+    data.addDataSet(healLD);
 
-    // create a data object with the data sets
-    LineData data = new LineData(d);
-    data.setValueTextColor(Color.WHITE);
+    data.setValueTextColor(Color.RED);
     data.setValueTextSize(9f);
 
     // set data
     chart.setData(data);
   }
 
+
+  private LineDataSet getLineDateSet(int caseType, int colorTemplate) {
+    ArrayList<Entry> values = new ArrayList<>();
+    String lbl = "Infectés";
+    for (CaseGraph c : Julisha.caseGraphs()) {
+      switch (caseType) {
+        case 1:
+          values.add(new Entry(c.id, c.infected));
+          break;
+        case 2:
+          values.add(new Entry(c.id, c.dead));
+          lbl = "Décédés";
+          break;
+        case 3:
+          values.add(new Entry(c.id, c.healed));
+          lbl = "Guéris";
+          break;
+        default:
+          values.add(new Entry(c.id, c.infected));
+      }
+
+
+    }
+
+    // create a dataset and give it a type
+    LineDataSet d = new LineDataSet(values, lbl);
+    d.setLineWidth(2.5f);
+    d.setCircleRadius(4f);
+    d.setAxisDependency(YAxis.AxisDependency.LEFT);
+    d.setColor(colorTemplate);
+    d.setValueTextColor(colorTemplate);
+    d.setLineWidth(1.5f);
+    d.setDrawCircles(true);
+    d.setDrawValues(true);
+    d.setFillAlpha(65);
+    d.setFillColor(colorTemplate);
+    d.setHighLightColor(Color.rgb(244, 117, 117));
+    d.setDrawCircleHole(false);
+
+    return d;
+  }
 }

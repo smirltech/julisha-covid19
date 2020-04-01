@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".IntroActivity" android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/ee1"
+            android:gravity="center">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2.5"
+            android:textColor="@android:color/white"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Annonce sur l'évolution de COVID-19 en RDC" android:textSize="18sp"
+            android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Veuillez patienter, s'il vous plait !" android:layout_marginTop="50dp"
+            android:textStyle="bold|italic" android:textColor="#FFC107"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/ee1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="by SmirlTech" android:layout_alignParentBottom="true"
+            android:textStyle="bold|italic" android:textColor="#8BC34A" android:padding="10dp"/>
+
+</RelativeLayout>

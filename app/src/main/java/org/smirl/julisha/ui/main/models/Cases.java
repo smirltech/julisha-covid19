@@ -24,12 +24,23 @@ public class Cases extends ArrayList<Case> {
     return cc;
   }
 
+  public Case getCase(String date) {
+    for (Case c : this) {
+      if (c.date.equalsIgnoreCase(date)) return c;
+    }
+    return null;
+  }
+
   public int number(int villeid, int type) {
     int n = 0;
     for (Case c : this) {
       if (c.ville_id == villeid && c.type == type) n += c.nombre;
     }
     return n;
+  }
+
+  public int max() {
+   return summarizeCountry().infected;
   }
 
   public int numberP(int provinceid, int type) {
@@ -107,7 +118,7 @@ public class Cases extends ArrayList<Case> {
   public HashSet<Integer> getProvinceIds() {
     HashSet<Integer> s = new HashSet();
     for (Case i : this) {
-      s.add(Julisha.getVille(i.ville_id).province_id);
+      s.add(i.province_id);
     }
 
     return s;

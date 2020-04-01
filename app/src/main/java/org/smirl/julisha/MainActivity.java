@@ -39,55 +39,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        populateProvinces();
-        populateVilles();
-        populateCases();
 
     }
 
-    private void populateProvinces() {
-        String dd = null;
-        try {
-            dd = FileManager.readFromAssets(this, "rdc/provinces.json");
-            Julisha.loadProvinces(dd);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-    }
-
-    private void populateVilles() {
-        String dd = null;
-        try {
-            dd = FileManager.readFromAssets(this, "rdc/villes.json");
-            Julisha.loadVilles(dd);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void populateCases() {
-
-        MyStringRequest request = new MyStringRequest(Request.Method.GET, BASE_URL, null,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                      //  Utilities.snackIt(viewPager, response);
-                     //   System.out.println(response);
-                        Julisha.load(response);
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                     //   Utilities.snackIt(viewPager, error.getMessage());
-                        Julisha.generateSampleCases();
-
-                    }
-                });
-
-        StaticRequestQueue.from(this).append(request);
-    }
 }
