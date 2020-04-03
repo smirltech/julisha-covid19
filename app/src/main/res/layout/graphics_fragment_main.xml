@@ -15,6 +15,18 @@
             android:background="@color/colorPrimaryLight"
             android:orientation="vertical">
 
+        <TextView
+                android:id="@+id/maj_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="4dp"
+                android:textColor="#555"
+                android:layout_gravity="right"
+                android:text="Mise à jour : 0000" android:textStyle="bold" android:textSize="10sp"/>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,7 +157,11 @@
                         android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-
+               <!-- <com.anychart.AnyChartView
+                        android:id="@+id/any_chart_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dip"
+                />-->
                 <com.github.mikephil.charting.charts.LineChart
                         android:layout_width="match_parent"
                         android:layout_height="250dip"

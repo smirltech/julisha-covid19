@@ -17,4 +17,17 @@ public class Case {
         this.date = date;
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+            "id=" + id +
+            ", ville_id=" + ville_id +
+            ", province_id=" + province_id +
+            ", type=" + type +
+            ", date='" + date + '\'' +
+            ", timestamp='" + timestamp + '\'' +
+            ", nombre=" + nombre +
+            '}';
+    }
 }

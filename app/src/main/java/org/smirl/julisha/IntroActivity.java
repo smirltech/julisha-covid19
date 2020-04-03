@@ -1,7 +1,9 @@
 package org.smirl.julisha;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -13,12 +15,16 @@ import android.view.View;
 import org.smirl.julisha.core.Constants;
 import org.smirl.julisha.core.FileManager;
 import org.smirl.julisha.core.Julisha;
+import org.smirl.julisha.core.PermissionManager;
 import org.smirl.julisha.core.volley.MyStringRequest;
 import org.smirl.julisha.core.volley.StaticRequestQueue;
 
+import java.io.File;
 import java.io.IOException;
 
 public class IntroActivity extends AppCompatActivity  implements Constants {
+
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,12 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
             //  Utilities.snackIt(viewPager, response);
            //   System.out.println(response);
             Julisha.load(response);
+            Julisha.setLastUpdate(System.currentTimeMillis());
             Julisha.prepareCaseGraphs();
+            File baseFolder = FileManager.getBaseDir(getBaseContext(), "julisha");
+            if(!baseFolder.exists())baseFolder.mkdirs();
+            File dataFile = new File(baseFolder, "data.json");
+            Julisha.save(dataFile);
            toNextActivity();
           }
         },
@@ -74,6 +85,11 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
             //   Utilities.snackIt(viewPager, error.getMessage());
             Julisha.generateSampleCases();
             Julisha.prepareCaseGraphs();
+            File baseFolder = FileManager.getBaseDir(getBaseContext(), "julisha");
+            if(!baseFolder.exists())baseFolder.mkdirs();
+            File dataFile = new File(baseFolder, "data.json");
+            Julisha.read(dataFile);
+
            toNextActivity();
           }
         });
@@ -85,4 +101,6 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
     startActivity(new Intent(IntroActivity.this, MainActivity.class));
     finish();
   }
+
+
 }

@@ -6,39 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.core.Utilities;
-import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
+//import com.anychart.AnyChartView;
+//import com.anychart.chart.common.dataentry.DataEntry;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -52,8 +43,10 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
   TextView infectionLabel;
   TextView deadLabel;
   TextView healedLabel;
+  TextView majDate;
 
   private LineChart chart;
+  //private AnyChartView anyChartView;
 
   public static GraphicsFragment newInstance(int index) {
     GraphicsFragment fragment = new GraphicsFragment();
@@ -83,7 +76,9 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     infectionLabel = root.findViewById(R.id.infection_label);
     deadLabel = root.findViewById(R.id.dead_label);
     healedLabel = root.findViewById(R.id.healed_label);
+    majDate = root.findViewById(R.id.maj_date);
     chart = root.findViewById(R.id.mchart);
+    //anyChartView = (AnyChartView)root.findViewById(R.id.any_chart_view);
     setUpChart();
     setData();
 
@@ -97,6 +92,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     infectionLabel.setText("" + cc.infected);
     deadLabel.setText("" + cc.dead);
     healedLabel.setText("" + cc.healed);
+    majDate.setText("Dernière mise à jour : "+ new Date(Julisha.getLastUpdate()).toString());
   }
 
   private void setUpChart() {
@@ -118,8 +114,14 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     // get the legend (only possible after setting data)
     Legend l = chart.getLegend();
     l.setEnabled(true);
+    l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+    l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+    l.setDrawInside(false);
+    l.setXOffset(5F);
 
-    System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(0).date);
+
+   // System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(0).date);
 
     XAxis xAxis = chart.getXAxis();
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
@@ -131,15 +133,16 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     xAxis.setCenterAxisLabels(false);
     xAxis.setAxisMinimum(-1f);
     xAxis.setAxisMaximum(Julisha.caseGraphs().size() * 1f);
-    xAxis.setGranularity(1f); // one hour
+    xAxis.setGranularity(1f);
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);// one hour
     xAxis.setValueFormatter(new ValueFormatter() {
 
       @Override
       public String getFormattedValue(float value) {
         CaseGraph cgg = Julisha.caseGraphs().getCaseGraph((int) value);
-        if (cgg == null){
-          System.out.println("wrong id = " + value);
-        }
+       // if (cgg == null){
+       //   System.out.println("wrong id = " + value);
+        //}
         return cgg.date;
       }
     });
@@ -167,6 +170,10 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
   private void setData() {
 
+   // List<DataEntry> anyData = new ArrayList<>();
+
+
+
 // create a data object with the data sets
     LineDataSet infectLD = getLineDateSet(1, colors[0]);
     LineDataSet deadLD = getLineDateSet(2, colors[1]);
@@ -180,6 +187,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     data.setValueTextColor(Color.RED);
     data.setValueTextSize(9f);
+    data.setHighlightEnabled(true);
 
     // set data
     chart.setData(data);
@@ -211,18 +219,20 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     // create a dataset and give it a type
     LineDataSet d = new LineDataSet(values, lbl);
-    d.setLineWidth(2.5f);
-    d.setCircleRadius(4f);
+    d.setCircleRadius(2f);
     d.setAxisDependency(YAxis.AxisDependency.LEFT);
     d.setColor(colorTemplate);
     d.setValueTextColor(colorTemplate);
-    d.setLineWidth(1.5f);
+    d.setLineWidth(2f);
     d.setDrawCircles(true);
-    d.setDrawValues(true);
+    d.setDrawValues(false);
     d.setFillAlpha(65);
     d.setFillColor(colorTemplate);
     d.setHighLightColor(Color.rgb(244, 117, 117));
     d.setDrawCircleHole(false);
+    d.setCubicIntensity(1f);
+    d.setHighlightEnabled(true);
+    d.setDrawHighlightIndicators(true);
 
     return d;
   }

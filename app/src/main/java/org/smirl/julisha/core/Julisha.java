@@ -4,6 +4,7 @@ import org.smirl.julisha.ui.main.models.*;
 
 import fnn.smirl.simple.Serializer;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,33 +14,45 @@ import java.util.Date;
 import java.util.HashSet;
 
 public class Julisha {
-  private static Cases cases = new Cases();
-  private static Villes villes = new Villes();
-  private static Provinces provinces = new Provinces();
-  private static CaseGraphs caseGraphs = new CaseGraphs();
+  public long lastUpdate = 0L;
+  public Cases cases = new Cases();
+  public Villes villes = new Villes();
+  public Provinces provinces = new Provinces();
+  public CaseGraphs caseGraphs = new CaseGraphs();
+
+  private static Julisha julisha = new Julisha();
 
   private Julisha() {
+
   }
 
   public static Cases cases() {
-    return cases;
+    return julisha.cases;
   }
 
   public static Cases cases(int province_id) {
-    return cases.cases(province_id);
+    return julisha.cases.cases(province_id);
   }
 
   public static Villes villes() {
-    return villes;
+    return julisha.villes;
   }
 
   public static Provinces provinces() {
-    return provinces;
+    return julisha.provinces;
   }
 
   public static CaseGraphs caseGraphs() {
     // prepareCaseGraphs();
-    return caseGraphs;
+    return julisha.caseGraphs;
+  }
+
+  public static long getLastUpdate() {
+    return julisha.lastUpdate;
+  }
+
+  public static void setLastUpdate(long lastUpdate) {
+     julisha.lastUpdate = lastUpdate;
   }
 
   /**
@@ -57,7 +70,7 @@ public class Julisha {
   }
 
   public static void generateSampleCases() {
-    cases = sampleCases();
+    julisha.cases = sampleCases();
   }
 
   /**
@@ -65,128 +78,138 @@ public class Julisha {
    **/
   //loads
   public static void loadProvinces(Provinces p) {
-    provinces = p;
+    julisha.provinces = p;
   }
 
   public static void loadVilles(Villes v) {
-    villes = v;
+    julisha.villes = v;
   }
 
   public static void load(Cases c) {
-    cases = c;
+    julisha.cases = c;
   }
 
   //loads from json
   public static void loadProvinces(String jsonString) {
-    provinces = new Serializer().fromJson(jsonString, Provinces.class);
+    julisha.provinces = new Serializer().fromJson(jsonString, Provinces.class);
   }
 
   public static void loadVilles(String jsonString) {
-    villes = new Serializer().fromJson(jsonString, Villes.class);
+    julisha.villes = new Serializer().fromJson(jsonString, Villes.class);
   }
 
   public static void load(String jsonString) {
-    cases = new Serializer().fromJson(jsonString, Cases.class);
+    julisha.cases = new Serializer().fromJson(jsonString, Cases.class);
   }
 
   //adds
 
   public static void addProvince(Province province) {
-    provinces.add(province);
+    julisha.provinces.add(province);
   }
 
   public static void addVille(Ville ville) {
-    villes.add(ville);
+    julisha.villes.add(ville);
   }
 
   public static void add(Case cas) {
-    cases.add(cas);
+    julisha.cases.add(cas);
   }
 
   //gets
 
   public static Province getProvince(int province_id) {
-    return provinces.getProvince(province_id);
+    return julisha.provinces.getProvince(province_id);
   }
 
   public static Ville getVille(int ville_id) {
-    return villes.getVille(ville_id);
+    return julisha.villes.getVille(ville_id);
   }
 
   public static Ville get(int ville_id) {
-    return villes.getVille(ville_id);
+    return julisha.villes.getVille(ville_id);
   }
 
 
   //summary
   public static CasesSummary countrySummary() {
-    return cases.summarizeCountry();
+    return julisha.cases.summarizeCountry();
   }
 
   //max
   public static int maxCase() {
-    return cases.max();
+    return julisha.cases.max();
   }
 
   public static void prepareCaseGraphs() {
-    caseGraphs.clear();
+    julisha.caseGraphs.clear();
     CaseGraph initt = new CaseGraph(0, "0");
     initt.healed = 0;
     initt.dead = 0;
     initt.infected = 0;
-    caseGraphs.newCaseGraph(initt);
+    julisha.caseGraphs.newCaseGraph(initt);
 
     int cnt = 1;
     Calendar caln = Calendar.getInstance();
     Calendar cal0 = Calendar.getInstance();
     cal0.set(2020, 2, 10);
-    // System.out.println("Date then === " + cal0.getTime().toString());
-    //  System.out.println("Date now === " + caln.getTime().toString());
     SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
     String dNow = myFormatObj.format(caln.getTime());
 
 
     while (cal0.compareTo(caln) < 1) {
       String formattedDate = myFormatObj.format(cal0.getTime());
-      caseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+      julisha.caseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
       if (formattedDate.equalsIgnoreCase(dNow)) break;
       cal0.add(Calendar.DATE, 1);
     }
 
-    for (int i = 1; i < caseGraphs().size(); i++) {
-      CaseGraph ds = caseGraphs.get(i);
-      Case c = cases.getCase(ds.date);
+    //System.out.println("CaseGraphs count : " + caseGraphs().size());
+
+    for (int i = 0; i < julisha.cases.size(); i++) {
+      Case c = julisha.cases.get(i);
+      CaseGraph ds = julisha.caseGraphs.getCaseGraph(c.date);
+      //Case c = cases.getCase(ds.date);
       //System.out.println("ds: " + ds.id);
-      if (c == null) {
-        c = new Case(0, 0, 0, 9, ds.date, 0);
-      }
-      CaseGraph pr = caseGraphs.getCaseGraph(ds.id - 1);
+      // System.out.println(c.toString());
+
       switch (c.type) {
         case 1:
-          ds.infected = pr.infected + c.nombre;
-          ds.dead = pr.dead;
-          ds.healed = pr.healed;
+          ds.infected += c.nombre;
           break;
         case 2:
-          ds.infected = pr.infected;
-          ds.dead = pr.dead + c.nombre;
-          ds.healed = pr.healed;
+          ds.dead += c.nombre;
           break;
         case 3:
-          ds.infected = pr.infected;
-          ds.dead = pr.dead;
-          ds.healed = pr.healed + c.nombre;
+          ds.healed += c.nombre;
           break;
         default:
-          ds.infected = pr.infected;
-          ds.dead = pr.dead;
-          ds.healed = pr.healed;
+          ds.infected += 0;
+          ds.dead += 0;
+          ds.healed += 0;
 
       }
 
-      // System.out.println("CaseGraphs : " + caseGraphs.size());
+    }
+
+    for (int i = 1; i < julisha.caseGraphs.size(); i++) {
+      CaseGraph ds = julisha.caseGraphs.get(i);
+      CaseGraph pr = julisha.caseGraphs.get(i - 1);
+      ds.infected += pr.infected;
+      ds.dead += pr.dead;
+      ds.healed += pr.healed;
+
+
+      // System.out.println(ds.toString());
     }
   }
 
 
+  public static void save(File file) {
+        new Serializer().serialize(file.getAbsolutePath(), julisha, Julisha.class);
+  }
+
+  public static void read(File file) {
+    julisha = new Serializer().deserialize(file.getAbsolutePath(), Julisha.class);
+  }
 }

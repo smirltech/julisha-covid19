@@ -16,7 +16,7 @@ public class CaseGraph {
   public String toString() {
     return "CaseGraph{" +
         "id=" + id +
-        ", date='" + date + '\'' +
+        ", date='" + date +
         ", infected=" + infected +
         ", dead=" + dead +
         ", healed=" + healed +
