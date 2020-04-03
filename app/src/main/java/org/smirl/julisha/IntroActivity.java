@@ -62,7 +62,7 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
           public void onResponse(String response) {
             response = response.replace("null", "1");
             //  Utilities.snackIt(viewPager, response);
-             // System.out.println(response);
+           //   System.out.println(response);
             Julisha.load(response);
             Julisha.prepareCaseGraphs();
            toNextActivity();

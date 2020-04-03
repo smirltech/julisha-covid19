@@ -11,4 +11,15 @@ public class CaseGraph {
     this.id = id;
     this.date = date;
   }
+
+  @Override
+  public String toString() {
+    return "CaseGraph{" +
+        "id=" + id +
+        ", date='" + date + '\'' +
+        ", infected=" + infected +
+        ", dead=" + dead +
+        ", healed=" + healed +
+        '}';
+  }
 }

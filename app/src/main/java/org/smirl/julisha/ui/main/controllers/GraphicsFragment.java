@@ -103,6 +103,9 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     chart.getDescription().setEnabled(false);
     chart.setDrawBorders(false);
     chart.setTouchEnabled(true);
+    chart.setPinchZoom(true);
+    chart.setHorizontalScrollBarEnabled(true);
+    chart.setVerticalScrollBarEnabled(true);
     chart.setDragDecelerationFrictionCoef(0.9f);
     chart.setDragEnabled(true);
     chart.setScaleEnabled(true);
@@ -114,9 +117,9 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     // get the legend (only possible after setting data)
     Legend l = chart.getLegend();
-    l.setEnabled(false);
+    l.setEnabled(true);
 
-    System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(1).date);
+    System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(0).date);
 
     XAxis xAxis = chart.getXAxis();
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
@@ -133,7 +136,11 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
       @Override
       public String getFormattedValue(float value) {
-        return Julisha.caseGraphs().getCaseGraph((int) value).date;
+        CaseGraph cgg = Julisha.caseGraphs().getCaseGraph((int) value);
+        if (cgg == null){
+          System.out.println("wrong id = " + value);
+        }
+        return cgg.date;
       }
     });
 

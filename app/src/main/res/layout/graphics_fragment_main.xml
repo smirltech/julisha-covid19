@@ -43,7 +43,7 @@
                             android:layout_marginEnd="@dimen/activity_horizontal_margin"
                             android:layout_marginBottom="4dp"
                             android:textColor="#fff"
-                            android:text="INFECTÉS" android:textStyle="bold"/>
+                            android:text="INFECTÉS" android:textStyle="bold" android:textSize="10sp"/>
                     <TextView
                             android:id="@+id/infection_label"
                             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                             android:layout_marginEnd="@dimen/activity_horizontal_margin"
                             android:layout_marginBottom="4dp"
                             android:textColor="#fff"
-                            android:text="DÉCÉDÉS" android:textStyle="bold"/>
+                            android:text="DÉCÉDÉS" android:textStyle="bold" android:textSize="10sp"/>
                     <TextView
                             android:id="@+id/dead_label"
                             android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
                             android:layout_marginEnd="@dimen/activity_horizontal_margin"
                             android:layout_marginBottom="4dp"
                             android:textColor="#fff"
-                            android:text="GUÉRIS" android:textStyle="bold"/>
+                            android:text="GUÉRIS" android:textStyle="bold" android:textSize="10sp"/>
                     <TextView
                             android:id="@+id/healed_label"
                             android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
 
                 <com.github.mikephil.charting.charts.LineChart
                         android:layout_width="match_parent"
-                        android:layout_height="350dip"
+                        android:layout_height="250dip"
                         android:id="@+id/mchart"/>
 
             </LinearLayout>

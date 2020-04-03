@@ -38,7 +38,7 @@ public class Julisha {
   }
 
   public static CaseGraphs caseGraphs() {
-   // prepareCaseGraphs();
+    // prepareCaseGraphs();
     return caseGraphs;
   }
 
@@ -47,10 +47,12 @@ public class Julisha {
    **/
   public static Cases sampleCases() {
     Cases cc = new Cases();
-    cc.add(new Case(1, 1, 1, 1, "2020-02-21", 5));
+   /*
+   cc.add(new Case(1, 1, 1, 1, "2020-02-21", 5));
     cc.add(new Case(2, 1, 1, 2, "2020-02-21", 1));
     cc.add(new Case(3, 1, 1, 3, "2020-02-21", 3));
     cc.add(new Case(4, 3, 2, 1, "2020-02-22", 3));
+    */
     return cc;
   }
 
@@ -138,17 +140,16 @@ public class Julisha {
     Calendar caln = Calendar.getInstance();
     Calendar cal0 = Calendar.getInstance();
     cal0.set(2020, 2, 10);
-    System.out.println("Date then === " + cal0.getTime().toString());
-    System.out.println("Date now === " + caln.getTime().toString());
+    // System.out.println("Date then === " + cal0.getTime().toString());
+    //  System.out.println("Date now === " + caln.getTime().toString());
     SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
     String dNow = myFormatObj.format(caln.getTime());
 
 
-    while(cal0.compareTo(caln) < 1){
+    while (cal0.compareTo(caln) < 1) {
       String formattedDate = myFormatObj.format(cal0.getTime());
-      if(formattedDate.equalsIgnoreCase(dNow)) break;
-      System.out.println("Date === " + formattedDate);
       caseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+      if (formattedDate.equalsIgnoreCase(dNow)) break;
       cal0.add(Calendar.DATE, 1);
     }
 
@@ -157,31 +158,31 @@ public class Julisha {
       Case c = cases.getCase(ds.date);
       //System.out.println("ds: " + ds.id);
       if (c == null) {
-        c = new Case(0,0,0,9, ds.date, 0);
+        c = new Case(0, 0, 0, 9, ds.date, 0);
       }
-        CaseGraph pr = caseGraphs.getCaseGraph(ds.id-1);
-        switch (c.type) {
-          case 1:
-            ds.infected = pr.infected + c.nombre;
-            ds.dead = pr.dead ;
-            ds.healed = pr.healed;
-            break;
-          case 2:
-            ds.infected = pr.infected;
-            ds.dead = pr.dead + c.nombre;
-            ds.healed = pr.healed ;
-            break;
-          case 3:
-            ds.infected = pr.infected;
-            ds.dead = pr.dead;
-            ds.healed = pr.healed + c.nombre;
-            break;
-          default:
-            ds.infected = pr.infected;
-            ds.dead = pr.dead;
-            ds.healed = pr.healed;
+      CaseGraph pr = caseGraphs.getCaseGraph(ds.id - 1);
+      switch (c.type) {
+        case 1:
+          ds.infected = pr.infected + c.nombre;
+          ds.dead = pr.dead;
+          ds.healed = pr.healed;
+          break;
+        case 2:
+          ds.infected = pr.infected;
+          ds.dead = pr.dead + c.nombre;
+          ds.healed = pr.healed;
+          break;
+        case 3:
+          ds.infected = pr.infected;
+          ds.dead = pr.dead;
+          ds.healed = pr.healed + c.nombre;
+          break;
+        default:
+          ds.infected = pr.infected;
+          ds.dead = pr.dead;
+          ds.healed = pr.healed;
 
-        }
+      }
 
       // System.out.println("CaseGraphs : " + caseGraphs.size());
     }

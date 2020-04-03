@@ -15,18 +15,18 @@
             android:layout_alignParentTop="true"
             android:layout_above="@+id/ee1"
             android:gravity="center">
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2.5"
-            android:textColor="@android:color/white"/>
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Annonce sur l'évolution de COVID-19 en RDC" android:textSize="18sp"
-            android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
+                android:textColor="@android:color/white"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Annonce sur l'évolution de COVID-19 en RDC" android:textSize="16sp"
+                android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
 
     <TextView
             android:layout_width="match_parent"
