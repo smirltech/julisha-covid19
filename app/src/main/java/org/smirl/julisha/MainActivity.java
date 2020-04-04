@@ -21,6 +21,8 @@ import org.smirl.julisha.core.*;
 import org.smirl.julisha.core.volley.MyStringRequest;
 import org.smirl.julisha.core.volley.StaticRequestQueue;
 import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
+import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
+import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
 import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.Province;
 import org.smirl.julisha.ui.main.models.Ville;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
   ViewPager viewPager;
   SectionsPagerAdapter sectionsPagerAdapter;
+  TabLayout tabs;
   private PermissionManager permissionManager;
 
   @Override
@@ -49,10 +52,33 @@ public class MainActivity extends AppCompatActivity implements Constants {
     sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
     viewPager = findViewById(R.id.view_pager);
     viewPager.setAdapter(sectionsPagerAdapter);
-    TabLayout tabs = findViewById(R.id.tabs);
+    tabs = findViewById(R.id.tabs);
     tabs.setupWithViewPager(viewPager);
 
+    viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+      }
+
+      @Override
+      public void onPageSelected(int position) {
+        refreshThem();
+      }
+
+      @Override
+      public void onPageScrollStateChanged(int state) {
+
+      }
+    });
+
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (viewPager.getCurrentItem() > 0) {
+      viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+    } else super.onBackPressed();
   }
 
   @Override
@@ -63,12 +89,20 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    switch (item.getItemId()){
+    switch (item.getItemId()) {
       case R.id.action_refresh:
 
         break;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+
+  public void refreshThem() {
+    StatisticsFragment sfrag = (StatisticsFragment) sectionsPagerAdapter.getItem(1);
+    sfrag.populateTable();
+    StatisticsVillesFragment sfrag2 = (StatisticsVillesFragment) sectionsPagerAdapter.getItem(2);
+    sfrag2.populateTable();
   }
 
   private void verifier() {

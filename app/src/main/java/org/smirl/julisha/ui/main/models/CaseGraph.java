@@ -1,6 +1,6 @@
 package org.smirl.julisha.ui.main.models;
 
-public class CaseGraph {
+public class CaseGraph implements Comparable<CaseGraph>{
   public int id;
   public String date;
   public int infected;
@@ -21,5 +21,17 @@ public class CaseGraph {
         ", dead=" + dead +
         ", healed=" + healed +
         '}';
+  }
+
+  @Override
+  public int compareTo(CaseGraph p1) {
+    // TODO: Implement this method
+    return Integer.compare(p1.infected, infected);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    // TODO: Implement this method
+    return Integer.compare(((CaseGraph)obj).infected, infected) == 0;
   }
 }

@@ -12,10 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
-import org.smirl.julisha.core.Constants;
-import org.smirl.julisha.core.FileManager;
-import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.core.PermissionManager;
+import org.smirl.julisha.core.*;
 import org.smirl.julisha.core.volley.MyStringRequest;
 import org.smirl.julisha.core.volley.StaticRequestQueue;
 
@@ -62,37 +59,17 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
 
   private void populateCases() {
 
-    MyStringRequest request = new MyStringRequest(Request.Method.GET, BASE_URL, null,
-        new Response.Listener<String>() {
-          @Override
-          public void onResponse(String response) {
-            response = response.replace("null", "1");
-            //  Utilities.snackIt(viewPager, response);
-           //   System.out.println(response);
-            Julisha.load(response);
-            Julisha.setLastUpdate(System.currentTimeMillis());
-            Julisha.prepareCaseGraphs();
-            File baseFolder = FileManager.getBaseDir(getBaseContext(), "julisha");
-            if(!baseFolder.exists())baseFolder.mkdirs();
-            File dataFile = new File(baseFolder, "data.json");
-            Julisha.save(dataFile);
-           toNextActivity();
-          }
-        },
-        new Response.ErrorListener() {
-          @Override
-          public void onErrorResponse(VolleyError error) {
-            //   Utilities.snackIt(viewPager, error.getMessage());
-            File baseFolder = FileManager.getBaseDir(getBaseContext(), "julisha");
-            if(!baseFolder.exists())baseFolder.mkdirs();
-            File dataFile = new File(baseFolder, "data.json");
-            Julisha.read(dataFile);
+    DataUpdater.populateCases(this, new DataUpdater.UpdaterListener() {
+      @Override
+      public void onCompleted() {
+        toNextActivity();
+      }
 
-           toNextActivity();
-          }
-        });
-
-    StaticRequestQueue.from(this).append(request);
+      @Override
+      public void onFailed() {
+        toNextActivity();
+      }
+    });
   }
 
   private void toNextActivity(){

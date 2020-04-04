@@ -10,8 +10,8 @@ public class Cases extends ArrayList<Case> {
   public Cases cases(int provinceid) {
     Cases cc = new Cases();
     for (Case c : this) {
-      Ville v = Julisha.getVille(c.ville_id);
-      if (v.province_id == provinceid) cc.add(c);
+     // Ville v = Julisha.getVille(c.ville_id);
+      if (c.province_id == provinceid) cc.add(c);
     }
     return cc;
   }
@@ -76,7 +76,7 @@ public class Cases extends ArrayList<Case> {
     ss.id = provinceid;
 
     for (Case c : this) {
-      if (ss.id > 0 && Julisha.getVille(c.ville_id).province_id == ss.id) {
+      if (ss.id > 0 && c.province_id == ss.id) {
         if (c.type == 1) i += c.nombre;
         if (c.type == 2) d += c.nombre;
         if (c.type == 3) h += c.nombre;

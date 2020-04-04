@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Julisha</string>
     <string name="tab_text_1">GRAPHIQUE</string>
-    <string name="tab_text_2">STATISTIQUES</string>
+    <string name="tab_text_2">PROVINCES</string>
+    <string name="tab_text_3">VILLES</string>
     <string name="title_activity_details">Villes</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

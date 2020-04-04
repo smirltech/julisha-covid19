@@ -4,16 +4,16 @@
     android:id="@+id/trow">
 
     <TextView
-        android:id="@+id/tr_prov"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:foreground="?attr/selectableItemBackground"
-        android:text="Province"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textAlignment="textStart"
-        android:layout_weight="1"/>
+            android:id="@+id/tr_prov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Province"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"/>
 
     <TextView
         android:id="@+id/tr_inf"
