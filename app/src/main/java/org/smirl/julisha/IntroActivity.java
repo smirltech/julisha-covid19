@@ -83,8 +83,6 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
           @Override
           public void onErrorResponse(VolleyError error) {
             //   Utilities.snackIt(viewPager, error.getMessage());
-            Julisha.generateSampleCases();
-            Julisha.prepareCaseGraphs();
             File baseFolder = FileManager.getBaseDir(getBaseContext(), "julisha");
             if(!baseFolder.exists())baseFolder.mkdirs();
             File dataFile = new File(baseFolder, "data.json");

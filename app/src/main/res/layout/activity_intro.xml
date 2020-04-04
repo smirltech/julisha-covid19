@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="by SmirlTech" android:layout_alignParentBottom="true"
+            android:text="©2020, SmirlTech. All rights reserved." android:layout_alignParentBottom="true"
             android:textStyle="bold|italic" android:textColor="#8BC34A" android:padding="10dp"/>
 
 </RelativeLayout>
