@@ -145,7 +145,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     chart.setHorizontalScrollBarEnabled(true);
     chart.setVerticalScrollBarEnabled(true);
     chart.setDragDecelerationFrictionCoef(0.9f);
-    chart.setDragEnabled(true);
+   // chart.setDragEnabled(true);
     chart.setScaleEnabled(true);
     chart.setDrawGridBackground(false);
     chart.setHighlightPerDragEnabled(true);

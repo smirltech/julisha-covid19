@@ -19,8 +19,7 @@ import org.smirl.julisha.core.volley.StaticRequestQueue;
 import java.io.File;
 import java.io.IOException;
 
-public class IntroActivity extends AppCompatActivity  implements Constants {
-
+public class IntroActivity extends AppCompatActivity implements Constants {
 
 
   @Override
@@ -72,7 +71,7 @@ public class IntroActivity extends AppCompatActivity  implements Constants {
     });
   }
 
-  private void toNextActivity(){
+  private void toNextActivity() {
     startActivity(new Intent(IntroActivity.this, MainActivity.class));
     finish();
   }

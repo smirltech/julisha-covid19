@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
       @Override
       public void onPageSelected(int position) {
+       /* sectionsPagerAdapter = new SectionsPagerAdapter(MainActivity.this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);*/
         refreshThem();
       }
 
