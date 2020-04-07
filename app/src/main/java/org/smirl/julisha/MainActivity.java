@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
@@ -36,7 +41,7 @@ import java.security.Permission;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements Constants {
+public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
 
   private static final int REQUEST_INTERNET = 1;
   private static final int REQUEST_WRITE = 2;
@@ -53,6 +58,15 @@ public class MainActivity extends AppCompatActivity implements Constants {
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+    drawer.addDrawerListener(toggle);
+    toggle.syncState();
+
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    navigationView.setNavigationItemSelectedListener(this);
     //getSupportActionBar().setTitle("");
     permissionManager = new PermissionManager(this);
     verifier();
@@ -111,6 +125,32 @@ public class MainActivity extends AppCompatActivity implements Constants {
     return super.onOptionsItemSelected(item);
   }
 
+  @Override
+  public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+    switch (item.getItemId()) {
+      case R.id.nav_gb:
+        // fragger.switchFragment(2);
+        break;
+      case R.id.nav_diag:
+        // fragger.switchFragment(3);
+        break;
+      case R.id.nav_share:
+
+        break;
+      case R.id.nav_a_propos:
+        startActivity(new Intent(this, AboutActivity.class));
+        break;
+
+      default:
+
+    }
+
+
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    drawer.closeDrawer(GravityCompat.START);
+    return true;
+  }
 
   public void refreshThem() {
     StatisticsFragment sfrag = (StatisticsFragment) sectionsPagerAdapter.getItem(1);

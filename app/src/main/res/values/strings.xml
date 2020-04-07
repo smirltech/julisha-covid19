@@ -4,6 +4,10 @@
     <string name="tab_text_2">PROVINCES</string>
     <string name="tab_text_3">VILLES</string>
     <string name="title_activity_details">Villes</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -98,4 +102,6 @@
     <string name="action_apropos">À propos</string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="title_activity_about">À propos</string>
+
+    <string name="short_description">Annonce sur l\'évolution de COVID-19 en RDC</string>
 </resources>

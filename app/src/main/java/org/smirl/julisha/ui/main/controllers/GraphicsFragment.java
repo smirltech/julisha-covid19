@@ -168,14 +168,15 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     XAxis xAxis = chart.getXAxis();
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
     //xAxis.setTypeface(tfLight);
-    xAxis.setTextSize(10f);
+    xAxis.setTextSize(8f);
     xAxis.setDrawAxisLine(false);
     xAxis.setDrawGridLines(false);
     xAxis.setTextColor(Color.rgb(3, 3, 3));
     xAxis.setCenterAxisLabels(false);
-    xAxis.setAxisMinimum(-1f);
+    xAxis.setAxisMinimum(-2f);
     xAxis.setAxisMaximum(Julisha.caseGraphs().size() * 1f);
     xAxis.setGranularity(1f);
+    xAxis.setLabelRotationAngle(-45f);
     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);// one hour
     xAxis.setValueFormatter(new ValueFormatter() {
 
@@ -183,7 +184,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
       public String getFormattedValue(float value) {
         CaseGraph cgg = Julisha.caseGraphs().getCaseGraph((int) value);
          if (cgg == null){
-         // System.out.println("wrong id = " + value);
           return "Aujourd'hui";
         }
         return cgg.date;
@@ -196,8 +196,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     //leftAxis.setTextColor(ColorTemplate.getHoloBlue());
     leftAxis.setDrawGridLines(false);
     leftAxis.setGranularityEnabled(true);
-    leftAxis.setAxisMinimum(-1f);
-    leftAxis.setAxisMaximum((float) Julisha.maxCase() + 1f);
+    leftAxis.setAxisMinimum(-40f);
+    leftAxis.setAxisMaximum((float) Julisha.maxCase() + 20f);
     leftAxis.setYOffset(-9f);
     leftAxis.setTextColor(Color.rgb(3, 3, 3));
 

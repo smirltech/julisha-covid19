@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Annonce sur l'évolution de COVID-19 en RDC" android:textSize="16sp"
+                android:text="@string/short_description" android:textSize="16sp"
                 android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
 
         <ImageView
