@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+    <LinearLayout
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical">
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/covid2"
+                android:layout_margin="10dp"/>
+        <TextView
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:text="JULISHA COVID-19 RDC"
+                android:textStyle="bold"/>
+        <TextView
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorPrimaryLight"
+                android:text="Version 2.0.0"
+                android:id="@+id/label_version"/>
+    </LinearLayout>
+
+
+    <TextView
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:text="@string/about"/>
+
+    <TextView
+            android:linksClickable="true"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:text="Thanks to : Papy Maotala "
+            android:layout_marginBottom="50dp"/>
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="contact@smirl.org"
+            android:linksClickable="true"
+            android:autoLink="email"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="https://facebook.com/SmirlTech"
+            android:autoLink="web"
+            android:linksClickable="true"/>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="https://www.smirl.org"
+            android:autoLink="web"
+            android:linksClickable="true"/>
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="©2020 by SmirlTech"
+            android:id="@+id/copy"
+            android:layout_marginTop="20dp"/>
+
+</LinearLayout>
