@@ -1,11 +1,14 @@
 package org.smirl.julisha;
 
 import android.Manifest;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import com.android.volley.Request;
@@ -26,6 +29,7 @@ import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
 import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.Province;
 import org.smirl.julisha.ui.main.models.Ville;
+import org.smirl.julisha.ui.main.views.AboutActivity;
 
 import java.io.IOException;
 import java.security.Permission;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
   private static final int REQUEST_INTERNET = 1;
   private static final int REQUEST_WRITE = 2;
+  private static final int REQUEST_ACCESS_NETWORK_STATE = 3;
 
   ViewPager viewPager;
   SectionsPagerAdapter sectionsPagerAdapter;
@@ -46,14 +51,20 @@ public class MainActivity extends AppCompatActivity implements Constants {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    //getSupportActionBar().setTitle("");
     permissionManager = new PermissionManager(this);
     verifier();
+
 
     sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
     viewPager = findViewById(R.id.view_pager);
     viewPager.setAdapter(sectionsPagerAdapter);
     tabs = findViewById(R.id.tabs);
     tabs.setupWithViewPager(viewPager);
+    tabs.setSelectedTabIndicatorHeight(10);
+    tabs.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"));
 
     viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
       @Override
@@ -63,11 +74,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
       @Override
       public void onPageSelected(int position) {
-       /* sectionsPagerAdapter = new SectionsPagerAdapter(MainActivity.this, getSupportFragmentManager());
-        viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);*/
         refreshThem();
       }
 
@@ -98,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
       case R.id.action_refresh:
 
         break;
+      case R.id.action_apropos:
+        startActivity(new Intent(this, AboutActivity.class));
+        break;
     }
     return super.onOptionsItemSelected(item);
   }
@@ -124,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
       @Override
       public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
-        permissionManager.dialogForSettings("Permission Denied", "Now you must allow camera read sms from settings.");
+        permissionManager.dialogForSettings("Permission Denied", "Now you must allow from settings.");
       }
 
       @Override
@@ -147,7 +156,30 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
       @Override
       public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
-        permissionManager.dialogForSettings("Permission Denied", "Now you must allow camera read sms from settings.");
+        permissionManager.dialogForSettings("Permission Denied", "Now you must allow from settings.");
+      }
+
+      @Override
+      public void onPermissionGranted() {
+        // readTransaction();
+
+      }
+    });
+
+    permissionManager.checkPermission(this, Manifest.permission.ACCESS_NETWORK_STATE, new PermissionManager.PermissionAskListener() {
+      @Override
+      public void onNeedPermission() {
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_ACCESS_NETWORK_STATE);
+      }
+
+      @Override
+      public void onPermissionPreviouslyDenied() {
+        // showCameraRational();
+      }
+
+      @Override
+      public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
+        permissionManager.dialogForSettings("Permission Denied", "Now you must allow from settings.");
       }
 
       @Override

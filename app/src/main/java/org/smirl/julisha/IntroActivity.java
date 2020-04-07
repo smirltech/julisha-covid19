@@ -29,8 +29,24 @@ public class IntroActivity extends AppCompatActivity implements Constants {
 
     populateProvinces();
     populateVilles();
-    populateCases();
 
+    if (Utilities.checkInternetAvailable(this)) {
+      Utilities.toastIt(this, "Network connection available!");
+      populateCases();
+    } else {
+      Utilities.toastIt(this, "No network connection!");
+      DataUpdater.populateLocalCases(this, new DataUpdater.UpdaterListener() {
+        @Override
+        public void onCompleted() {
+          toNextActivity();
+        }
+
+        @Override
+        public void onFailed() {
+          toNextActivity();
+        }
+      });
+    }
   }
 
 

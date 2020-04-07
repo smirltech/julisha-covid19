@@ -25,23 +25,24 @@
                 android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
                 android:textColor="@android:color/white"/>
         <TextView
+                android:id="@+id/label_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Annonce sur l'évolution de COVID-19 en RDC" android:textSize="16sp"
-                android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
+                android:text="v1.0"
+                android:textStyle="bold|italic" android:textColor="#FFC107"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Cette application a été créée par SmirlTech pour le peuple congolais." android:textSize="16sp"
+                android:textStyle="italic" android:layout_marginTop="40dp" android:textColor="@android:color/white"/>
 
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="200dp" app:srcCompat="@mipmap/flag" android:layout_marginTop="40dp"
                 android:visibility="invisible"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:visibility="gone"
-                android:text="Veuillez patienter, s'il vous plait !" android:layout_marginTop="40dp"
-                android:textStyle="bold|italic" android:textColor="#FFC107"/>
+
     </LinearLayout>
 
     <TextView

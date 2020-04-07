@@ -22,6 +22,7 @@ public class StaticRequestQueue
  }
  
  public <T> void append(Request<T> request){
+   request.setShouldRetryServerErrors(false);
 	queue.add(request);
  }
 }

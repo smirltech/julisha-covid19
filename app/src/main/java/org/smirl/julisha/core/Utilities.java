@@ -1,6 +1,9 @@
 package org.smirl.julisha.core;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,5 +24,12 @@ public class Utilities {
                     }
                 })
                 .show();
+    }
+
+    public static boolean checkInternetAvailable(Context context){
+      ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+   //   Network activeNetwork = cm.getActiveNetwork();
+    //  return activeNetwork != null && activeNetwork.;
+return true;
     }
 }

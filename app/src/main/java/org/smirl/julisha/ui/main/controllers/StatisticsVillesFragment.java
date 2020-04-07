@@ -72,12 +72,14 @@ public class StatisticsVillesFragment extends Fragment {
     Villes vl = Julisha.villes();
 
     HashSet<Integer> fs = cs.getVilleIds();
+    int _i = 1;
     for (final int c : fs.toArray(new Integer[]{})) {
       try {
         TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.item_row_model, null, false);
         TextView tv0 = row.findViewById(R.id.tr_prov);
 
         tv0.setText(vl.getVille(c).nom.toUpperCase());
+        ((TextView) row.findViewById(R.id.tr_no)).setText((_i++) + "");
         ((TextView) row.findViewById(R.id.tr_inf)).setText(cs.number(c, 1) + "");
         ((TextView) row.findViewById(R.id.tr_dec)).setText(cs.number(c, 2) + "");
         ((TextView) row.findViewById(R.id.tr_guer)).setText(cs.number(c, 3) + "");

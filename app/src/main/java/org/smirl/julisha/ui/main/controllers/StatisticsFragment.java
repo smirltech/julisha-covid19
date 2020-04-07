@@ -77,6 +77,7 @@ public class StatisticsFragment extends Fragment {
     Provinces vl = Julisha.provinces();
 
     HashSet<Integer> fs = cs.getProvinceIds();
+    int _i = 1;
     for (final int c : fs.toArray(new Integer[]{})) {
       try {
         TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.item_row_model, null, false);
@@ -91,6 +92,7 @@ public class StatisticsFragment extends Fragment {
             getContext().startActivity(ii);
           }
         });
+        ((TextView) row.findViewById(R.id.tr_no)).setText((_i++) + "");
         ((TextView) row.findViewById(R.id.tr_inf)).setText(cs.numberP(c, 1) + "");
         ((TextView) row.findViewById(R.id.tr_dec)).setText(cs.numberP(c, 2) + "");
         ((TextView) row.findViewById(R.id.tr_guer)).setText(cs.numberP(c, 3) + "");

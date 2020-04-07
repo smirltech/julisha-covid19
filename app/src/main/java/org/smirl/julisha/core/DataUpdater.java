@@ -47,6 +47,15 @@ public class DataUpdater implements Constants {
     StaticRequestQueue.from(context).append(request);
   }
 
+  public static void populateLocalCases(Context context, final UpdaterListener listener) {
+            File baseFolder = FileManager.getBaseDir(context, "julisha");
+            if(!baseFolder.exists())baseFolder.mkdirs();
+            File dataFile = new File(baseFolder, "data.json");
+            Julisha.read(dataFile);
+
+            if (listener != null)listener.onCompleted();
+  }
+
   public interface UpdaterListener{
     void onCompleted();
     void onFailed();

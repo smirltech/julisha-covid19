@@ -182,9 +182,10 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
       @Override
       public String getFormattedValue(float value) {
         CaseGraph cgg = Julisha.caseGraphs().getCaseGraph((int) value);
-        // if (cgg == null){
-        //   System.out.println("wrong id = " + value);
-        //}
+         if (cgg == null){
+         // System.out.println("wrong id = " + value);
+          return "Aujourd'hui";
+        }
         return cgg.date;
       }
     });

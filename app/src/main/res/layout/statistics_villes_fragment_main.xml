@@ -21,8 +21,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5dp"
-        android:shrinkColumns="1,2,3"
-        android:stretchColumns="0,1,2,3">
+        android:shrinkColumns="0,2,3,4"
+        android:stretchColumns="1,2,3,4">
 
         <TableRow
             android:layout_width="match_parent"
@@ -31,6 +31,14 @@
             android:orientation="vertical"
             android:padding="2dp">
 
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="No."
+                    android:textAlignment="textStart"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
