@@ -3,49 +3,51 @@ package org.smirl.julisha;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
-
+import androidx.fragment.app.Fragment;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
-import org.smirl.julisha.core.Constants;
-import org.smirl.julisha.core.PermissionManager;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
+import fnn.smirl.simple.Serializer;
+import org.smirl.julisha.core.*;
+import org.smirl.julisha.core.volley.MyStringRequest;
+import org.smirl.julisha.core.volley.StaticRequestQueue;
 import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
+import org.smirl.julisha.ui.main.models.Case;
+import org.smirl.julisha.ui.main.models.Province;
+import org.smirl.julisha.ui.main.models.Ville;
 import org.smirl.julisha.ui.main.views.AboutActivity;
-import org.smirl.julisha.ui.main.views.UrgencesActivity;
-import org.smirl.julisha.ui.main.views.CovidTestActivity;
-import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
 
-import java.net.URI;
-
-import fnn.smirl.appinfo.AppInfo;
-
+import java.io.IOException;
+import java.security.Permission;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
 
   private static final int REQUEST_INTERNET = 1;
   private static final int REQUEST_WRITE = 2;
   private static final int REQUEST_ACCESS_NETWORK_STATE = 3;
-  private FirebaseAnalytics mFirebaseAnalytics;
-
 
   ViewPager viewPager;
   SectionsPagerAdapter sectionsPagerAdapter;
@@ -54,16 +56,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    mFirebaseAnalytics = FirebaseAnalytics.getInstance (this);
-
-
-
-
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,12 +67,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     drawer.addDrawerListener(toggle);
     toggle.syncState();
 
-
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
-
-    navigationView.getMenu().findItem(R.id.versionapp).setTitle("Version: " + AppInfo.from(this).getAppVersionName());
-
+    //getSupportActionBar().setTitle("");
     permissionManager = new PermissionManager(this);
     verifier();
 
@@ -138,36 +131,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
       case R.id.action_apropos:
         startActivity(new Intent(this, AboutActivity.class));
         break;
-
-      case R.id.action_contact:
-        //
-        Intent intent = new Intent (Intent.ACTION_SENDTO, Uri.fromParts (
-                "mailto", getString(R.string.smirltech_mail), null));
-        String subject = null;
-        intent.putExtra (Intent.EXTRA_SUBJECT, subject);
-        String message = null;
-        intent.putExtra (Intent.EXTRA_TEXT, message);
-        startActivity (Intent.createChooser (intent, ""));
-        break;
-
-      case R.id.action_share:
-
-        Intent sendIntent = new Intent ();
-        sendIntent.setAction (Intent.ACTION_SEND);
-        sendIntent.putExtra (Intent.EXTRA_TEXT,getString(R.string.message_send));
-        sendIntent.setType ("text/plain");
-        startActivity (sendIntent);
-        break;
-      case R.id.action_update:
-        String url="https://apps.smirl.org/julisha";
-        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse (url));
-        startActivity (browserIntent);
-        //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
-        break;
-
-      case R.id.action_exit:
-        finish();
-        break;
     }
     return super.onOptionsItemSelected(item);
   }
@@ -178,42 +141,15 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     switch (item.getItemId()) {
       case R.id.nav_gb:
         // fragger.switchFragment(2);
-        startActivity(new Intent(this, GestesBarrieresActivity.class));
         break;
       case R.id.nav_diag:
         // fragger.switchFragment(3);
-        startActivity(new Intent(this, CovidTestActivity.class));
-
         break;
-        case R.id.nav_alert:
-        // fragger.switchFragment(3);
-        startActivity(new Intent(this, NewAlertActivity.class));
-
-        break;
-      case R.id.nav_contacterurgence:
-        startActivity(new Intent(this, UrgencesActivity.class));
-        break;
-
-      case R.id.nav_a_propos:
-        startActivity(new Intent(this, AboutActivity.class));
-
-
-        break;
-
-
-
-
       case R.id.nav_share:
 
-        Intent sendIntent = new Intent ();
-        sendIntent.setAction (Intent.ACTION_SEND);
-        sendIntent.putExtra (Intent.EXTRA_TEXT, getString (R.string.message_send));
-        sendIntent.setType ("text/plain");
-        startActivity (sendIntent);
         break;
-
-      case R.id.nav_exit:
-        finish();
+      case R.id.nav_a_propos:
+        startActivity(new Intent(this, AboutActivity.class));
         break;
 
       default:
