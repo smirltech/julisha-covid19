@@ -4,30 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_gray"
+    android:background="@color/colorPrimary"
     tools:context=".IntroActivity">
 
-    <LinearLayout
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/image"
-        android:src="@mipmap/covid3"
-        android:layout_gravity="center"
+        app:srcCompat="@mipmap/covid2"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_centerInParent="true"
         />
-
     <TextView
         android:id="@+id/text"
-        android:textColor="@color/colorPrimaryLight"
+        android:textColor="#fff"
         android:gravity="center"
-        android:textSize="50dp"
-        android:textStyle=""
+        android:textSize="40dp"
         android:text="@string/app_name"
+        android:layout_below="@id/image"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
@@ -35,33 +30,95 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_below="@+id/text"
         android:text="@string/short_description"
         android:textSize="16sp"
+        android:textStyle="italic"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimaryLight"/>
+        android:textColor="@android:color/white"/>
 
     <ProgressBar
         android:id="@+id/progressbar_splash"
         android:indeterminate="true"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:indeterminateDrawable="@xml/progress"
-        android:layout_marginTop="40dp"
+        android:layout_above="@id/app_version"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/app_version"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:gravity="center"
-        android:textSize="10dp"
+        android:textSize="20dp"
         android:layout_alignParentBottom="true"
-        android:text="©2020, SmirlTech. All rights reserved."/>
+        android:text="©2020, SmirlTech. All rights reserved."
+        />
 
 
 
 </RelativeLayout>
 
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".IntroActivity" android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/ee1"
+            android:gravity="center">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/covid2"
+                 android:layout_marginTop="40dp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
+                android:textColor="@android:color/white"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/short_description" android:textSize="16sp"
+                android:textStyle="italic" android:layout_marginTop="10dp" android:textColor="@android:color/white"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp" app:srcCompat="@mipmap/flag" android:layout_marginTop="40dp"
+                android:visibility="invisible"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Veuillez patienter, s'il vous plait !" android:layout_marginTop="40dp"
+                android:textStyle="bold|italic" android:textColor="#FFC107"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/ee1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="©2020, SmirlTech. All rights reserved."
+            android:layout_alignParentBottom="true"
+            android:textStyle="bold|italic" android:textColor="#8BC34A" android:padding="10dp"/>
+
+</RelativeLayout>
+-->
