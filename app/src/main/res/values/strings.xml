@@ -16,4 +16,11 @@
 
     <string name="short_description">Annonce sur l\'évolution de COVID-19 en RDC</string>
     <string name="about">Hello world</string>
+    <string name="action_exit">Quitter</string>
+    <string name="app_version">Version: 1.0</string>
+    <string name="message_send">Message de partage</string>
+    <string name="action_share">Partager</string>
+    <string name="noter_app">Noter l\'app</string>
+    <string name="action_contact">Nous contacter</string>
+    <string name="smirltech_mail">contact@smirl.org</string>
 </resources>

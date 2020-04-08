@@ -21,19 +21,18 @@
         android:title="@string/action_share"
         android:icon="@drawable/ic_baseline_share_24"
         app:showAsAction="ifRoom" />
-
+    <item
+        android:id="@+id/action_noter"
+        android:orderInCategory="100"
+        android:title="@string/noter_app"
+        android:icon="@drawable/ic_baseline_star_24"
+        app:showAsAction="never" />
 
 
     <item
             android:id="@+id/action_apropos"
             android:orderInCategory="102"
             android:title="@string/action_apropos"
-            android:icon="@android:drawable/ic_menu_recent_history"
-            app:showAsAction="never"/>
-    <item
-            android:id="@+id/action_update"
-            android:orderInCategory="102"
-            android:title="@string/action_update"
             android:icon="@android:drawable/ic_menu_recent_history"
             app:showAsAction="never"/>
     <item

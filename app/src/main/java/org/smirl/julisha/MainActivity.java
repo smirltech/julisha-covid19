@@ -1,8 +1,10 @@
 package org.smirl.julisha;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -131,6 +133,39 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
       case R.id.action_apropos:
         startActivity(new Intent(this, AboutActivity.class));
         break;
+
+      case R.id.action_contact:
+        //
+        Intent intent = new Intent (Intent.ACTION_SENDTO, Uri.fromParts (
+                "mailto", getString(R.string.smirltech_mail), null));
+        String subject = null;
+        intent.putExtra (Intent.EXTRA_SUBJECT, subject);
+        String message = null;
+        intent.putExtra (Intent.EXTRA_TEXT, message);
+        startActivity (Intent.createChooser (intent, ""));
+        break;
+
+      case R.id.action_share:
+
+        Intent sendIntent = new Intent ();
+        sendIntent.setAction (Intent.ACTION_SEND);
+        sendIntent.putExtra (Intent.EXTRA_TEXT, getString (R.string.message_send));
+        sendIntent.setType ("text/plain");
+        startActivity (sendIntent);
+        break;
+      case R.id.action_noter:
+        try {
+          startActivity (new Intent (Intent.ACTION_VIEW,
+                  Uri.parse ("market://details?id=" + getPackageName ())));
+        } catch (ActivityNotFoundException e) {
+          startActivity (new Intent (Intent.ACTION_VIEW,
+                  Uri.parse ("http://play.google.com/store/apps/details?id=" + getPackageName ())));
+        }
+        break;
+
+      case R.id.action_exit:
+        finish();
+        break;
     }
     return super.onOptionsItemSelected(item);
   }
@@ -144,12 +179,42 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         break;
       case R.id.nav_diag:
         // fragger.switchFragment(3);
+        startActivity(new Intent(this,CovidTestActivity.class));
+
+        break;
+
+      case R.id.nav_a_propos:
+        startActivity(new Intent(this, AboutActivity.class));
+
+
+        break;
+
+
+
+      case R.id.nav_moreapp:
+        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse ("https://smirl.org"));
+        startActivity (browserIntent);
+
         break;
       case R.id.nav_share:
 
+        Intent sendIntent = new Intent ();
+        sendIntent.setAction (Intent.ACTION_SEND);
+        sendIntent.putExtra (Intent.EXTRA_TEXT, getString (R.string.message_send));
+        sendIntent.setType ("text/plain");
+        startActivity (sendIntent);
         break;
-      case R.id.nav_a_propos:
-        startActivity(new Intent(this, AboutActivity.class));
+      case R.id.nav_noter:
+        try {
+          startActivity (new Intent (Intent.ACTION_VIEW,
+                  Uri.parse ("market://details?id=" + getPackageName ())));
+        } catch (ActivityNotFoundException e) {
+          startActivity (new Intent (Intent.ACTION_VIEW,
+                  Uri.parse ("http://play.google.com/store/apps/details?id=" + getPackageName ())));
+        }
+        break;
+      case R.id.nav_exit:
+        finish();
         break;
 
       default:

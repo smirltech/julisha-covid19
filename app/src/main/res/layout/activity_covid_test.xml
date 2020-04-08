@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CovidTestActivity">
+<!--
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarCovid"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetStartWithNavigation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        -->
+
+    <include
+        layout="@layout/toolbarcovid"
+        />
+
+
+    <include
+        layout="@layout/containt_covidtest"
+        />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/BoutonSart"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="#FDFBFB"
+            android:background="@color/colorPrimary"
+            android:text="Démarrer le Questionnaire"/>
+
+
+
+    </RelativeLayout>

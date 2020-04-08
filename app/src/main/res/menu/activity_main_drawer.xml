@@ -9,33 +9,30 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
-            android:title="@string/nav_accueil" />
+            android:title="Acceuil" />
         <item
             android:id="@+id/nav_gb"
             android:icon="@drawable/ic_baseline_more_24"
 
-            android:title="@string/nav_gestes_barri_res" />
+            android:title="Gestes Barrières" />
 
         <item
             android:id="@+id/nav_diag"
             android:icon="@drawable/ic_baseline_more_24"
 
-            android:title="@string/nav_diagnostic" />
-
-        <item
-            android:id="@+id/nav_alert"
-            android:icon="@drawable/ic_baseline_add_alert_red"
-
-            android:title="@string/nav_alert" />
-        <item
-            android:id="@+id/nav_contacterurgence"
-            android:icon="@drawable/ic_baseline_warning_24"
-            android:title="Appeler les Urgences" />
+            android:title="Diagnostique" />
 
     </group>
-    <group
-        android:checkableBehavior="none">
+    <group>
+        <item
+            android:id="@+id/nav_noter"
+            android:icon="@drawable/ic_baseline_star_24"
 
+            android:title="Noter l'app" />
+        <item
+            android:id="@+id/nav_moreapp"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="Plus d'applications" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_baseline_share_24"
@@ -48,7 +45,7 @@
         <item
             android:id="@+id/nav_a_propos"
             android:icon="@drawable/ic_baseline_code_24"
-            android:title="@string/nav_about" />
+            android:title="À propos" />
 
         <item
             android:id="@+id/nav_exit"
