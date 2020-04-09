@@ -176,11 +176,15 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     switch (item.getItemId()) {
       case R.id.nav_gb:
         // fragger.switchFragment(2);
+        startActivity(new Intent(this,GestesBarrieresActivity.class));
         break;
       case R.id.nav_diag:
         // fragger.switchFragment(3);
         startActivity(new Intent(this,CovidTestActivity.class));
 
+        break;
+      case R.id.nav_contacterurgence:
+        startActivity(new Intent(this,AppelerActivity.class));
         break;
 
       case R.id.nav_a_propos:
@@ -192,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
 
       case R.id.nav_moreapp:
-        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse ("https://smirl.org"));
+        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse ("https://play.google.com/store/apps/developer?id=SMIRL+-+IT+Solutions"));
         startActivity (browserIntent);
 
         break;

@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
-            android:title="Acceuil" />
+            android:title="Accueil" />
         <item
             android:id="@+id/nav_gb"
             android:icon="@drawable/ic_baseline_more_24"
@@ -21,9 +21,14 @@
             android:icon="@drawable/ic_baseline_more_24"
 
             android:title="Diagnostique" />
+        <item
+            android:id="@+id/nav_contacterurgence"
+            android:icon="@drawable/ic_baseline_warning_24"
+            android:title="Appler les Urgences" />
 
     </group>
-    <group>
+    <group
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_noter"
             android:icon="@drawable/ic_baseline_star_24"

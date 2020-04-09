@@ -23,6 +23,7 @@
         android:layout_height="220dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:visibility="gone"
         android:src="@drawable/diagnostics"/>
 
 
