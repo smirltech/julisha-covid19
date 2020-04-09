@@ -33,7 +33,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        setTitle("Résultat de Diagnostic ");
+        setTitle("Résultat de Diagnostique ");
 
 
         alertmsg = (TextView) findViewById(R.id.alertmsg);
