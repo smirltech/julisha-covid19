@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+
+    tools:context=".AppelerActivity">
+
+    <include
+        layout="@layout/toolbarcovid"/>
+
+    <include
+        layout="@layout/containt_appeler"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Urgence 1"
+            android:id="@+id/numero_1"
+            android:onClick="numero_1"
+            android:layout_marginEnd="20dp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:background="@drawable/covidbackground_btn"
+            android:textColor="#ffffff"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Urgence 2"
+            android:textAllCaps="false"
+            android:layout_marginEnd="20dp"
+            android:textStyle="bold"
+            android:id="@+id/numero_2"
+            android:onClick="numero_2"
+            android:background="@drawable/covidbackground_btn"
+            android:textColor="#ffffff" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Urgence 3"
+            android:textAllCaps="false"
+            android:id="@+id/numero_3"
+            android:onClick="numero_3"
+            android:textStyle="bold"
+            android:background="@drawable/covidbackground_btn"
+            android:textColor="#ffffff"
+           />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -25,10 +25,11 @@ public class QuestionsActivity extends AppCompatActivity {
    // Context contex = this;
     //String asText;
     String questions[] = {
+            "Votre niveau de fièvre est-il superieur à 38 °C ?\n\n" +
+                    "La température normale du corps oscille entre 36 °C et 37,2 °C selon les personnes, le cycle féminin (elle monte avec l'ovulation) et le moment de la journée (elle grimpe le soir). On parle de fièvre à partir de 38 °C.",
             "Est-ce que vous avez une toux récente ? \n \n " +
                     "Toux récente signifie une toux que vous n'aviez pas avant ou si vous toussez de manière chronique, que votre toux s'est empirée.",
             "Avez-vous des difficultés à respirer ?",
-            "Pensez-vous avoir eu de la fièvre ces derniers jours ? ",
             "Avez-vous une fatigue inhabituelle ces derniers jours ?",
             "Avez-vous mal à la gorge ?",
             "Avez-vous une impossibilité de manger ou boire depuis 24 heures ou plus ?",
@@ -40,15 +41,15 @@ public class QuestionsActivity extends AppCompatActivity {
 
     String reponses[] = {"Oui", "Oui",  "Oui", "Oui","Oui","Oui","Oui","Oui","Oui","int"};
     String choix[] = {
-            "Oui", "Non","", "",
-            "Oui", "Non", "", "",
-            "Oui","Non","","",
-            "Oui","Non","","",
-            "Oui","Non","","",
-            "Oui","Non","","",
-            "Oui","Non","","",
-            "Oui","Non","","",
-            "Oui","Non","","",
+            "Oui", "Non",
+            "Oui", "Non",
+            "Oui","Non",
+            "Oui","Non",
+            "Oui","Non",
+            "Oui","Non",
+            "Oui","Non",
+            "Oui","Non",
+            "Oui","Non",
 
     };
     int flag = 0;
@@ -89,7 +90,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 //mLayout.setBackgroundColor(color);
 
                 if (radio_g.getCheckedRadioButtonId() == -1) {
-                    Toast.makeText(getApplicationContext(), "Veillez faire un choix SVP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Veillez répondre  SVP", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
@@ -113,8 +114,8 @@ public class QuestionsActivity extends AppCompatActivity {
 
                 if (flag < questions.length) {
                     tv.setText(questions[flag]);
-                    rb1.setText(choix[flag * 4]);
-                    rb2.setText(choix[flag * 4 + 1]);
+                    rb1.setText(choix[flag * 2]);
+                    rb2.setText(choix[flag * 2 + 1]);
 
                 } else {
                     Etat = Positif;
@@ -137,7 +138,7 @@ public class QuestionsActivity extends AppCompatActivity {
         public void onBackPressed () {
             View parentLayout = findViewById(android.R.id.content);
 
-            Snackbar snackbar = Snackbar.make(parentLayout, "Abandonner le Test en cours ?", Snackbar.LENGTH_LONG)
+            Snackbar snackbar = Snackbar.make(parentLayout, "Abandonner le test en cours ?", Snackbar.LENGTH_LONG)
                     .setAction("OUI", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

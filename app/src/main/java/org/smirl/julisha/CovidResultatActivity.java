@@ -1,6 +1,8 @@
 package org.smirl.julisha;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +19,10 @@ import java.util.Objects;
 
 public class CovidResultatActivity extends AppCompatActivity {
     TextView alertmsg,messageap;
-    Button btnRestart, btnexit;
+    Button btnRestart, btnexit,urgence_btn;
     ImageView imagealert;
+    MediaPlayer alert;
+    Context contex = this;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -37,6 +41,7 @@ public class CovidResultatActivity extends AppCompatActivity {
 
         btnRestart = (Button) findViewById(R.id.btnRestart);
         btnexit = (Button) findViewById(R.id.btnexit);
+        urgence_btn=findViewById(R.id.urgence_btn);
         imagealert=(ImageView)findViewById(R.id.imagealert);
 
         /*
@@ -58,6 +63,8 @@ public class CovidResultatActivity extends AppCompatActivity {
             imagealert.setBackground(getDrawable(R.drawable.negatif));
             imagealert.setVisibility(View.VISIBLE);
             Toast.makeText(getApplicationContext(), "Vous ne présentez aucun symptômes", Toast.LENGTH_SHORT).show();
+            alert = MediaPlayer.create (contex, R.raw.alert);
+            alert.start ();
 
 /*
 
@@ -66,9 +73,10 @@ public class CovidResultatActivity extends AppCompatActivity {
 
 
         }
-     else    if(QuestionsActivity.Positif <=3){
+     else    if(QuestionsActivity.Positif <=4){
             alertmsg.setText("Surveillez attentivement votre état de santé !");
             alertmsg.setTextColor(getColor(R.color.black));
+
             alertmsg.setVisibility (View.VISIBLE);
             messageap.setText(" N’hésitez pas à contacter un médecin en cas de doute. \n \n Mesurez votre température deux fois par jour.\n" +
                     "\n" +
@@ -78,6 +86,9 @@ public class CovidResultatActivity extends AppCompatActivity {
                     "\n" +
                     "#Restez chez vous, limitez les contacts avec d'autres personnes. Le virus peut être propagé par des porteurs ne montrant pas de symptômes. ");
             messageap.setVisibility(View.VISIBLE);
+            imagealert.setBackground(getDrawable(R.drawable.ic_baseline_warning_blue));
+            imagealert.setVisibility(View.VISIBLE);
+
 
 
 
@@ -88,7 +99,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         Etat Avec de doute
          */
 
-        if (QuestionsActivity.Positif >= 4) {
+        if (QuestionsActivity.Positif >= 5) {
             Toast.makeText(getApplicationContext(), "Veillez consulter un medecin SVP!!!", Toast.LENGTH_SHORT).show();
             alertmsg.setText("Votre situation peut relever d’un COVID 19, vos symptômes nécessitent une prise en charge médicale.");
             alertmsg.setVisibility(View.VISIBLE);
@@ -96,7 +107,7 @@ public class CovidResultatActivity extends AppCompatActivity {
             messageap.setText("#Limitez les contacts avec d'autres personnes.\n \n" +
                     "Ce message ne qualifie en aucun cas un diagnostic individuel ou une prescription médicale et ne remplace en aucun cas une prise en charge médicale par un professionnel de santé compétent. Ce message repose sur les recommandations du ministère de la santé."+ "\n \nVeillez consulter un medecin SVP!!!");
             messageap.setVisibility(View.VISIBLE);
-            imagealert.setBackground(getDrawable(R.drawable.imagealert));
+            imagealert.setBackground(getDrawable(R.drawable.ic_baseline_warning_red));
             imagealert.setVisibility(View.VISIBLE);
 
 
@@ -114,8 +125,11 @@ public class CovidResultatActivity extends AppCompatActivity {
                 alertmsg.setTextColor(getColor(R.color.red));
                 messageap.setText("Ce message ne qualifie en aucun cas un diagnostic individuel ou une prescription médicale et ne remplace en aucun cas une prise en charge médicale par un professionnel de santé compétent. Ce message repose sur les recommandations du ministère de la santé.");
                 messageap.setVisibility(View.VISIBLE);
-                imagealert.setBackground(getDrawable(R.drawable.imagealert));
+                imagealert.setBackground(getDrawable(R.drawable.ic_baseline_add_alert_red));
                 imagealert.setVisibility(View.VISIBLE);
+            urgence_btn.setVisibility(View.VISIBLE);
+            alert = MediaPlayer.create (contex, R.raw.badalert);
+            alert.start ();
 
 
         }
@@ -155,10 +169,15 @@ public class CovidResultatActivity extends AppCompatActivity {
         super.onBackPressed();
 
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    public void urgence_btn(View view){
+        startActivity(new Intent(this,AppelerActivity.class));
+        finish();
     }
 
 }
