@@ -23,6 +23,6 @@
     <string name="noter_app">Noter l\'app</string>
     <string name="action_contact">Nous contacter</string>
     <string name="smirltech_mail">contact@smirl.org</string>
-    <string name="webload">file:///android_asset/webApp/gestesbarrieres.html</string>
+    <string name="webload">file:///android_asset/webApp/introduction.html</string>
     <string name="urgence">Urgence</string>
 </resources>
