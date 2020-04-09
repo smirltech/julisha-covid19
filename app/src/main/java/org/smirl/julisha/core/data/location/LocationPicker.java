@@ -44,7 +44,7 @@ public class LocationPicker {
 
     public static void pickLocation(Context ctx, int value, final OnDataSelection onDataSelection) {
         dbm = new Crud(ctx);
-        dbm.setShowProgressDialog(false);
+        dbm.setShowDialog(false);
 
         VALUE = value;
 
@@ -105,7 +105,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onErrorResponse(String error, int code) {
+            public void onError(String error, int code) {
                 DialogFactory.printError(context, error);
 
             }
@@ -154,7 +154,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onErrorResponse(String error, int code) {
+            public void onError(String error, int code) {
 
             }
         });
@@ -201,7 +201,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onErrorResponse(String error, int code) {
+            public void onError(String error, int code) {
 
             }
         });

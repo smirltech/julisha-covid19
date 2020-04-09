@@ -1,10 +1,10 @@
 package org.smirl.julisha.core.data.rdc;
 
 
-import static org.smirl.julisha.core.Constants.URL_RDC;
+import static org.smirl.julisha.core.Constants.RDC_URL;
 
 public interface RDC {
-    String RDC_API_URL = URL_RDC;
+    String RDC_API_URL = RDC_URL;
     String DBNAME = "smirlorg_rdc";
 
 

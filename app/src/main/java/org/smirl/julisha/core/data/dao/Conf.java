@@ -7,14 +7,14 @@ import org.smirl.julisha.core.Constants;
 
 public class Conf implements Constants {
 
-    public static final String url = URL_DB;
+    public static final String url = DB_URL;
     /*private String dbname = "wzexetat";
     private String user = "root";
     private String pswd = "";*/
 
-    private String dbname = "smirlorg_covid19";
-    private String user = "smirlorg_covid19";
-    private String pswd = "OqD?wZg{$tU1";
+    private String dbname = "smirlorg_wzexetat";
+    private String user = "smirlorg_wz";
+    private String pswd = "nDo=nW+]~;Fo";
 
     private JSONObject db;
 

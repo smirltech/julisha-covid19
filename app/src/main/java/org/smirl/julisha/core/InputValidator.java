@@ -98,36 +98,20 @@ public class InputValidator {
     }
 
     public static boolean isSet(Context ctx, String msg, int... values) {
-        if (values == null || values.length == 0) return false;
-        try {
-            for (int v : values)
-                if (v <= 0) {
-                    Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
+        for (int v : values)
+            if (v <= 0) {
+                Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
+                return false;
+            }
         return true;
     }
 
     public static boolean isSet(Context ctx, String msg, String... values) {
-
-
-        try {
-            for (String v : values)
-                if (v.trim().length() <= 0) {
-                    return false;
-                }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
-            return false;
-
-        }
+        for (String v : values)
+            if (v.trim().length() <= 0) {
+                Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
+                return false;
+            }
         return true;
     }
 }
