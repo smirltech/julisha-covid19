@@ -16,34 +16,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import fnn.smirl.simple.Serializer;
 import org.smirl.julisha.core.*;
-import org.smirl.julisha.core.volley.MyStringRequest;
-import org.smirl.julisha.core.volley.StaticRequestQueue;
 import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
-import org.smirl.julisha.ui.main.models.Case;
-import org.smirl.julisha.ui.main.models.Province;
-import org.smirl.julisha.ui.main.models.Ville;
 import org.smirl.julisha.ui.main.views.AboutActivity;
+import org.smirl.julisha.ui.main.views.AppelerActivity;
+import org.smirl.julisha.ui.main.views.CovidTestActivity;
+import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
-
-import java.io.IOException;
-import java.security.Permission;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
 
@@ -176,15 +164,15 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     switch (item.getItemId()) {
       case R.id.nav_gb:
         // fragger.switchFragment(2);
-        startActivity(new Intent(this,GestesBarrieresActivity.class));
+        startActivity(new Intent(this, GestesBarrieresActivity.class));
         break;
       case R.id.nav_diag:
         // fragger.switchFragment(3);
-        startActivity(new Intent(this,CovidTestActivity.class));
+        startActivity(new Intent(this, CovidTestActivity.class));
 
         break;
       case R.id.nav_contacterurgence:
-        startActivity(new Intent(this,AppelerActivity.class));
+        startActivity(new Intent(this, AppelerActivity.class));
         break;
 
       case R.id.nav_a_propos:

@@ -1,4 +1,4 @@
-package org.smirl.julisha;
+package org.smirl.julisha.ui.main.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import org.smirl.julisha.R;
 
 import java.util.Objects;
 

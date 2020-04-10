@@ -6,6 +6,8 @@ import android.os.Bundle;
 import fnn.smirl.appinfo.AppInfo;
 import org.smirl.julisha.R;
 
+import java.util.Objects;
+
 public class AboutActivity extends AppCompatActivity {
 
   @Override

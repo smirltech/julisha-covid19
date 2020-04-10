@@ -1,8 +1,10 @@
-package org.smirl.julisha;
+package org.smirl.julisha.ui.main.views;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -15,6 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.smirl.julisha.R;
+
 import java.util.Objects;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -24,6 +28,9 @@ public class QuestionsActivity extends AppCompatActivity {
     RadioButton rb1, rb2, rb3, rb4;
    // Context contex = this;
     //String asText;
+    public static int temps=3000;
+   ProgressDialog progressDialog;
+
     String questions[] = {
             "Votre niveau de fièvre est-il superieur à 38 °C ?\n\n" +
                     "La température normale du corps oscille entre 36 °C et 37,2 °C selon les personnes, le cycle féminin (elle monte avec l'ovulation) et le moment de la journée (elle grimpe le soir). On parle de fièvre à partir de 38 °C.",
@@ -59,7 +66,7 @@ public class QuestionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
-        Toolbar toolbar=(findViewById(R.id.toolbarCovid));
+        Toolbar toolbar = (findViewById(R.id.toolbarCovid));
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -90,7 +97,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 //mLayout.setBackgroundColor(color);
 
                 if (radio_g.getCheckedRadioButtonId() == -1) {
-                    Toast.makeText(getApplicationContext(), "Veillez répondre  SVP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Veuillez répondre  SVP", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
@@ -119,11 +126,24 @@ public class QuestionsActivity extends AppCompatActivity {
 
                 } else {
                     Etat = Positif;
+                    final Handler handler= new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent in = new Intent(getApplicationContext(), CovidResultatActivity.class);
+                            startActivity(in);
+                            finish();
+
+                        }
+                    },temps);
+                    progressDialog = new ProgressDialog(QuestionsActivity.this);
+                    progressDialog.setMessage ("Traitement en cours...\nVeuillez patienter");
+                    progressDialog.setCancelable (false);
+                    progressDialog.show();
 
 
-                    Intent in = new Intent(getApplicationContext(), CovidResultatActivity.class);
-                    startActivity(in);
-                    finish();
+
+
                 }
                 radio_g.clearCheck();
 
@@ -133,6 +153,8 @@ public class QuestionsActivity extends AppCompatActivity {
 
         });
     }
+
+
 
         @Override
         public void onBackPressed () {
@@ -156,6 +178,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         }
+
     @Override
     public boolean onSupportNavigateUp() {
         View parentLayout = findViewById(android.R.id.content);
@@ -178,6 +201,8 @@ public class QuestionsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+
 
     }
 
