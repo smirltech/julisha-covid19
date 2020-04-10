@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal">
+
     <LinearLayout
             android:gravity="center"
             android:background="@color/colorPrimaryDark"
@@ -48,9 +52,15 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:textSize="18dp"
-            android:text="Thanks to : \nPapy Maotala  \nMarien Mupenda\nJonas Kaninda\nFrancis N Numbi"
-            android:layout_marginBottom="50dp"/>
-
+            android:text=" to : \nPapy Maotala  \nMarien Mupenda\nJonas Kaninda\nFrancis N Numbi"
+            android:layout_marginBottom="50dp"
+            android:visibility="gone"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:src="@mipmap/flag"/>
     <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -78,3 +88,4 @@
             android:layout_marginTop="20dp"/>
 
 </LinearLayout>
+</ScrollView>
