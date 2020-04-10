@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.smirl.julisha.R;
 
 import java.util.Objects;
@@ -17,6 +19,8 @@ public class GestesBarrieresActivity extends AppCompatActivity {
     WebView webview;
    // String url=getString(R.string.webload);
     ProgressDialog progressDialog;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -28,6 +32,8 @@ public class GestesBarrieresActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle(getString(R.string.app_name));
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance (this);
+
 
         webview = (WebView) findViewById (R.id.webView);
 

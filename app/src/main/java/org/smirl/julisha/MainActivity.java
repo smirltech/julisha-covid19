@@ -6,24 +6,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
-import org.smirl.julisha.core.*;
+import org.smirl.julisha.core.Constants;
+import org.smirl.julisha.core.PermissionManager;
 import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
@@ -33,11 +34,15 @@ import org.smirl.julisha.ui.main.views.CovidTestActivity;
 import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
 
+
+
 public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
 
   private static final int REQUEST_INTERNET = 1;
   private static final int REQUEST_WRITE = 2;
   private static final int REQUEST_ACCESS_NETWORK_STATE = 3;
+  private FirebaseAnalytics mFirebaseAnalytics;
+
 
   ViewPager viewPager;
   SectionsPagerAdapter sectionsPagerAdapter;
@@ -46,10 +51,16 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    mFirebaseAnalytics = FirebaseAnalytics.getInstance (this);
+
+
+
+
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -137,19 +148,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         Intent sendIntent = new Intent ();
         sendIntent.setAction (Intent.ACTION_SEND);
-        sendIntent.putExtra (Intent.EXTRA_TEXT, getString (R.string.message_send));
+        sendIntent.putExtra (Intent.EXTRA_TEXT,getString(R.string.message_send));
         sendIntent.setType ("text/plain");
         startActivity (sendIntent);
         break;
-      case R.id.action_noter:
-        try {
-          startActivity (new Intent (Intent.ACTION_VIEW,
-                  Uri.parse ("market://details?id=" + getPackageName ())));
-        } catch (ActivityNotFoundException e) {
-          startActivity (new Intent (Intent.ACTION_VIEW,
-                  Uri.parse ("http://play.google.com/store/apps/details?id=" + getPackageName ())));
-        }
-        break;
+
 
       case R.id.action_exit:
         finish();
@@ -183,11 +186,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
 
 
-      case R.id.nav_moreapp:
-        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse ("https://play.google.com/store/apps/developer?id=SMIRL+-+IT+Solutions"));
-        startActivity (browserIntent);
 
-        break;
       case R.id.nav_share:
 
         Intent sendIntent = new Intent ();
@@ -196,15 +195,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         sendIntent.setType ("text/plain");
         startActivity (sendIntent);
         break;
-      case R.id.nav_noter:
-        try {
-          startActivity (new Intent (Intent.ACTION_VIEW,
-                  Uri.parse ("market://details?id=" + getPackageName ())));
-        } catch (ActivityNotFoundException e) {
-          startActivity (new Intent (Intent.ACTION_VIEW,
-                  Uri.parse ("http://play.google.com/store/apps/details?id=" + getPackageName ())));
-        }
-        break;
+
       case R.id.nav_exit:
         finish();
         break;

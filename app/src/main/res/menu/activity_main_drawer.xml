@@ -29,15 +29,7 @@
     </group>
     <group
         android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav_noter"
-            android:icon="@drawable/ic_baseline_star_24"
 
-            android:title="Noter l'app" />
-        <item
-            android:id="@+id/nav_moreapp"
-            android:icon="@drawable/ic_baseline_favorite_24"
-            android:title="Plus d'applications" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_baseline_share_24"

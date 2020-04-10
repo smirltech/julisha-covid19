@@ -17,12 +17,13 @@
     <string name="short_description">Annonce sur l\'évolution de COVID-19 en RDC</string>
     <string name="about">Hello world</string>
     <string name="action_exit">Quitter</string>
-    <string name="app_version">Version: 1.0</string>
-    <string name="message_send">Message de partage</string>
+    <string name="app_version">Version: 1.1</string>
+
     <string name="action_share">Partager</string>
     <string name="noter_app">Noter l\'app</string>
     <string name="action_contact">Nous contacter</string>
     <string name="smirltech_mail">contact@smirl.org</string>
     <string name="webload">file:///android_asset/webApp/gestesbarrieres.html</string>
     <string name="urgence">Urgence</string>
+    <string name="message_send">Hey, cette application me permet de suivre l\'évolution du Virus Corona (Covid-19) en RDC , elle me permet également de faire un test du Covid-19, je pense qu\'elle pourra vous intéresser aussi. \nVoici le lien de téléchargement: https://apps.smirl.org/julisha\n</string>
 </resources>

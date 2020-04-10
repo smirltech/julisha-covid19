@@ -42,19 +42,6 @@
         <item>Black</item>
     </string-array>
     <string-array name="preloaded_fonts">test</string-array>
-    <string-array name="questions">
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-        <item>"Salut",</item>
-
-
-    </string-array>
 
 
 </resources>
