@@ -19,78 +19,81 @@ import org.smirl.julisha.core.volley.StaticRequestQueue;
 import java.io.File;
 import java.io.IOException;
 
+
 public class IntroActivity extends AppCompatActivity implements Constants {
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
 
-        populateProvinces();
-        populateVilles();
-
-        if (Utilities.checkInternetAvailable(this)) {
-           // Utilities.toastIt(this, "Network connection available!");
-            populateCases();
-        } else {
-            Utilities.toastIt(this, "No network connection!");
-            DataUpdater.populateLocalCases(this, new DataUpdater.UpdaterListener() {
-                @Override
-                public void onCompleted() {
-                    toNextActivity();
-                }
-
-                @Override
-                public void onFailed() {
-                    toNextActivity();
-                }
-            });
-        }
-    }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_intro);
 
 
-    private void populateProvinces() {
-        String dd = null;
-        try {
-            dd = FileManager.readFromAssets(this, "rdc/provinces.json");
-            Julisha.loadProvinces(dd);
-        } catch (IOException e) {
-            e.printStackTrace();
+    populateProvinces();
+    populateVilles();
+
+    if (Utilities.checkInternetAvailable(this)) {
+      Utilities.toastIt(this, "Network connection available!");
+      populateCases();
+    } else {
+      Utilities.toastIt(this, "No network connection!");
+      DataUpdater.populateLocalCases(this, new DataUpdater.UpdaterListener() {
+        @Override
+        public void onCompleted() {
+          toNextActivity();
         }
 
-    }
-
-    private void populateVilles() {
-        String dd = null;
-        try {
-            dd = FileManager.readFromAssets(this, "rdc/villes.json");
-            Julisha.loadVilles(dd);
-        } catch (IOException e) {
-            e.printStackTrace();
+        @Override
+        public void onFailed() {
+          toNextActivity();
         }
+      });
+    }
+  }
 
+
+  private void populateProvinces() {
+    String dd = null;
+    try {
+      dd = FileManager.readFromAssets(this, "rdc/provinces.json");
+      Julisha.loadProvinces(dd);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
-    private void populateCases() {
+  }
 
-        DataUpdater.populateCases(this, new DataUpdater.UpdaterListener() {
-            @Override
-            public void onCompleted() {
-                toNextActivity();
-            }
-
-            @Override
-            public void onFailed() {
-                toNextActivity();
-            }
-        });
+  private void populateVilles() {
+    String dd = null;
+    try {
+      dd = FileManager.readFromAssets(this, "rdc/villes.json");
+      Julisha.loadVilles(dd);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
-    private void toNextActivity() {
-        startActivity(new Intent(IntroActivity.this, MainActivity.class));
-        finish();
-    }
+  }
+
+  private void populateCases() {
+
+    DataUpdater.populateCases(this, new DataUpdater.UpdaterListener() {
+      @Override
+      public void onCompleted() {
+        toNextActivity();
+      }
+
+      @Override
+      public void onFailed() {
+        toNextActivity();
+      }
+    });
+  }
+
+  private void toNextActivity() {
+    startActivity(new Intent(IntroActivity.this, MainActivity.class));
+    finish();
+  }
 
 
 }

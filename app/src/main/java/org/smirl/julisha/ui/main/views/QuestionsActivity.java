@@ -31,6 +31,7 @@ public class QuestionsActivity extends AppCompatActivity {
     public static int temps=3000;
    ProgressDialog progressDialog;
 
+
     String questions[] = {
             "Votre niveau de fièvre est-il superieur à 38 °C ?\n\n" +
                     "La température normale du corps oscille entre 36 °C et 37,2 °C selon les personnes, le cycle féminin (elle monte avec l'ovulation) et le moment de la journée (elle grimpe le soir). On parle de fièvre à partir de 38 °C.",

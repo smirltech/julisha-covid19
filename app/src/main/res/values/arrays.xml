@@ -1,0 +1,47 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Orange</item>
+        <item>Bleu</item>
+        <item>Rouge</item>
+        <item>Cya</item>
+
+
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>Orange</item>
+        <item>Bleu</item>
+        <item>Rouge</item>
+        <item>Cya</item>
+
+    </string-array>
+
+    <string-array name="settings_font_sizes">
+        <item>-2</item>
+        <item>-1</item>
+        <item>Standard</item>
+        <item>+1</item>
+        <item>+2</item>
+        <item>+3</item>
+    </string-array>
+    <string-array name="settings_preload_image_modes">
+        <item>Never</item>
+        <item>Only over Wi-Fi</item>
+        <item>Always</item>
+    </string-array>
+
+    <string-array name="settings_themes">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Black</item>
+    </string-array>
+    <string-array name="settings_values">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Black</item>
+    </string-array>
+    <string-array name="preloaded_fonts">test</string-array>
+
+
+</resources>
