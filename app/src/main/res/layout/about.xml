@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
-            android:text="Thanks to : Papy Maotala "
+            android:textSize="18dp"
+            android:text="Thanks to : \nPapy Maotala  \nMarien Mupenda\nJonas Kaninda\nFrancis N Numbi"
             android:layout_marginBottom="50dp"/>
 
     <TextView

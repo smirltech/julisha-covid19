@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AppelerActivity"></activity>
-        <activity android:name=".GestesBarrieresActivity" />
+        <activity android:name=".ui.main.views.AppelerActivity"></activity>
+        <activity android:name=".ui.main.views.GestesBarrieresActivity" />
         <activity
             android:name=".ui.main.views.AboutActivity"
             android:label="@string/action_apropos" />
-        <activity android:name=".CovidResultatActivity" />
-        <activity android:name=".QuestionsActivity" />
-        <activity android:name=".CovidTestActivity" />
+        <activity android:name=".ui.main.views.CovidResultatActivity" />
+        <activity android:name=".ui.main.views.QuestionsActivity" />
+        <activity android:name=".ui.main.views.CovidTestActivity" />
         <activity
             android:name=".IntroActivity"
             android:label="@string/app_name"

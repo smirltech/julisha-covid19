@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
 
-    tools:context=".AppelerActivity">
+    tools:context=".ui.main.views.AppelerActivity">
 
     <include
         layout="@layout/toolbarcovid"/>
