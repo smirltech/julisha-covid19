@@ -39,7 +39,7 @@
                     android:text="No."
                     android:textAlignment="textStart"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="10sp"/>
+                    android:textStyle="bold" android:textSize="12sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,16 +47,16 @@
                     android:text="Provinces"
                     android:textAlignment="textStart"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="10sp"/>
+                    android:textStyle="bold" android:textSize="12sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Confirmés"
+                    android:text="Infectés"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="10sp"/>
+                    android:textStyle="bold" android:textSize="12sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                     android:text="Décédés"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="10sp"/>
+                    android:textStyle="bold" android:textSize="12sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:text="Guéris"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="10sp"/>
+                    android:textStyle="bold" android:textSize="12sp"/>
             </TableRow>
 
         </TableLayout>

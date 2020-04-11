@@ -10,18 +10,21 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
+import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.ui.main.models.CaseGraphs;
+import org.smirl.julisha.core.Utilities;
+import org.smirl.julisha.ui.main.models.Cases;
+import org.smirl.julisha.ui.main.models.Provinces;
 import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.views.DetailsActivity;
-import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
+
+import java.util.HashSet;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -30,7 +33,6 @@ public class StatisticsFragment extends Fragment {
 
   private static final String ARG_SECTION_NUMBER = "section_number";
   private MainActivity mActivity;
-  private NestedScrollView sfNestedSV;
 
   private StatisticsViewModel statisticsViewModel;
 
@@ -61,22 +63,11 @@ public class StatisticsFragment extends Fragment {
       @NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View root = inflater.inflate(R.layout.statistics_fragment_main, container, false);
-    sfNestedSV = root.findViewById(R.id.sf_nested_sv);
     tableDisplay = root.findViewById(R.id.tableDisplay);
     tableDisplay.removeViews(1, tableDisplay.getChildCount() - 1);
     populateTable();
 
-    sfNestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-      @Override
-      public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
-          //Utilities.toastIt(getContext(), "bottom scroll reached !");
-          mActivity.toggleFab(false);
-        }else{
-          mActivity.toggleFab(true);
-        }
-      }
-    });
+
     return root;
   }
 
@@ -103,22 +94,6 @@ public class StatisticsFragment extends Fragment {
         ((TextView) row.findViewById(R.id.tr_inf)).setText(c.infected + "");
         ((TextView) row.findViewById(R.id.tr_dec)).setText(c.dead + "");
         ((TextView) row.findViewById(R.id.tr_guer)).setText(c.healed + "");
-        tv0.setOnLongClickListener(new View.OnLongClickListener() {
-          @Override
-          public boolean onLongClick(View v) {
-            CaseGraphs vcg =  Julisha.getProvinceCaseGraphs(c.id);
-            new LoneGraph(getLayoutInflater(), c.name.toUpperCase(), vcg);
-            return true;
-          }
-        });
-        row.setOnLongClickListener(new View.OnLongClickListener() {
-          @Override
-          public boolean onLongClick(View v) {
-            CaseGraphs vcg =  Julisha.getProvinceCaseGraphs(c.id);
-            new LoneGraph(getLayoutInflater(), c.name.toUpperCase(), vcg);
-            return true;
-          }
-        });
 
         tableDisplay.addView(row);
 
