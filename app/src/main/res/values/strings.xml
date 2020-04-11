@@ -25,6 +25,9 @@
     <string name="smirltech_mail">contact@smirl.org</string>
     <string name="webload">file:///android_asset/webApp/gestesbarrieres.html</string>
     <string name="urgence">Urgence</string>
-    <string name="message_send">Hey, cette application me permet de suivre l\'évolution du Virus Corona (Covid-19) en RDC , elle me permet également de faire un test du Covid-19, je pense qu\'elle pourra vous intéresser aussi. \nVoici le lien de téléchargement: https://apps.smirl.org/julisha\n</string>
+    <string name="message_send">Hey, cette application me permet de suivre l\'évolution du Virus Corona (Covid-19) en RDC , elle me permet également à faire un Diagnostic du Covid-19.\nTellement qu\'elle m\'a interessée, je me suis dit qu\'elle pourra vous intéresser aussi. \nVoici le lien de téléchargement: https://apps.smirl.org/julisha\n</string>
     <string name="about">Étant tous concerné par la lutte contre la propagation jusqu\'à l\'éradication du nouveau coronavirus ou covid-19, l\'équipe de SmirlTech disponibilise cette application pour contribuer à disséminer l\'info sur la propagation de COVID-19 en RDC.</string>
+    <string name="nav_diagnostic">Diagnostic</string>
+    <string name="nav_gestes_barri_res">Gestes Barrières</string>
+    <string name="nav_accueil">Accueil</string>
 </resources>
