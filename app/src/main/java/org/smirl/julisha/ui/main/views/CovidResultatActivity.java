@@ -1,10 +1,14 @@
 package org.smirl.julisha.ui.main.views;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,12 +18,14 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 
 import org.smirl.julisha.R;
 
 import java.util.Objects;
 
 public class CovidResultatActivity extends AppCompatActivity {
+    private static final String CHANNEL_ID = null;
     TextView alertmsg,messageap;
     Button btnRestart, btnexit,urgence_btn;
     ImageView imagealert;
@@ -35,7 +41,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        setTitle("Résultat de Diagnostique ");
+        setTitle("Résultat de Diagnostic ");
 
 
         alertmsg = (TextView) findViewById(R.id.alertmsg);
@@ -90,6 +96,10 @@ public class CovidResultatActivity extends AppCompatActivity {
             messageap.setVisibility(View.VISIBLE);
             imagealert.setBackground(getDrawable(R.drawable.ic_baseline_warning_blue));
             imagealert.setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(), "Surveillez attentivement votre état de santé !", Toast.LENGTH_SHORT).show();
+            alert = MediaPlayer.create (contex, R.raw.alert);
+            alert.start ();
+
 
 
 
@@ -132,6 +142,13 @@ public class CovidResultatActivity extends AppCompatActivity {
             urgence_btn.setVisibility(View.VISIBLE);
             alert = MediaPlayer.create (contex, R.raw.badalert);
             alert.start ();
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                vibrator.vibrate(500);
+            }
+
 
 
         }
@@ -182,4 +199,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         finish();
     }
 
-}
+    
+
+
+    }
