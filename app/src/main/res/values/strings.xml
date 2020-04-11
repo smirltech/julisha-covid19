@@ -30,4 +30,5 @@
     <string name="nav_diagnostic">Diagnostic</string>
     <string name="nav_gestes_barri_res">Gestes Barrières</string>
     <string name="nav_accueil">Accueil</string>
+    <string name="nav_about">À propos</string>
 </resources>
