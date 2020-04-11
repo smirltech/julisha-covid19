@@ -42,7 +42,7 @@
         <item
             android:id="@+id/nav_a_propos"
             android:icon="@drawable/ic_baseline_code_24"
-            android:title="À propos" />
+            android:title="@string/nav_about" />
 
         <item
             android:id="@+id/nav_exit"
