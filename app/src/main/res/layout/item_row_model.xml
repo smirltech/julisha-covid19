@@ -13,7 +13,7 @@
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
-        android:textSize="12sp"/>
+        android:textSize="10sp"/>
     <TextView
         android:id="@+id/tr_prov"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
-        android:textSize="12sp"/>
+        android:textSize="10sp"/>
 
     <TextView
         android:id="@+id/tr_inf"
@@ -36,7 +36,7 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:layout_weight="1" android:textSize="12sp"/>
+        android:layout_weight="1" android:textSize="10sp"/>
 
     <TextView
         android:id="@+id/tr_dec"
@@ -47,7 +47,7 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:layout_weight="1" android:textSize="12sp"/>
+        android:layout_weight="1" android:textSize="10sp"/>
 
     <TextView
         android:id="@+id/tr_guer"
@@ -58,5 +58,5 @@
         android:textColor="@color/green"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:layout_weight="1" android:textSize="12sp"/>
+        android:layout_weight="1" android:textSize="10sp"/>
 </TableRow>
