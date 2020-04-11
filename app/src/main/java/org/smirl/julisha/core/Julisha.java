@@ -49,7 +49,7 @@ public class Julisha {
   }
 
   public static void setLastUpdate(long lastUpdate) {
-     julisha.lastUpdate = lastUpdate;
+    julisha.lastUpdate = lastUpdate;
   }
 
   /**
@@ -138,6 +138,31 @@ public class Julisha {
     return julisha.cases.max();
   }
 
+  public static ArrayList<TableData> getProvincesTableData() {
+    ArrayList<TableData> td = new ArrayList<>();
+
+    HashSet<Integer> fs = cases().getProvinceIds();
+    for (final int c : fs.toArray(new Integer[]{})) {
+      td.add(new TableData(c, provinces().getProvince(c).nom, cases().numberP(c, 1), cases().numberP(c, 2), cases().numberP(c, 3)));
+    }
+    Collections.sort(td);
+    return td;
+  }
+
+  public static ArrayList<TableData> getVillesTableData(int provinceid) {
+    ArrayList<TableData> td = new ArrayList<>();
+    Cases cs = null;
+    if(provinceid < 1)cs = Julisha.cases();
+    else cs = Julisha.cases(provinceid);
+
+    HashSet<Integer> fs = cs.getVilleIds();
+    for (final int c : fs.toArray(new Integer[]{})) {
+      td.add(new TableData(c, villes().getVille(c).nom, cs.number(c, 1), cs.number(c, 2), cs.number(c, 3)));
+    }
+    Collections.sort(td);
+    return td;
+  }
+
   public static void prepareCaseGraphs() {
     julisha.caseGraphs.clear();
     CaseGraph initt = new CaseGraph(0, "0");
@@ -204,7 +229,7 @@ public class Julisha {
 
 
   public static void save(File file) {
-        new Serializer().serialize(file.getAbsolutePath(), julisha, Julisha.class);
+    new Serializer().serialize(file.getAbsolutePath(), julisha, Julisha.class);
   }
 
   public static void read(File file) {

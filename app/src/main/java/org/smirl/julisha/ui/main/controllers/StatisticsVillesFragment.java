@@ -17,6 +17,7 @@ import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
 import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.Provinces;
+import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.models.Villes;
 import org.smirl.julisha.ui.main.views.DetailsActivity;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
@@ -68,21 +69,18 @@ public class StatisticsVillesFragment extends Fragment {
   }
 
   public void populateTable() {
-    Cases cs = Julisha.cases();
-    Villes vl = Julisha.villes();
 
-    HashSet<Integer> fs = cs.getVilleIds();
     int _i = 1;
-    for (final int c : fs.toArray(new Integer[]{})) {
+    for (final TableData c : Julisha.getVillesTableData(0)) {
       try {
         TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.item_row_model, null, false);
         TextView tv0 = row.findViewById(R.id.tr_prov);
 
-        tv0.setText(vl.getVille(c).nom.toUpperCase());
+        tv0.setText(c.name.toUpperCase());
         ((TextView) row.findViewById(R.id.tr_no)).setText((_i++) + "");
-        ((TextView) row.findViewById(R.id.tr_inf)).setText(cs.number(c, 1) + "");
-        ((TextView) row.findViewById(R.id.tr_dec)).setText(cs.number(c, 2) + "");
-        ((TextView) row.findViewById(R.id.tr_guer)).setText(cs.number(c, 3) + "");
+        ((TextView) row.findViewById(R.id.tr_inf)).setText(c.infected + "");
+        ((TextView) row.findViewById(R.id.tr_dec)).setText(c.dead + "");
+        ((TextView) row.findViewById(R.id.tr_guer)).setText(c.healed + "");
 
         tableDisplay.addView(row);
 

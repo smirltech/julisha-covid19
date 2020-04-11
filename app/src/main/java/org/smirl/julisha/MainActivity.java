@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -35,6 +36,7 @@ import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.Province;
 import org.smirl.julisha.ui.main.models.Ville;
 import org.smirl.julisha.ui.main.views.AboutActivity;
+import org.smirl.julisha.ui.main.views.NewAlertActivity;
 
 import java.io.IOException;
 import java.security.Permission;
@@ -97,6 +99,12 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
       }
     });
 
+    findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getBaseContext(), NewAlertActivity.class));
+      }
+    });
   }
 
   @Override
@@ -130,10 +138,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
     switch (item.getItemId()) {
       case R.id.nav_gb:
-        // fragger.switchFragment(2);
+
         break;
       case R.id.nav_diag:
-        // fragger.switchFragment(3);
+
         break;
       case R.id.nav_share:
 

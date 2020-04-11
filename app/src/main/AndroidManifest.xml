@@ -14,8 +14,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.views.AboutActivity"
-        android:label="@string/action_apropos">
+        <activity
+                android:theme="@style/AppTheme.NoActionBar2"
+                android:name=".ui.main.views.NewAlertActivity">
+        </activity>
+        <activity
+                android:name=".ui.main.views.AboutActivity"
+                android:label="@string/action_apropos">
         </activity>
         <activity
                 android:name=".IntroActivity"
