@@ -5,46 +5,32 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-
+import com.github.mikephil.charting.utils.ColorTemplate;
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
-import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
-import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.CaseGraph;
-import org.smirl.julisha.ui.main.models.CaseGraphs;
-import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.CasesSummary;
-import org.smirl.julisha.ui.main.models.TableData;
-import org.smirl.julisha.ui.main.views.GraphManager;
-import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.Date;
 
 
 /**
@@ -52,260 +38,244 @@ import java.util.Objects;
  */
 public class GraphicsFragment extends Fragment implements Fragmentation {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-    private MainActivity mActivity;
-    private SwipeRefreshLayout gfSwipe;
-    private NestedScrollView gfNestedSV;
-    private TextView currEvntDate, currEvnt;
+  private static final String ARG_SECTION_NUMBER = "section_number";
+  private MainActivity mActivity;
+  private SwipeRefreshLayout gfSwipe;
 
-    /**
-     * information for your town
-     */
-    private int myVille = 126;
-    private TextView villeName, villeInfect, villeDead, villeHeal;
-    private ImageView gView;
-    /**
-     * ./information for your town
-     */
+  private PageViewModel pageViewModel;
 
-    private PieChart pieChart1, pieChart2;
+  TextView infectionLabel;
+  TextView deadLabel;
+  TextView healedLabel;
+  TextView majDate;
 
-    private PageViewModel pageViewModel;
-    private GraphManager graphManager;
+  private LineChart chart;
+  //private AnyChartView anyChartView;
 
-    TextView infectionLabel;
-    TextView deadLabel;
-    TextView healedLabel;
-    TextView majDate;
+  public static GraphicsFragment newInstance(MainActivity activity, int index) {
+    GraphicsFragment fragment = new GraphicsFragment();
+    fragment.mActivity = activity;
+    Bundle bundle = new Bundle();
+    bundle.putInt(ARG_SECTION_NUMBER, index);
+    fragment.setArguments(bundle);
+    return fragment;
+  }
 
-    private Cases currCG;
-
-
-    public static GraphicsFragment newInstance(MainActivity activity, int index) {
-        GraphicsFragment fragment = new GraphicsFragment();
-        fragment.mActivity = activity;
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, index);
-        fragment.setArguments(bundle);
-        return fragment;
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
+    int index = 1;
+    if (getArguments() != null) {
+      index = getArguments().getInt(ARG_SECTION_NUMBER);
     }
+    pageViewModel.setIndex(index);
+  }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
-        int index = 1;
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
-        }
-        pageViewModel.setIndex(index);
-    }
+  @Override
+  public View onCreateView(
+      @NonNull LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    View root = inflater.inflate(R.layout.graphics_fragment_main, container, false);
+    gfSwipe = root.findViewById(R.id.gf_swipe);
 
-    @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.graphics_fragment_main, container, false);
-        gfSwipe = root.findViewById(R.id.gf_swipe);
-        gfNestedSV = root.findViewById(R.id.gf_nested_sv);
+    final TextView textView = root.findViewById(R.id.section_label);
+    infectionLabel = root.findViewById(R.id.infection_label);
+    deadLabel = root.findViewById(R.id.dead_label);
+    healedLabel = root.findViewById(R.id.healed_label);
+    majDate = root.findViewById(R.id.maj_date);
+    chart = root.findViewById(R.id.mchart);
+    //anyChartView = (AnyChartView)root.findViewById(R.id.any_chart_view);
+    setUpChart();
+    setData();
 
-        villeName = root.findViewById(R.id.ville_name);
-        gView = root.findViewById(R.id.gview);
-        villeInfect = root.findViewById(R.id.ville_infect);
-        villeDead = root.findViewById(R.id.ville_dead);
-        villeHeal = root.findViewById(R.id.ville_heal);
+    refreshMe();
 
-        final TextView textView = root.findViewById(R.id.section_label);
-        infectionLabel = root.findViewById(R.id.infection_label);
-        deadLabel = root.findViewById(R.id.dead_label);
-        healedLabel = root.findViewById(R.id.healed_label);
-        majDate = root.findViewById(R.id.maj_date);
+    gfSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        refreshNext();
+      }
+    });
+    gfSwipe.setColorSchemeResources(android.R.color.holo_blue_bright,
+        android.R.color.holo_green_light,
+        android.R.color.holo_orange_light,
+        android.R.color.holo_red_light);
+    return root;
+  }
 
-        currEvntDate = root.findViewById(R.id.curr_evnt_date);
-        currEvnt = root.findViewById(R.id.curr_evnt);
-        currEvnt.setSelected(true);
+  @Override
+  public void refreshMe() {
+    CasesSummary cc = Julisha.countrySummary();
+    infectionLabel.setText("" + cc.infected);
+    deadLabel.setText("" + cc.dead);
+    healedLabel.setText("" + cc.healed);
+    majDate.setText("Dernière mise à jour : " + new Date(Julisha.getLastUpdate()).toString());
 
+    gfSwipe.setRefreshing(false);
 
-        pieChart2 = root.findViewById(R.id.pie_chart2);
-        pieChart2.setUsePercentValues(true);
-        pieChart1 = root.findViewById(R.id.pie_chart1);
-        pieChart1.setUsePercentValues(false);
+  }
 
-        graphManager = new GraphManager(root);
-        graphManager.generateGraph();
-
+  public void refreshNext() {
+    DataUpdater.populateCases(getContext(), new DataUpdater.UpdaterListener() {
+      @Override
+      public void onCompleted() {
         refreshMe();
+        chart.notifyDataSetChanged();
+        mActivity.refreshThem();
+        Utilities.toastIt(mActivity, "Refresh done!");
+      }
 
-        gfNestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
-                    //Utilities.toastIt(getContext(), "bottom scroll reached !");
-                    mActivity.toggleFab(false);
-                } else {
-                    mActivity.toggleFab(true);
-                }
-            }
-        });
+      @Override
+      public void onFailed() {
+        refreshMe();
+        chart.notifyDataSetChanged();
+        mActivity.refreshThem();
+        Utilities.toastIt(mActivity, "Refresh done!");
+      }
+    });
 
-        gfSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mActivity.handleViewPager();
-                //refreshNext();
-                gfSwipe.setRefreshing(false);
-            }
-        });
-        gfSwipe.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-        return root;
-    }
+  }
 
-    @Override
-    public void refreshMe() {
-        List<Integer> chartColors = new ArrayList<>();
-        chartColors.add(getResources().getColor(R.color.blue));
-        chartColors.add(getResources().getColor(R.color.red));
-        chartColors.add(getResources().getColor(R.color.green));
+  private void setUpChart() {
+    chart.getDescription().setEnabled(false);
+    chart.setDrawBorders(false);
+    chart.setTouchEnabled(true);
+    chart.setPinchZoom(true);
+    chart.setHorizontalScrollBarEnabled(true);
+    chart.setVerticalScrollBarEnabled(true);
+    chart.setDragDecelerationFrictionCoef(0.9f);
+   // chart.setDragEnabled(true);
+    chart.setScaleEnabled(true);
+    chart.setDrawGridBackground(false);
+    chart.setHighlightPerDragEnabled(true);
 
-       myVille = MainActivity.PREFMANAGER.getInt("maville", 1);
-        TableData villeTD = Julisha.getVilleTableData(myVille);
-        if(villeTD != null) {
-            villeName.setText(villeTD.name.toUpperCase());
-            villeInfect.setText("Infectés: " + villeTD.infected);
-            villeDead.setText("Décédés: " + villeTD.dead);
-            villeHeal.setText("Guéris: "+ villeTD.healed);
+    chart.setBackgroundColor(Color.WHITE);
+    chart.setViewPortOffsets(0f, 0f, 0f, 0f);
+
+    // get the legend (only possible after setting data)
+    Legend l = chart.getLegend();
+    l.setEnabled(true);
+    l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+    l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+    l.setDrawInside(false);
+    l.setXOffset(5F);
 
 
-            gView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CaseGraphs vcg =  Julisha.getVilleCaseGraphs(myVille);
-                    new LoneGraph(getLayoutInflater(), villeTD.name.toUpperCase(), vcg);
-                }
-            });
+    // System.out.println("CaseGraphs : " + Julisha.caseGraphs().getCaseGraph(0).date);
+
+    XAxis xAxis = chart.getXAxis();
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+    //xAxis.setTypeface(tfLight);
+    xAxis.setTextSize(8f);
+    xAxis.setDrawAxisLine(false);
+    xAxis.setDrawGridLines(false);
+    xAxis.setTextColor(Color.rgb(3, 3, 3));
+    xAxis.setCenterAxisLabels(false);
+    xAxis.setAxisMinimum(-2f);
+    xAxis.setAxisMaximum(Julisha.caseGraphs().size() * 1f);
+    xAxis.setGranularity(1f);
+    xAxis.setLabelRotationAngle(-45f);
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);// one hour
+    xAxis.setValueFormatter(new ValueFormatter() {
+
+      @Override
+      public String getFormattedValue(float value) {
+        CaseGraph cgg = Julisha.caseGraphs().getCaseGraph((int) value);
+         if (cgg == null){
+          return "Aujourd'hui";
         }
-        CasesSummary cc = Julisha.countrySummary();
-        infectionLabel.setText("" + cc.infected);
-        deadLabel.setText("" + cc.dead);
-        healedLabel.setText("" + cc.healed);
-        majDate.setText("Dernière mise à jour : " + DateUtils.formatDate(Julisha.getLastUpdate(), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
+        return cgg.date.replaceFirst("2020-", "");
+      }
+    });
+
+    YAxis leftAxis = chart.getAxisLeft();
+    leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
+    //leftAxis.setTypeface(tfLight);
+    //leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+    leftAxis.setDrawGridLines(false);
+    leftAxis.setGranularityEnabled(true);
+    leftAxis.setAxisMinimum(-40f);
+    leftAxis.setAxisMaximum((float) Julisha.maxCase() + 20f);
+    leftAxis.setYOffset(-9f);
+    leftAxis.setTextColor(Color.rgb(3, 3, 3));
+
+    YAxis rightAxis = chart.getAxisRight();
+    rightAxis.setEnabled(false);
+  }
+
+  private final int[] colors = new int[]{
+      ColorTemplate.rgb("#0000ff"),
+      ColorTemplate.rgb("#ff0000"),
+      ColorTemplate.rgb("#00ff00")
+  };
+
+  private void setData() {
+
+    // List<DataEntry> anyData = new ArrayList<>();
 
 
-        /** pieChart1 */
-        ArrayList<PieEntry> yVals1 = new ArrayList<>();
-        yVals1.add(new PieEntry((cc.infected - cc.dead - cc.healed), "Actifs"));
-        yVals1.add(new PieEntry(cc.dead, "Décédés"));
-        yVals1.add(new PieEntry(cc.healed, "Guéris"));
-        PieDataSet pieDataSet1 = new PieDataSet(yVals1, "");
-        pieDataSet1.setColors(chartColors);
+// create a data object with the data sets
+    LineDataSet infectLD = getLineDateSet(1, colors[0]);
+    LineDataSet deadLD = getLineDateSet(2, colors[1]);
+    LineDataSet healLD = getLineDateSet(3, colors[2]);
 
-        PieData pdata1 = new PieData(pieDataSet1);
-        pdata1.setValueTextColor(getResources().getColor(R.color.white));
-        pdata1.setValueTextSize(12f);
-        pdata1.setHighlightEnabled(true);
+    LineData data = new LineData();
 
-        pieChart1.setHighlightPerTapEnabled(true);
-        pieChart1.setDescription(null);
-        pieChart1.setData(pdata1);
-        pieChart1.setDrawEntryLabels(false);
-        pieChart1.setCenterText("" + cc.infected);
-        pieChart1.setCenterTextSize(16f);
-        pieChart1.setHoleRadius(35f);
-        pieChart1.setTransparentCircleRadius(40f);
-        pieChart1.getLegend().setEnabled(false);
+    data.addDataSet(infectLD);
+    data.addDataSet(deadLD);
+    data.addDataSet(healLD);
 
-        pieChart1.animateXY(1400, 1400);
-        /** ./pieChart1 */
+    data.setValueTextColor(Color.RED);
+    data.setValueTextSize(9f);
+    data.setHighlightEnabled(true);
 
-        /** pieChart2 */
-        ArrayList<PieEntry> yVals = new ArrayList<>();
-        yVals.add(new PieEntry((cc.infected - cc.dead - cc.healed), "Actifs"));
-        yVals.add(new PieEntry(cc.dead, "Décédés"));
-        yVals.add(new PieEntry(cc.healed, "Guéris"));
-        PieDataSet pieDataSet = new PieDataSet(yVals, "");
-        pieDataSet.setColors(chartColors);
+    // set data
+    chart.setData(data);
+  }
 
-        PieData pdata = new PieData(pieDataSet);
-        pdata.setValueFormatter(new PercentFormatter());
-        pdata.setValueTextColor(getResources().getColor(R.color.white));
-        pdata.setValueTextSize(12f);
-        pdata.setHighlightEnabled(true);
 
-        pieChart2.setHighlightPerTapEnabled(true);
-        pieChart2.setDescription(null);
-        pieChart2.setData(pdata);
-        pieChart2.setDrawEntryLabels(false);
-        pieChart2.setCenterText("%");
-        pieChart2.setCenterTextSize(30f);
-        pieChart2.setHoleRadius(35f);
-        pieChart2.setTransparentCircleRadius(40f);
-        pieChart2.getLegend().setEnabled(false);
+  private LineDataSet getLineDateSet(int caseType, int colorTemplate) {
+    ArrayList<Entry> values = new ArrayList<>();
+    String lbl = "Infectés";
+    for (CaseGraph c : Julisha.caseGraphs()) {
+      switch (caseType) {
+        case 1:
+          values.add(new Entry(c.id, (c.infected - c.dead - c.healed)));
+          break;
+        case 2:
+          values.add(new Entry(c.id, c.dead));
+          lbl = "Décédés";
+          break;
+        case 3:
+          values.add(new Entry(c.id, c.healed));
+          lbl = "Guéris";
+          break;
+        default:
+          values.add(new Entry(c.id, (c.infected - c.dead - c.healed)));
+      }
 
-        pieChart2.animateXY(2000, 2000);
-        /** ./pieChart2 */
-
-        currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", 0));
-        int bs = 0;
-        while (currCG.size() < 1) {
-            currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", bs--));
-        }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int ct = 0;
-                while (true) {
-                    setCurrEventText(currCG.get(ct));
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        // e.printStackTrace();
-                    }
-                    if (++ct >= currCG.size()) ct = 0;
-                }
-            }
-        }).start();
-
-        gfSwipe.setRefreshing(false);
 
     }
 
-    public void refreshNext() {
-        DataUpdater.populateCases(getContext(), new DataUpdater.UpdaterListener() {
-            @Override
-            public void onCompleted() {
-                refreshMe();
-                graphManager.refreshGraph();
-                mActivity.refreshThem();
-                Utilities.toastIt(mActivity, "Rafraîchissement effectué!");
-            }
+    // create a dataset and give it a type
+    LineDataSet d = new LineDataSet(values, lbl);
+    d.setCircleRadius(1f);
+    d.setAxisDependency(YAxis.AxisDependency.LEFT);
+    d.setColor(colorTemplate);
+    d.setValueTextColor(colorTemplate);
+    d.setLineWidth(2f);
+    d.setDrawCircles(false);
+    d.setDrawValues(false);
+    d.setFillAlpha(65);
+    d.setFillColor(colorTemplate);
+    d.setHighLightColor(Color.rgb(244, 117, 117));
+    d.setDrawCircleHole(false);
+    d.setCubicIntensity(1f);
+    d.setHighlightEnabled(true);
+    d.setDrawHighlightIndicators(true);
 
-            @Override
-            public void onFailed() {
-                refreshMe();
-                graphManager.refreshGraph();
-                mActivity.refreshThem();
-                Utilities.toastIt(mActivity, "Échec de Rafraîchissement!");
-            }
-        });
-
-    }
-
-    private void setCurrEventText(final Case cas) {
-        try {
-            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        currEvntDate.setText("À la Une : " + DateUtils.formatDate(cas.date, "yyyy-MM-dd", "E dd-MM-yyyy", Locale.FRANCE));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    currEvnt.setText(cas.toText());
-                }
-            });
-        }catch (Exception npe){}
-    }
+    return d;
+  }
 }
