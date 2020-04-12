@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +43,7 @@ public class NewAlertActivity extends AppCompatActivity {
 
         phone = findViewById(R.id.edt_phone);
 
-        tv_location = findViewById(R.id.tv_location);
+        tv_location = findViewById(R.id.tv_smt);
         tv_commune = findViewById(R.id.tv_commune);
         tv_commune.setOnClickListener(v -> setCommune());
 
@@ -50,12 +51,13 @@ public class NewAlertActivity extends AppCompatActivity {
 
 
         findViewById(R.id.btn_commune).setOnClickListener(v -> setCommune());
+        findViewById(R.id.btn_smt).setOnClickListener(v -> setSymptomes());
 
 
         findViewById(R.id.btn_submit).setOnClickListener(view -> {
 
             Toast.makeText(getCtx(), "Encours d'implementation !", Toast.LENGTH_SHORT).show();
-           if (isValidPhone(phone) && isSet(getCtx(), "Veillez reseigner votre commune", commune_id) && isSet(getCtx(), "Veillez reseigner votre commune", diagonstic)) {
+            if (isValidPhone(phone) && isSet(getCtx(), "Veillez reseigner votre commune", commune_id) && isSet(getCtx(), "Veillez reseigner votre commune", diagonstic)) {
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put(Alert.COLUMN.PHONE, phone.getText().toString())
@@ -67,7 +69,7 @@ public class NewAlertActivity extends AppCompatActivity {
 
                     // Popper.print(Signup.this, obj.toString(3));
 
-                    // dbc.signup(obj);
+                    //dbc.signup(obj);
 
                 } catch (JSONException e) {
                     DialogFactory.printError(getCtx(), e.toString());
@@ -87,13 +89,25 @@ public class NewAlertActivity extends AppCompatActivity {
 
     private void setCommune() {
 
-      //  Toast.makeText(this, Constants.RDC_URL, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, Constants.RDC_URL, Toast.LENGTH_SHORT).show();
 
-
-   LocationPicker.pickLocation(getCtx(), LocationPicker.VALUE_COMMUNE, (dataId, dataName) -> {
+        LocationPicker.pickLocation(getCtx(), LocationPicker.VALUE_COMMUNE, (dataId, dataName) -> {
             commune_id = dataId;
             tv_commune.setText(dataName.toUpperCase());
         });
+
+    }
+
+
+    private void setSymptomes() {
+
+        //  Toast.makeText(this, Constants.RDC_URL, Toast.LENGTH_SHORT).show();
+
+        View v = getLayoutInflater().inflate(R.layout.dialog_smt,null);
+        new AlertDialog.Builder(this)
+                .setView(v)
+                .show();
+
 
     }
 
