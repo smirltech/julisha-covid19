@@ -1,0 +1,26 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="question">
+       <item>"Votre niveau de fièvre est-il superieur à 38 °C ?\n\n" +
+           "La température normale du corps oscille entre 36 °C et 37,2 °C selon les personnes, le cycle féminin (elle monte avec l'ovulation) et le moment de la journée (elle grimpe le soir). On parle de fièvre à partir de 38 °C.",</item>
+       <item> "Est-ce que vous avez une toux récente ? \n \n " +
+           "Toux récente signifie une toux que vous n'aviez pas avant ou si vous toussez de manière chronique, que votre toux s'est empirée.",</item>
+        <item> "Avez-vous des difficultés à respirer ?",</item>
+        <item>"Avez-vous une fatigue inhabituelle ces derniers jours ?",</item>
+        <item>"Avez-vous mal à la gorge ?",</item>
+        <item>"Avez-vous une impossibilité de manger ou boire depuis 24 heures ou plus ?",</item>
+        <item>"Avez-vous des courbatures en dehors des douleurs musculaires liées à une activité sportive intense ?",</item>
+        <item>"Avez-vous perdu l’odorat de manière brutale sans rapport avec le nez bouché ?",</item>
+        <item>"Avez-vous la diarrhée ? \n \n Avoir la diarrhée signifie émettre au moins 3 selles molles ou liquides par jour ou à une fréquence (c’est à dire un nombre de fois pour une période de temps) anormale pour la personne."</item>
+
+
+    </string-array>
+    <String-array name="Choix">
+        <item></item>
+
+    </String-array>
+
+
+
+
+</resources>

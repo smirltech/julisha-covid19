@@ -10,10 +10,6 @@
         android:layout_marginBottom="30dp"
 
         >
-
-
-
-
         <LinearLayout
             android:id="@+id/line1"
             android:layout_width="match_parent"
@@ -55,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:textSize="22dp"
+                android:textSize="19dp"
                 android:visibility="gone"/>
 
 
@@ -67,7 +63,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
                 android:textColor="@color/blue"
-                android:textSize="19dp"
+                android:textSize="17dp"
                 android:visibility="gone">
 
             </TextView>

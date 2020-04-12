@@ -46,12 +46,16 @@ public class NewAlertActivity extends AppCompatActivity {
         tv_commune = findViewById(R.id.tv_commune);
         tv_commune.setOnClickListener(v -> setCommune());
 
+        Toast.makeText(getCtx(), "En cours d'implementation !", Toast.LENGTH_SHORT).show();
+
+
         findViewById(R.id.btn_commune).setOnClickListener(v -> setCommune());
 
 
         findViewById(R.id.btn_submit).setOnClickListener(view -> {
 
-            if (isValidPhone(phone) && isSet(getCtx(), "Veillez renseigner votre commune", commune_id) && isSet(getCtx(), "Veillez renseigner votre commune", diagonstic)) {
+            Toast.makeText(getCtx(), "Encours d'implementation !", Toast.LENGTH_SHORT).show();
+           if (isValidPhone(phone) && isSet(getCtx(), "Veillez reseigner votre commune", commune_id) && isSet(getCtx(), "Veillez reseigner votre commune", diagonstic)) {
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put(Alert.COLUMN.PHONE, phone.getText().toString())

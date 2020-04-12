@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryLight"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     android:layout_marginTop="50dp"
-    android:layout_marginBottom="60dp">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    >
+
     <LinearLayout
         android:id="@+id/linearLayouturgence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/urgencesbackground"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +30,7 @@
             android:textColor="@color/white"
             android:text="Appelez les Urgences"
             android:textStyle="bold"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:fontFamily="serif" android:shadowColor="#00BB0A0A"
@@ -40,20 +46,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
             android:textStyle="italic"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:textColor="@color/white"
             android:text="Si votre situation releve d’un COVID 19 et nécessite une prise en charge médicale.\nVeillez Appeler les urgences immédiatement!!"
-            android:textSize="19sp"/>
+            android:textSize="16sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginStart="10dp"
-            android:textSize="22dp"
             android:text="Appelez les numéros ci-dessous!">
 
         </TextView>
@@ -63,26 +66,50 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:orientation="horizontal"
-        android:layout_below="@id/linearLayouturgence">
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal">
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Urgence 1"
+        android:id="@+id/numero_1"
+        android:onClick="numero_1"
+        android:layout_marginEnd="20dp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:background="@drawable/covidbackground_btn"
+        android:textColor="#ffffff"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Urgence 2"
+        android:textAllCaps="false"
+        android:layout_marginEnd="20dp"
+        android:textStyle="bold"
+        android:id="@+id/numero_2"
+        android:onClick="numero_2"
+        android:background="@drawable/covidbackground_btn"
+        android:textColor="#ffffff" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Urgence 3"
+        android:textAllCaps="false"
+        android:id="@+id/numero_3"
+        android:onClick="numero_3"
+        android:textStyle="bold"
+        android:background="@drawable/covidbackground_btn"
+        android:textColor="#ffffff"
+        />
 
     </LinearLayout>
-    </RelativeLayout>
 
-</ScrollView>
+
+
+</LinearLayout>

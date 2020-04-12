@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
-    tools:context=".ui.main.views.QuestionsActivity">
+    tools:context=".ui.main.views.DiagnosticActivity">
 
 
 
     <include
-        layout="@layout/containt_questions"/>
+        layout="@layout/containt_diagnostic"/>
 
 
 

@@ -12,12 +12,12 @@ import org.smirl.julisha.R;
 
 import java.util.Objects;
 
-public class AppelerActivity extends AppCompatActivity {
+public class UrgencesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appeler);
+        setContentView(R.layout.activity_urgences);
         Toolbar toolbar=(findViewById(R.id.toolbarCovid));
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

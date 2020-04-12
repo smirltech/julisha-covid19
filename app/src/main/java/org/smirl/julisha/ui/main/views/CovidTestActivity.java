@@ -38,7 +38,7 @@ public class CovidTestActivity extends AppCompatActivity implements View.OnClick
 
     public void onClick(View view){
 
-        startActivity(new Intent(this,QuestionsActivity.class));
+        startActivity(new Intent(this, DiagnosticActivity.class));
         finish();
     }
     @Override

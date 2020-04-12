@@ -1,7 +1,6 @@
 package org.smirl.julisha;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -29,7 +28,7 @@ import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
 import org.smirl.julisha.ui.main.views.AboutActivity;
-import org.smirl.julisha.ui.main.views.AppelerActivity;
+import org.smirl.julisha.ui.main.views.UrgencesActivity;
 import org.smirl.julisha.ui.main.views.CovidTestActivity;
 import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
@@ -175,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         break;
       case R.id.nav_contacterurgence:
-        startActivity(new Intent(this, AppelerActivity.class));
+        startActivity(new Intent(this, UrgencesActivity.class));
         break;
 
       case R.id.nav_a_propos:

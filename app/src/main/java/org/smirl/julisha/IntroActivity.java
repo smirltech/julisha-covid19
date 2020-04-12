@@ -37,7 +37,7 @@ public class IntroActivity extends AppCompatActivity implements Constants {
       Utilities.toastIt(this, "Network connection available!");
       populateCases();
     } else {
-      Utilities.toastIt(this, "No network connection!");
+      Utilities.toastIt(this, "Pas de connexion!");
       DataUpdater.populateLocalCases(this, new DataUpdater.UpdaterListener() {
         @Override
         public void onCompleted() {
