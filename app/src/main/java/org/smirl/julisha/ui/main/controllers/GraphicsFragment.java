@@ -123,7 +123,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         refreshMe();
         chart.notifyDataSetChanged();
         mActivity.refreshThem();
-        Utilities.toastIt(mActivity, "Refresh done!");
+        Utilities.toastIt(mActivity, "Rafraîchissement effectué!");
       }
 
       @Override
@@ -131,7 +131,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         refreshMe();
         chart.notifyDataSetChanged();
         mActivity.refreshThem();
-        Utilities.toastIt(mActivity, "Refresh done!");
+        Utilities.toastIt(mActivity, "Échec de Rafraîchissement!");
       }
     });
 

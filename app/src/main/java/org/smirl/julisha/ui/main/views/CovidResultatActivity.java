@@ -1,7 +1,5 @@
 package org.smirl.julisha.ui.main.views;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -18,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
 
 import org.smirl.julisha.R;
 
@@ -58,7 +55,7 @@ public class CovidResultatActivity extends AppCompatActivity {
          */
 
 
-        if (QuestionsActivity.Positif <= 2){
+        if (DiagnosticActivity.Positif <= 2){
             alertmsg.setText("Vous ne présentez aucun symptômes de Covid19");
             alertmsg.setTextColor(getColor(R.color.black));
             alertmsg.setVisibility (View.VISIBLE);
@@ -81,7 +78,7 @@ public class CovidResultatActivity extends AppCompatActivity {
 
 
         }
-     else    if(QuestionsActivity.Positif <=4){
+     else    if(DiagnosticActivity.Positif <=4){
             alertmsg.setText("Surveillez attentivement votre état de santé !");
             alertmsg.setTextColor(getColor(R.color.black));
 
@@ -111,7 +108,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         Etat Avec de doute
          */
 
-        if (QuestionsActivity.Positif >= 5) {
+        if (DiagnosticActivity.Positif >= 5) {
             Toast.makeText(getApplicationContext(), "Veuillez consulter un medecin SVP!!!", Toast.LENGTH_SHORT).show();
             alertmsg.setText("Votre situation peut relever d’un COVID 19, vos symptômes nécessitent une prise en charge médicale.");
             alertmsg.setVisibility(View.VISIBLE);
@@ -130,7 +127,7 @@ public class CovidResultatActivity extends AppCompatActivity {
 
         Etat Positif
          */
-        if (QuestionsActivity.Positif >=7 ){
+        if (DiagnosticActivity.Positif >=7 ){
                 Toast.makeText(getApplicationContext(), "Veuillez contacter un medecin immédiatement SVP!!!", Toast.LENGTH_SHORT).show();
                 alertmsg.setText("Vous décrivez des symptômes compatibles avec un syndrome de détresse respiratoire aiguë devant faire l’objet d'une prise en charge médicale en urgence.");
                 alertmsg.setVisibility(View.VISIBLE);
@@ -153,8 +150,8 @@ public class CovidResultatActivity extends AppCompatActivity {
 
         }
 
-        QuestionsActivity.Positif=0;
-        QuestionsActivity.Nagatif = 0;
+        DiagnosticActivity.Positif=0;
+        DiagnosticActivity.Nagatif = 0;
 
 
 
@@ -162,7 +159,7 @@ public class CovidResultatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent in = new Intent(getApplicationContext(), QuestionsActivity.class);
+                Intent in = new Intent(getApplicationContext(), DiagnosticActivity.class);
                 startActivity(in);
                 finish();
 
@@ -195,11 +192,11 @@ public class CovidResultatActivity extends AppCompatActivity {
         return true;
     }
     public void urgence_btn(View view){
-        startActivity(new Intent(this,AppelerActivity.class));
+        startActivity(new Intent(this, UrgencesActivity.class));
         finish();
     }
 
-    
+
 
 
     }
