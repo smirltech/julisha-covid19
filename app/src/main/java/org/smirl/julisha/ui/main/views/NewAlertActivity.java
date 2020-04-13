@@ -74,7 +74,7 @@ public class NewAlertActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onError(String error, int code) {
+                        public void onErrorResponse(String error, int code) {
                             Toast.makeText(getCtx(), "Something went wrong!", Toast.LENGTH_SHORT).show();
 
                         }
