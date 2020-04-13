@@ -105,7 +105,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onError(String error, int code) {
+            public void onErrorResponse(String error, int code) {
                 DialogFactory.printError(context, error);
 
             }
@@ -154,7 +154,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onError(String error, int code) {
+            public void onErrorResponse(String error, int code) {
 
             }
         });
@@ -201,7 +201,7 @@ public class LocationPicker {
             }
 
             @Override
-            public void onError(String error, int code) {
+            public void onErrorResponse(String error, int code) {
 
             }
         });

@@ -225,14 +225,14 @@ public class Crud {
                     if (showDialog)
                         progress.dismiss();
                     if (listener != null) {
-                        listener.onError(p1.getMessage(), code);
+                        listener.onErrorResponse(p1.getMessage(), code);
                     }
                 }
             });
 
             queue.add(req);
         } else {
-            listener.onError("Impossible de se connecter a l'interner", 0);
+            listener.onErrorResponse("Impossible de se connecter a l'interner", 0);
         }
     }
 
@@ -258,7 +258,7 @@ public class Crud {
     public interface OnResponseListener {
         void onResponse(String response, int code);
 
-        void onError(String error, int code);
+        void onErrorResponse(String error, int code);
 
     }
 
