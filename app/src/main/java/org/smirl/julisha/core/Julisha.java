@@ -1,6 +1,7 @@
 package org.smirl.julisha.core;
 
 import android.util.Log;
+
 import org.smirl.julisha.ui.main.models.*;
 
 import fnn.smirl.simple.Serializer;
@@ -172,119 +173,119 @@ public class Julisha {
     }
 
     public static void prepareCaseGraphs() {
-            julisha.caseGraphs.clear();
-            CaseGraph initt = new CaseGraph(0, "0");
-            initt.healed = 0;
-            initt.dead = 0;
-            initt.infected = 0;
-            julisha.caseGraphs.newCaseGraph(initt);
+        julisha.caseGraphs.clear();
+        CaseGraph initt = new CaseGraph(0, "0");
+        initt.healed = 0;
+        initt.dead = 0;
+        initt.infected = 0;
+        julisha.caseGraphs.newCaseGraph(initt);
 
-            int cnt = 1;
-            Calendar caln = Calendar.getInstance();
-            Calendar cal0 = Calendar.getInstance();
-            cal0.set(2020, 2, 10);
-            SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
-            String dNow = myFormatObj.format(caln.getTime());
+        int cnt = 1;
+        Calendar caln = Calendar.getInstance();
+        Calendar cal0 = Calendar.getInstance();
+        cal0.set(2020, 2, 10);
+        SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
+        String dNow = myFormatObj.format(caln.getTime());
 
 
-            while (cal0.compareTo(caln) < 1) {
-                String formattedDate = myFormatObj.format(cal0.getTime());
-                julisha.caseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
-                if (formattedDate.equalsIgnoreCase(dNow)) break;
-                cal0.add(Calendar.DATE, 1);
-            }
+        while (cal0.compareTo(caln) < 1) {
+            String formattedDate = myFormatObj.format(cal0.getTime());
+            julisha.caseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+            if (formattedDate.equalsIgnoreCase(dNow)) break;
+            cal0.add(Calendar.DATE, 1);
+        }
 
-            //System.out.println("CaseGraphs count : " + getCaseGraphs().size());
+        //System.out.println("CaseGraphs count : " + getCaseGraphs().size());
 
-            for (int i = 0; i < julisha.cases.size(); i++) {
-                Case c = julisha.cases.get(i);
-                CaseGraph ds = julisha.caseGraphs.getCaseGraph(c.date);
-                //Case c = cases.getCase(ds.date);
-                //System.out.println("ds: " + ds.id);
-                // System.out.println(c.toString());
+        for (int i = 0; i < julisha.cases.size(); i++) {
+            Case c = julisha.cases.get(i);
+            CaseGraph ds = julisha.caseGraphs.getCaseGraph(c.date);
+            //Case c = cases.getCase(ds.date);
+            //System.out.println("ds: " + ds.id);
+            // System.out.println(c.toString());
 
-                switch (c.type) {
-                    case 1:
-                        ds.infected += c.nombre;
-                        break;
-                    case 2:
-                        ds.dead += c.nombre;
-                        break;
-                    case 3:
-                        ds.healed += c.nombre;
-                        break;
-                    default:
-                        ds.infected += 0;
-                        ds.dead += 0;
-                        ds.healed += 0;
-
-                }
+            switch (c.type) {
+                case 1:
+                    ds.infected += c.nombre;
+                    break;
+                case 2:
+                    ds.dead += c.nombre;
+                    break;
+                case 3:
+                    ds.healed += c.nombre;
+                    break;
+                default:
+                    ds.infected += 0;
+                    ds.dead += 0;
+                    ds.healed += 0;
 
             }
 
-            for (int i = 1; i < julisha.caseGraphs.size(); i++) {
-                CaseGraph ds = julisha.caseGraphs.get(i);
-                CaseGraph pr = julisha.caseGraphs.get(i - 1);
+        }
 
-                ds.infected += pr.infected;
-                ds.dead += pr.dead;
-                ds.healed += pr.healed;
+        for (int i = 1; i < julisha.caseGraphs.size(); i++) {
+            CaseGraph ds = julisha.caseGraphs.get(i);
+            CaseGraph pr = julisha.caseGraphs.get(i - 1);
+
+            ds.infected += pr.infected;
+            ds.dead += pr.dead;
+            ds.healed += pr.healed;
 
 
-                // System.out.println(ds.toString());
-            }
+            // System.out.println(ds.toString());
+        }
 
 
     }
 
     public static void prepareCaseGraphs2() {
 
-            julisha.caseGraphs2.clear();
-            CaseGraph initt = new CaseGraph(0, "0");
+        julisha.caseGraphs2.clear();
+        CaseGraph initt = new CaseGraph(0, "0");
 
-            initt.infected = 0;
-            julisha.caseGraphs2.newCaseGraph(initt);
+        initt.infected = 0;
+        julisha.caseGraphs2.newCaseGraph(initt);
 
-            int cnt = 1;
-            Calendar caln = Calendar.getInstance();
-            Calendar cal0 = Calendar.getInstance();
-            cal0.set(2020, 2, 10);
-            SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
-            String dNow = myFormatObj.format(caln.getTime());
+        int cnt = 1;
+        Calendar caln = Calendar.getInstance();
+        Calendar cal0 = Calendar.getInstance();
+        cal0.set(2020, 2, 10);
+        SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
+        String dNow = myFormatObj.format(caln.getTime());
 
 
-            while (cal0.compareTo(caln) < 1) {
-                String formattedDate = myFormatObj.format(cal0.getTime());
-                julisha.caseGraphs2.newCaseGraph(new CaseGraph(cnt++, formattedDate));
-                if (formattedDate.equalsIgnoreCase(dNow)) break;
-                cal0.add(Calendar.DATE, 1);
-            }
+        while (cal0.compareTo(caln) < 1) {
+            String formattedDate = myFormatObj.format(cal0.getTime());
+            julisha.caseGraphs2.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+            if (formattedDate.equalsIgnoreCase(dNow)) break;
+            cal0.add(Calendar.DATE, 1);
+        }
 
-        Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.size());
+        Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.get(35).date);
 
-            for (int i = 0; i < julisha.cases.size(); i++) {
-                Case c = julisha.cases.get(i);
-                CaseGraph ds = julisha.caseGraphs2.getCaseGraph(c.date);
-                // System.err.println("case at " + c.date);
-                // if (ds == null) System.out.println("failed at " + c.date);
-                switch (c.type) {
-                    case 1:
-                        ds.infected = c.nombre;
-                        break;
-                    case 2:
-                        ds.dead = c.nombre;
-                        break;
-                    case 3:
-                        ds.healed = c.nombre;
-                        break;
-                    default:
-                        ds.infected = 0;
-                        ds.dead = 0;
-                        ds.healed = 0;
-
-                }
+        for (int i = 0; i < julisha.cases.size(); i++) {
+            Case c = julisha.cases.get(i);
+            CaseGraph ds = julisha.caseGraphs2.getCaseGraph(c.date);
+            System.err.println("case at " + ds.date);
+            if (ds == null) System.err.println("failed at " + i + " => " + c.date);
+            switch (c.type) {
+                case 1:
+                    ds.infected += c.nombre;
+                    break;
+                case 2:
+                    ds.dead += c.nombre;
+                    break;
+                case 3:
+                    ds.healed += c.nombre;
+                    break;
+                default:
+                    ds.infected = 0;
+                    ds.dead = 0;
+                    ds.healed = 0;
 
             }
+
+        }
 
            /* for (int i = 1; i < julisha.caseGraphs2.size(); i++) {
 
@@ -297,7 +298,6 @@ public class Julisha {
                 // System.out.println(ds.toString());
             }
             */
-
 
 
     }

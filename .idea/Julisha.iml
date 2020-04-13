@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
+<module version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" linkedProjectId="Julisha" linkedProjectPath="$MODULE_DIR$" rootProjectPath="$MODULE_DIR$" />
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
@@ -7,5 +8,13 @@
         <option name="BUILDABLE" value="false" />
       </configuration>
     </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
