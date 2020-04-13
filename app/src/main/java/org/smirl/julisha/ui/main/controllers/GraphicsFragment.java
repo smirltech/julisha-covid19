@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -179,7 +180,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         l.setDrawInside(false);
         l.setXOffset(5F);
 
-
         // System.out.println("CaseGraphs : " + Julisha.getCaseGraphs().getCaseGraph(0).date);
 
         XAxis xAxis = chart.getXAxis();
@@ -274,8 +274,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
                 default:
                     values.add(new Entry(c.id, (c.infected - c.dead - c.healed)));
             }
-
-
         }
 
         // create a dataset and give it a type
@@ -294,7 +292,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         d.setCubicIntensity(1f);
         d.setHighlightEnabled(true);
         d.setDrawHighlightIndicators(true);
-
         return d;
     }
 
