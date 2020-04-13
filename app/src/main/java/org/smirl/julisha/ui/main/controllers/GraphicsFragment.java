@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -19,6 +21,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
@@ -89,12 +92,11 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         chart2 = root.findViewById(R.id.mchart2);
         //anyChartView = (AnyChartView)root.findViewById(R.id.any_chart_view);
 
-        CaseGraphs caseGraphs =Julisha.getCaseGraphs() ;
-        CaseGraphs caseGraphs2 =Julisha.getCaseGraphs2() ;
+        CaseGraphs caseGraphs = Julisha.getCaseGraphs();
+        CaseGraphs caseGraphs2 = Julisha.getCaseGraphs2();
 
-        setUpChart(chart,caseGraphs);
-        setUpChart(chart2,caseGraphs2);
-
+        setUpChart(chart, caseGraphs);
+        setUpChart(chart2, caseGraphs2);
 
 
         setData(chart, caseGraphs);
@@ -191,7 +193,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         xAxis.setAxisMinimum(-2f);
         xAxis.setAxisMaximum(caseGraphs.size() * 1f);
         xAxis.setGranularity(1f);
-        xAxis.setLabelRotationAngle(-45f);
+       // xAxis.setLabelRotationAngle(-45f);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);// one hour
         xAxis.setValueFormatter(new ValueFormatter() {
 
@@ -205,6 +207,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             }
         });
 
+        float _max = (float) caseGraphs.getMax();
         YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         //leftAxis.setTypeface(tfLight);
@@ -212,8 +215,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         leftAxis.setDrawGridLines(false);
         leftAxis.setGranularityEnabled(true);
 
-        leftAxis.setAxisMinimum(-40f);
-        leftAxis.setAxisMaximum((float) caseGraphs.getMax() + 20f);
+        leftAxis.setAxisMinimum(_max /(-15));
+        leftAxis.setAxisMaximum(_max + 0f);
         leftAxis.setYOffset(-9f);
         leftAxis.setTextColor(Color.rgb(3, 3, 3));
 
@@ -233,9 +236,9 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
 
 // create a data object with the data sets
-        LineDataSet infectLD = getLineDateSet(caseGraphs,1, colors[0]);
-        LineDataSet deadLD = getLineDateSet(caseGraphs,2, colors[1]);
-        LineDataSet healLD = getLineDateSet(caseGraphs,3, colors[2]);
+        LineDataSet infectLD = getLineDateSet(caseGraphs, 1, colors[0]);
+        LineDataSet deadLD = getLineDateSet(caseGraphs, 2, colors[1]);
+        LineDataSet healLD = getLineDateSet(caseGraphs, 3, colors[2]);
 
         LineData data = new LineData();
 
@@ -252,7 +255,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     }
 
 
-    private LineDataSet getLineDateSet(CaseGraphs caseGraphs,int caseType, int colorTemplate) {
+    private LineDataSet getLineDateSet(CaseGraphs caseGraphs, int caseType, int colorTemplate) {
         ArrayList<Entry> values = new ArrayList<>();
         String lbl = "Infectés";
         for (CaseGraph c : caseGraphs) {

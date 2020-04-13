@@ -33,6 +33,7 @@ import org.smirl.julisha.ui.main.views.CovidTestActivity;
 import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
 
+import fnn.smirl.appinfo.AppInfo;
 
 
 public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
@@ -67,9 +68,12 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     drawer.addDrawerListener(toggle);
     toggle.syncState();
 
+
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
-    //getSupportActionBar().setTitle("");
+
+    navigationView.getMenu().findItem(R.id.versionapp).setTitle("Version: " + AppInfo.from(this).getAppVersionName());
+
     permissionManager = new PermissionManager(this);
     verifier();
 
