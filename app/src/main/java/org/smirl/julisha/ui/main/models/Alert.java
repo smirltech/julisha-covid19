@@ -8,14 +8,11 @@ public class Alert {
     public static class COLUMN {
         public static final String
                 ID = "id",
-                NAME = "nom",
+                USER = "user",
                 PHONE = "phone",
-                LONG = "option_id",
-                COMMUNE_ID = "ville_id",
-                SYMPTOMES = "password",
-                ACCOUNT_TYPE = "account_type",
-                PRO = "pro",
-                LAT = "ecole_id";
+                COMMUNE_ID = "commune_id",
+                SYMPTOMES = "symptomes";
+
 
         public static Object getID() {
             return TABLE_NAME + "." + ID;

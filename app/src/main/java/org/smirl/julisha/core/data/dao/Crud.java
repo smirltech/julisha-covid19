@@ -75,7 +75,7 @@ public class Crud {
 
 
 
-    public void setShowDialog(boolean showDialog) {
+    public void setShowProgressDialog(boolean showDialog) {
         this.showDialog = showDialog;
     }
 
