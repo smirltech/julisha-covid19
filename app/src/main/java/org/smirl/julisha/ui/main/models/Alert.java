@@ -12,7 +12,7 @@ public class Alert {
                 PHONE = "phone",
                 LONG = "option_id",
                 COMMUNE_ID = "ville_id",
-                DIAGNOSTIC = "password",
+                SYMPTOMES = "password",
                 ACCOUNT_TYPE = "account_type",
                 PRO = "pro",
                 LAT = "ecole_id";

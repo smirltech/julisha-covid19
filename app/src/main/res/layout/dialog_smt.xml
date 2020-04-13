@@ -63,15 +63,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-
-                    <CheckBox
-                            android:text="Difficultés respiratoires"
-                            android:layout_width="wrap_content"
-                            android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/smt_3"
-                            android:layout_weight="1"/>
-
                     <CheckBox
                             android:text="La fièvre"
                             android:layout_width="match_parent"
@@ -86,7 +77,21 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_2"
                             android:textStyle="bold"
-                            android:layout_weight="1"/>
+                            android:layout_weight="2"/>
+
+                    <CheckBox
+                            android:text="Gene respiratoire"
+                            android:layout_width="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_3"
+                            android:layout_weight="3"/>
+
+
+
+
+
+
 
 
                     <View
@@ -94,27 +99,66 @@
                             android:layout_height="10sp"/>
 
                     <CheckBox
-                            android:text="Maux de tete"
+                            android:text="La fatique"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_4"
                             android:layout_weight="1"/>
 
                     <CheckBox
-                            android:text="Mal de gorge"
+                            android:text="Les douleurs musculaires"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_5"
-                            android:layout_weight="1"/>
-                    <CheckBox
-                            android:text="Congestion Nasale"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/smt_6"
                             android:layout_weight="1"
                             />
 
+                    <CheckBox
+                            android:text="Des maux de gorge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_6"
+                            android:layout_weight="1"/>
+
+                    <CheckBox
+                            android:text="des crachats"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_7"
+                            android:layout_weight="1"/>
+                    <CheckBox
+                            android:text="une perte totale de l'audorat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_8"
+                            android:layout_weight="1"
+                            />
+                    <CheckBox
+                            android:text="une perte du gout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_9"
+                            android:layout_weight="1"
+                            />
+
+                    <CheckBox
+                            android:text="Perte d'appetit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_10"
+                            android:layout_weight="1"/>
+
+
+
                 </RadioGroup>
+
+
+                <TextView
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:text="source Wikipedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
                 <Button
                         android:id="@+id/btn_submit"
@@ -129,7 +173,6 @@
                         android:elevation="15dp"
                         android:textAllCaps="true"
                         android:layout_marginBottom="10dp"
-                        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                         android:background="@drawable/roundcorner_button"/>
 
             </LinearLayout>
