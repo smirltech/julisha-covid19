@@ -66,7 +66,18 @@ public class NewAlertActivity extends AppCompatActivity {
 
                     // Popper.print(Signup.this, obj.toString(3));
 
-                    //dbc.signup(obj);
+                   crud.put(Alert.TABLE_NAME, obj, new Crud.OnResponseListener() {
+                       @Override
+                       public void onResponse(String response, int code) {
+                           Toast.makeText(getCtx(),"Your informations has been submitted!",Toast.LENGTH_SHORT).show();
+                       }
+
+                       @Override
+                       public void onError(String error, int code) {
+                           Toast.makeText(getCtx(),"Something went wrong!",Toast.LENGTH_SHORT).show();
+
+                       }
+                   });
 
                 } catch (JSONException e) {
                     DialogFactory.printError(getCtx(), e.toString());
