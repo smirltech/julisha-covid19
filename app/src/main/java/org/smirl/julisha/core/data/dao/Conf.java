@@ -12,9 +12,9 @@ public class Conf implements Constants {
     private String user = "root";
     private String pswd = "";*/
 
-    private String dbname = "smirlorg_wzexetat";
-    private String user = "smirlorg_wz";
-    private String pswd = "nDo=nW+]~;Fo";
+    private String dbname = "smirlorg_covid19";
+    private String user = "smirlorg_covid19";
+    private String pswd = "OqD?wZg{$tU1";
 
     private JSONObject db;
 

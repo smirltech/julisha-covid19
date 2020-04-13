@@ -15,19 +15,18 @@ import org.smirl.julisha.ui.main.models.Alert;
 import org.smirl.julisha.R;
 
 import static org.smirl.julisha.core.InputValidator.*;
-import static org.smirl.julisha.ui.main.models.Alert.COLUMN.ACCOUNT_TYPE;
 
 public class NewAlertActivity extends AppCompatActivity {
 
 
-    private EditText phone;
+    private EditText phone, user;
 
     private Crud crud;
 
 
     private int commune_id;
     private TextView tv_commune, tv_smt;
-    private String symptomes;
+    private  String symptomes;
 
 
     @Override
@@ -38,13 +37,14 @@ public class NewAlertActivity extends AppCompatActivity {
         crud = new Crud(this);
 
         phone = findViewById(R.id.edt_phone);
+        user = findViewById(R.id.edt_user);
         tv_smt = findViewById(R.id.tv_smt);
         tv_commune = findViewById(R.id.tv_commune);
 
         tv_commune.setOnClickListener(v -> setCommune());
         tv_smt.setOnClickListener(v -> setSymptomes());
 
-        Toast.makeText(getCtx(), "En cours d'implementation !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getCtx(), "Completement operatonnel !", Toast.LENGTH_SHORT).show();
 
 
         findViewById(R.id.btn_commune).setOnClickListener(v -> setCommune());
@@ -53,31 +53,32 @@ public class NewAlertActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_submit).setOnClickListener(view -> {
 
-        //    Toast.makeText(getCtx(), "Encours d'implementation !", Toast.LENGTH_SHORT).show();
-            if (isValidPhone(phone) && isSet(getCtx(), "Veillez reseigner votre commune", commune_id) && isSet(getCtx(), "Veillez reseigner votre les symptomes", symptomes)) {
+            //    Toast.makeText(getCtx(), "Encours d'implementation !", Toast.LENGTH_SHORT).show();
+            if (isValidName(user) && isValidPhone(phone) && isSet(getCtx(), "Veillez reseigner la commune du cas", commune_id) && isSet(getCtx(), "Veillez renseigner les symptomes du cas", symptomes)) {
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put(Alert.COLUMN.PHONE, phone.getText().toString())
-                            .put(Alert.COLUMN.ACCOUNT_TYPE, ACCOUNT_TYPE)
+                            .put(Alert.COLUMN.USER, user.getText().toString())
                             .put(Alert.COLUMN.SYMPTOMES, symptomes)
-                            .put(Alert.COLUMN.COMMUNE_ID, commune_id)
-                            .put(Alert.COLUMN.LAT, 0)
-                            .put(Alert.COLUMN.LONG, 0);
+                            .put(Alert.COLUMN.COMMUNE_ID, commune_id);
 
                     // Popper.print(Signup.this, obj.toString(3));
 
-                   crud.put(Alert.TABLE_NAME, obj, new Crud.OnResponseListener() {
-                       @Override
-                       public void onResponse(String response, int code) {
-                           Toast.makeText(getCtx(),"Your informations has been submitted!",Toast.LENGTH_SHORT).show();
-                       }
+                    crud.setShowProgressDialog(true);
+                    crud.put(Alert.TABLE_NAME, obj, new Crud.OnResponseListener() {
+                        @Override
+                        public void onResponse(String response, int code) {
+                            Toast.makeText(getCtx(), "Your informations has been submitted!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            // DialogFactory.print(getCtx(),response);
+                        }
 
-                       @Override
-                       public void onError(String error, int code) {
-                           Toast.makeText(getCtx(),"Something went wrong!",Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onError(String error, int code) {
+                            Toast.makeText(getCtx(), "Something went wrong!", Toast.LENGTH_SHORT).show();
 
-                       }
-                   });
+                        }
+                    });
 
                 } catch (JSONException e) {
                     DialogFactory.printError(getCtx(), e.toString());
@@ -139,7 +140,9 @@ public class NewAlertActivity extends AppCompatActivity {
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_smt.setText(getSymptomes(smt_1, smt_2, smt_3, smt_4, smt_5, smt_6, smt_7, smt_8, smt_9, smt_10));
+                String s = getSymptomes(smt_1, smt_2, smt_3, smt_4, smt_5, smt_6, smt_7, smt_8, smt_9, smt_10);
+                if (!s.isEmpty())
+                    tv_smt.setText(symptomes);
                 dialog.dismiss();
             }
         });
@@ -148,15 +151,16 @@ public class NewAlertActivity extends AppCompatActivity {
     }
 
     private String getSymptomes(CheckBox... checkBoxes) {
-        String s = "";
+
+
+        symptomes ="";
 
         for (CheckBox checkBox : checkBoxes) {
             if (checkBox.isChecked()) {
-                s += "- " + checkBox.getText().toString() + "\n";
+                symptomes += "- " + checkBox.getText().toString() + "\n";
             }
         }
-
-        return s;
+        return symptomes;
     }
 
 }

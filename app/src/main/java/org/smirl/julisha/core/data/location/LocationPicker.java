@@ -44,7 +44,7 @@ public class LocationPicker {
 
     public static void pickLocation(Context ctx, int value, final OnDataSelection onDataSelection) {
         dbm = new Crud(ctx);
-        dbm.setShowDialog(false);
+        dbm.setShowProgressDialog(false);
 
         VALUE = value;
 
