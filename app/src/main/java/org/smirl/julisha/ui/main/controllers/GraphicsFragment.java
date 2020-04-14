@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -27,7 +26,7 @@ import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
 import org.smirl.julisha.core.Fragmentation;
-import org.smirl.julisha.core.Julisha;
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.core.Utilities;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CaseGraphs;
