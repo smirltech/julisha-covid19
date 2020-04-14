@@ -13,8 +13,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.R;
-import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CaseGraphs;
 
@@ -116,9 +116,9 @@ public class GraphManager {
     }
 
     private final int[] colors = new int[]{
-            ColorTemplate.rgb("#1E88E5"),
-            ColorTemplate.rgb("#D32F2F"),
-            ColorTemplate.rgb("#7CB342")
+            ColorTemplate.rgb("#0000ff"),
+            ColorTemplate.rgb("#ff0000"),
+            ColorTemplate.rgb("#00ff00")
     };
 
     private void setData(LineChart chart, CaseGraphs caseGraphs) {
@@ -147,7 +147,7 @@ public class GraphManager {
 
     private LineDataSet getLineDateSet(CaseGraphs caseGraphs, int caseType, int colorTemplate) {
         ArrayList<Entry> values = new ArrayList<>();
-        String lbl = "Actifs";
+        String lbl = "Infectés";
         for (CaseGraph c : caseGraphs) {
             switch (caseType) {
                 case 1:
