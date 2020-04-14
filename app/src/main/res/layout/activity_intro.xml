@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/blue_gray"
     tools:context=".IntroActivity">
 
     <LinearLayout
@@ -23,12 +23,11 @@
 
     <TextView
         android:id="@+id/text"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryLight"
         android:gravity="center"
         android:textSize="50dp"
         android:textStyle=""
         android:text="@string/app_name"
-        android:layout_below="@id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
@@ -36,18 +35,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below="@+id/text"
         android:text="@string/short_description"
         android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryLight"/>
 
     <ProgressBar
         android:id="@+id/progressbar_splash"
         android:indeterminate="true"
         android:layout_gravity="center"
         android:indeterminateDrawable="@xml/progress"
-        android:layout_above="@id/app_version"
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

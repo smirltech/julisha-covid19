@@ -1,3 +1,6 @@
+/*
+Author Jonas Kaninda
+*/
   body{
     padding:10;
     margin:10;
@@ -18,13 +21,6 @@ text-align:center;
 color:#511AEA;
 
 }
-div.commentaire{
- background-color:green;
-  border: 2px solid #999;
-  display: block;
-  padding: 0px;
-}
-
 ul{
   /*margin:0;
   padding:0;*/
@@ -33,34 +29,6 @@ ul{
 
 }
 
-        pre code {
-  background-color: #2e3436;
-    border-radius: 15px;
-    text-align:center;
-    overflow:auto;
-
-  /*border:#000000 1px solid;*/
-  display: block;
-  /*padding: 10px;*/
-  color:#f3f3f3;
-}
-table
-{
-    border-collapse: collapse;
-       width:100%;
-
-}
-td, th /* Mettre une bordure sur les td ET les th */
-{
-    border: 1px solid black;
-    text-align:center;
-
-   }
-   th{
-   background-color:#729fcf;
-   color:white;
-   height: 50px;
-   }
 p2{
 background-color:#75507b;
 /*border:#000000 1px solid;*/
@@ -88,18 +56,6 @@ display: block;
   border: 2px solid #73AD21;
   padding: 20px;
 
-}
-div.cadre{
- display: block;
-  border-radius: 15px;
-    background: #73AD21;
-    padding: 20px;
-}
-div.cadre1{
- display: block;
-  border-radius: 15px;
-    background: #e9b96e;
-    padding: 20px;
 }
 
 

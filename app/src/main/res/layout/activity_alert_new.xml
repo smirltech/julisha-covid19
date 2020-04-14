@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
@@ -80,7 +81,7 @@
                     android:id="@+id/edt_phone"
                     style="@style/profileEditText"
                     android:drawableStart="@drawable/ic_local_phone_black_24dp"
-                    android:hint="Telephone"
+                    android:hint="Téléphone"
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
                     android:lines="1"
@@ -158,7 +159,8 @@
                         android:tint="@color/colorPrimaryDark"
                         android:layout_marginLeft="5dp"
                         android:id="@+id/btn_commune"
-                        android:layout_height="32dp"/>
+                        android:layout_height="32dp"
+                    tools:ignore="VectorDrawableCompat" />
             </LinearLayout>
 
             <View

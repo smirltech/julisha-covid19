@@ -31,6 +31,12 @@
             android:icon="@android:drawable/ic_menu_recent_history"
             app:showAsAction="never"/>
     <item
+            android:id="@+id/action_update"
+            android:orderInCategory="102"
+            android:title="@string/action_update"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            app:showAsAction="never"/>
+    <item
             android:id="@+id/action_exit"
             android:orderInCategory="102"
             android:title="@string/action_exit"

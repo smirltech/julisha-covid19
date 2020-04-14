@@ -194,7 +194,7 @@
                     android:layout_height="wrap_content">
 
                 <TextView
-                        android:text="INFECTIONS"
+                        android:text="PROGRESSION JOURNALIERE"
                         android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
