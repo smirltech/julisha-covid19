@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nav_contacterurgence"
             android:icon="@drawable/ic_baseline_warning_24"
-            android:title="Appler les Urgences" />
+            android:title="Appeler les Urgences" />
 
     </group>
     <group
