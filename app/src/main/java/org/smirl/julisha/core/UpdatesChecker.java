@@ -1,29 +1,33 @@
 package org.smirl.julisha.core;
 
 import android.content.Context;
-import fnn.smirl.simple.Serializer;
+import android.content.pm.PackageManager;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.smirl.julisha.core.data.dao.Crud;
 
 
-public class UpdatesChecker {
+public class UpdatesChecker implements Constants {
 
 
     Context ctx;
     private PrefManager prefm;
     private Crud crud;
-    private String url, key = "update";
-    private OnUpdateListener listener;
+    private String url;
 
-
-    public UpdatesChecker(Context context, String url, OnUpdateListener listener) {
+    public UpdatesChecker(Context context, String url) {
 
         this.ctx = context;
         this.url = url;
         this.prefm = new PrefManager(context);
-        this.listener = listener;
-
-
-        fetch();
     }
 
     private void fetch() {
@@ -31,51 +35,26 @@ public class UpdatesChecker {
         crud.get(url, new Crud.OnResponseListener() {
             @Override
             public void onResponse(String response, int code) {
-               // DialogFactory.print(ctx, response);
-                prefm.putString(key, response);
-                check();
+               /* try {
+                    if (AppInfo.from(ctx).getAppVersionCode() < obj.getInt("vCode")) {
+
+                        prefm.putString("news", obj.getString("news"));
+                        prefm.putBoolean("shutdown", obj.getBoolean("shutdown"));
+                        prefm.putString("link", obj.getString("link"));
+                        prefm.putInt(WEB_VERSION_CODE_NAME, obj.getInt("vCode"));
+
+                    }
+                } catch (JSONException e) {
+                    System.out.println(e);
+                }*/
             }
 
             @Override
             public void onErrorResponse(String error, int code) {
-               // DialogFactory.toast(ctx, error);
-                check();
+                System.out.println(error);
 
             }
         });
-    }
-
-    private void check() {
-
-        try {
-            Update u = new Serializer().fromJson(prefm.getString(key, null), Update.class);
-            if (u.versionCode > AppInfo.from(ctx).getAppVersionCode()) {
-                if (listener != null)
-                    listener.onUpdate(true, u);
-            } else {
-                if (listener != null)
-                    listener.onUpdate(false, null);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // DialogFactory.print(ctx, e.toString());
-        }
-
-    }
-
-    public interface OnUpdateListener {
-        void onUpdate(boolean found, Update update);
-    }
-
-    public class Update {
-        public String updatedDate, versionName,releaseNote, path;
-        public int versionCode;
-
-
-        @Override
-        public String toString() {
-            return new Serializer().toJson(this);
-        }
     }
 
 }
