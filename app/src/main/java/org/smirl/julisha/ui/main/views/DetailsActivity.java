@@ -9,14 +9,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.core.text.TextUtilsCompat;
 import org.smirl.julisha.R;
-import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.ui.main.models.Cases;
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.ui.main.models.TableData;
-import org.smirl.julisha.ui.main.models.Villes;
-
-import java.util.HashSet;
 
 public class DetailsActivity extends AppCompatActivity {
 int provinceid;

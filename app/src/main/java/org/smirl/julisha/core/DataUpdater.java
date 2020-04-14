@@ -1,12 +1,8 @@
 package org.smirl.julisha.core;
 
 import android.content.Context;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.core.data.dao.Crud;
-import org.smirl.julisha.core.volley.MyStringRequest;
-import org.smirl.julisha.core.volley.StaticRequestQueue;
 
 import java.io.File;
 
@@ -31,7 +27,7 @@ public class DataUpdater implements Constants {
                     Julisha.prepareCaseGraphs2();
                 } catch (Exception e) {
                     e.printStackTrace();
-                   // DialogFactory.print(context,e.getMessage());
+                    //DialogFactory.print(context,e.getMessage());
                 }
 
                 File baseFolder = FileManager.getBaseDir(context, "julisha");

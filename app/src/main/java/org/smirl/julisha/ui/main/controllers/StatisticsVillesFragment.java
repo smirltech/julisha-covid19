@@ -1,6 +1,5 @@
 package org.smirl.julisha.ui.main.controllers;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
-import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.core.Utilities;
-import org.smirl.julisha.ui.main.models.Cases;
-import org.smirl.julisha.ui.main.models.Provinces;
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.ui.main.models.TableData;
-import org.smirl.julisha.ui.main.models.Villes;
-import org.smirl.julisha.ui.main.views.DetailsActivity;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
-
-import java.util.HashSet;
 
 /**
  * A placeholder fragment containing a simple view.
