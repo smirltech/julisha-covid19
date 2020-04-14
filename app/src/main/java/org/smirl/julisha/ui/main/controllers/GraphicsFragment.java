@@ -35,6 +35,7 @@ import org.smirl.julisha.ui.main.views.PageViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -124,7 +125,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         infectionLabel.setText("" + cc.infected);
         deadLabel.setText("" + cc.dead);
         healedLabel.setText("" + cc.healed);
-        majDate.setText("Dernière mise à jour : " + new Date(Julisha.getLastUpdate()).toString());
+        majDate.setText("Dernière mise à jour : " + Utilities.dateUtilities.dateToString(new Date(Julisha.getLastUpdate()), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
 
         gfSwipe.setRefreshing(false);
 
