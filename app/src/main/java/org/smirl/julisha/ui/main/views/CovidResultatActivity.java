@@ -24,7 +24,7 @@ import java.util.Objects;
 public class CovidResultatActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = null;
     TextView alertmsg,messageap;
-    Button btnRestart, btnexit,urgence_btn;
+    Button btnRestart, btnexit,urgence_btn,alert_btn;
     ImageView imagealert;
     MediaPlayer alert;
     Context contex = this;
@@ -48,6 +48,7 @@ public class CovidResultatActivity extends AppCompatActivity {
         btnexit = (Button) findViewById(R.id.btnexit);
         urgence_btn=findViewById(R.id.urgence_btn);
         imagealert=(ImageView)findViewById(R.id.imagealert);
+        alert_btn=findViewById(R.id.alert_btn);
 
         /*
 
@@ -137,6 +138,7 @@ public class CovidResultatActivity extends AppCompatActivity {
                 imagealert.setBackground(getDrawable(R.drawable.ic_baseline_add_alert_red));
                 imagealert.setVisibility(View.VISIBLE);
             urgence_btn.setVisibility(View.VISIBLE);
+            alert_btn.setVisibility(View.VISIBLE);
             alert = MediaPlayer.create (contex, R.raw.badalert);
             alert.start ();
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -197,6 +199,10 @@ public class CovidResultatActivity extends AppCompatActivity {
     }
 
 
+    public void alert_btn(View view) {
+        startActivity(new Intent(this,NewAlertActivity.class));
+        finish();
 
 
     }
+}

@@ -32,16 +32,16 @@
                 android:text="Reprendre"
                 android:id="@+id/btnRestart"
                 android:layout_marginEnd="20dp"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:background="@drawable/covidbackground_btn"
                 android:textColor="#ffffff"/>
 
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Quitter"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:id="@+id/btnexit"
                 android:background="@drawable/covidbackground_btn"
                 android:textColor="#ffffff" />

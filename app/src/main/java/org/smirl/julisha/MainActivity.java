@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -155,7 +156,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         sendIntent.setType ("text/plain");
         startActivity (sendIntent);
         break;
-
+      case R.id.action_update:
+        Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
+        break;
 
       case R.id.action_exit:
         finish();
@@ -175,6 +178,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
       case R.id.nav_diag:
         // fragger.switchFragment(3);
         startActivity(new Intent(this, CovidTestActivity.class));
+
+        break;
+        case R.id.nav_alert:
+        // fragger.switchFragment(3);
+        startActivity(new Intent(this, NewAlertActivity.class));
 
         break;
       case R.id.nav_contacterurgence:

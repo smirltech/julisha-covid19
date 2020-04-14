@@ -17,7 +17,7 @@
     <string name="short_description">Annonce sur l\'évolution de COVID-19 en RDC</string>
 
     <string name="action_exit">Quitter</string>
-    <string name="app_version">Version: 1.1.3</string>
+    <string name="app_version">Version: 1.2.0</string>
 
     <string name="action_share">Partager</string>
     <string name="noter_app">Noter l\'app</string>
@@ -26,7 +26,7 @@
     <string name="webload">file:///android_asset/webApp/gestesbarrieres.html</string>
     <string name="urgence">Urgence</string>
     <string name="message_send">Hey, cette application me permet de suivre l\'évolution du Virus Corona (Covid-19) en RDC , elle me permet également à faire un Diagnostic du Covid-19.\nTellement qu\'elle m\'a interessée, je me suis dit qu\'elle pourra vous intéresser aussi. \nVoici le lien de téléchargement: https://apps.smirl.org/julisha\n</string>
-    <string name="about">Étant tous concernés par la lutte contre la propagation jusqu\'à l\'éradication du nouveau coronavirus ou covid-19, l\'équipe de SmirlTech disponibilise cette application pour contribuer à disséminer l\'info sur la propagation de COVID-19 en RDC.</string>
+    <string name="about">Étant tous concernés par la lutte contre la propagation jusqu\'à l\'éradication du nouveau coronavirus ou covid-19, l\'équipe SmirlTech disponibilise cette application pour contribuer à disséminer l\'info sur la propagation de COVID-19 en RDC.</string>
     <string name="nav_diagnostic">Diagnostic</string>
     <string name="nav_gestes_barri_res">Gestes Barrières</string>
     <string name="nav_accueil">Accueil</string>
@@ -34,5 +34,7 @@
     <string name="repondez_svp">Veuillez répondre  SVP</string>
     <string name="wait">Traitement en cours...\nVeuillez patienter</string>
     <string name="abandonner_le_test">Abandonner le test en cours ?</string>
+    <string name="nav_alert">Signaler un cas</string>
+    <string name="action_update">"Vérifier la mise à jour "</string>
 
 </resources>
