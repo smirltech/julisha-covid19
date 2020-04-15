@@ -78,7 +78,7 @@
             android:layout_below="@id/question"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <RadioGroup
@@ -133,7 +133,7 @@
             android:id="@+id/buttonGroup"
             android:layout_width="140dp"
             android:layout_height="100dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/questionGroup"
             android:layout_marginBottom="50dp"
@@ -143,7 +143,6 @@
                 android:layout_height="50dp"
                 android:text="Question suivante"
                 android:id="@+id/button3"
-                android:layout_marginTop="20dp"
                 android:textAllCaps="false"
                 android:background="@drawable/covidbackground_btn"
                 android:textColor="#ffffff"/>
