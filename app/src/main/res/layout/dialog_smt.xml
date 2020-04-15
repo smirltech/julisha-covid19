@@ -99,7 +99,7 @@
                             android:layout_height="10sp"/>
 
                     <CheckBox
-                            android:text="La fatique"
+                            android:text="La fatigue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_4"
@@ -121,20 +121,20 @@
                             android:layout_weight="1"/>
 
                     <CheckBox
-                            android:text="des crachats"
+                            android:text="Des crachats"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_7"
                             android:layout_weight="1"/>
                     <CheckBox
-                            android:text="une perte totale de l'audorat"
+                            android:text="Une perte totale de l'odorat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_8"
                             android:layout_weight="1"
                             />
                     <CheckBox
-                            android:text="une perte du gout"
+                            android:text="Une perte du goût"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_9"
@@ -142,7 +142,7 @@
                             />
 
                     <CheckBox
-                            android:text="Perte d'appetit"
+                            android:text="Perte d’appétit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/smt_10"

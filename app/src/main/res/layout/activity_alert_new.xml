@@ -37,7 +37,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:textColor="@color/colorPrimaryLight"
-                android:text="Si vous ou un de vos proche presente de symptomes"
+                android:text="Si vous ou un de vos proche présente de symptomes"
                 android:id="@+id/label_version"/>
     </LinearLayout>
 
@@ -81,7 +81,7 @@
                     android:id="@+id/edt_phone"
                     style="@style/profileEditText"
                     android:drawableStart="@drawable/ic_local_phone_black_24dp"
-                    android:hint="Téléphone"
+                    android:hint="Numéro de téléphone"
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
                     android:lines="1"
@@ -108,7 +108,7 @@
 
                 <TextView
                         android:textAppearance="@style/TextAppearance.Design.Hint"
-                        android:text="Cliquer pour choisir"
+                        android:text="Cliquez pour choisir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_smt"/>

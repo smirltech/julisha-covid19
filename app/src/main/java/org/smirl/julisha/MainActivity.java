@@ -34,6 +34,8 @@ import org.smirl.julisha.ui.main.views.CovidTestActivity;
 import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
 import org.smirl.julisha.ui.main.views.NewAlertActivity;
 
+import java.net.URI;
+
 import fnn.smirl.appinfo.AppInfo;
 
 
@@ -157,7 +159,10 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         startActivity (sendIntent);
         break;
       case R.id.action_update:
-        Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
+        String url="https://apps.smirl.org/julisha";
+        Intent browserIntent = new Intent (Intent.ACTION_VIEW, Uri.parse (url));
+        startActivity (browserIntent);
+        //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
         break;
 
       case R.id.action_exit:

@@ -44,7 +44,7 @@ public class NewAlertActivity extends AppCompatActivity {
         tv_commune.setOnClickListener(v -> setCommune());
         tv_smt.setOnClickListener(v -> setSymptomes());
 
-        Toast.makeText(getCtx(), "Completement operatonnel !", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getCtx(), "Completement operatonnel !", Toast.LENGTH_SHORT).show();
 
 
         findViewById(R.id.btn_commune).setOnClickListener(v -> setCommune());
