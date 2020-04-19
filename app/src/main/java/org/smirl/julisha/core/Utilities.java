@@ -60,16 +60,6 @@ public class Utilities {
         return true;
     }
 
-    public static class dateUtilities {
-
-        public static String dateToString(Date date, String template) {
-            return dateToString(date, template, Locale.getDefault());
-        }
-
-        public static String dateToString(Date date, String template, Locale locale) {
-            return new SimpleDateFormat(template, locale).format(date);
-        }
-    }
 
     public static void dateChooser(LayoutInflater inflater, final CalendarListener listener){
         View view = inflater.inflate(R.layout.date_selector, null, false);

@@ -7,7 +7,7 @@ import org.smirl.julisha.core.Constants;
 
 public class Conf implements Constants {
 
-    public static final String url = DB_URL;
+    public static final String url = URL_DB;
     /*private String dbname = "wzexetat";
     private String user = "root";
     private String pswd = "";*/

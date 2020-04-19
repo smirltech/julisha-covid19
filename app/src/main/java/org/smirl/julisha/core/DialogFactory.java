@@ -2,6 +2,7 @@ package org.smirl.julisha.core;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 
@@ -25,8 +26,8 @@ public class DialogFactory {
         //print(context, response);
     }
 
-    public static void debugToast(Context ctx, String msg) {
-        //Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
+    public static void toast(Context ctx, String msg) {
+        Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
 
     }
 

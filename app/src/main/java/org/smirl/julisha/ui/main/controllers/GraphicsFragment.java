@@ -25,6 +25,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
+import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.Julisha;
 import org.smirl.julisha.core.Utilities;
@@ -119,7 +120,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         infectionLabel.setText("" + cc.infected);
         deadLabel.setText("" + cc.dead);
         healedLabel.setText("" + cc.healed);
-        majDate.setText("Dernière mise à jour : " + Utilities.dateUtilities.dateToString(new Date(Julisha.getLastUpdate()), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
+        majDate.setText("Dernière mise à jour : " + DateUtils.formatDate(Julisha.getLastUpdate(), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
 
         gfSwipe.setRefreshing(false);
 
