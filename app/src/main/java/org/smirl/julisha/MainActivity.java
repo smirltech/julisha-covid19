@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -139,8 +140,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                             .create().show();
                 }
             }
+
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -185,7 +189,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                 break;
             case R.id.action_update:
 
-                check4update();
+                check4updatemenu();
+
+
                 //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -325,5 +331,37 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
             }
         });
 
+    }
+    /*
+    Update from menu
+         */
+    private void check4updatemenu() {
+        new UpdatesChecker(this, URL_UPDATE, new UpdatesChecker.OnUpdateListener() {
+            @Override
+            public void onUpdate(boolean found, UpdatesChecker.Update update) {
+                if (found) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
+                            .setMessage(update.releaseNote)
+                            //.setMessage(update.path)
+                            .setCancelable(false)
+                            .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent();
+                                    i.setAction(Intent.ACTION_VIEW);
+                                    i.setData(Uri.parse(update.path));
+                                    startActivity(i);
+                                }
+                            }).setNeutralButton("PLUS TARD", null)
+                            .create().show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Aucune mise à jour disponible!", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+        });
     }
 }
