@@ -1,5 +1,6 @@
 package org.smirl.julisha.ui.main.views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +11,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.smirl.julisha.R;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.ui.main.models.TableData;
 
 public class DetailsActivity extends AppCompatActivity {
 int provinceid;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

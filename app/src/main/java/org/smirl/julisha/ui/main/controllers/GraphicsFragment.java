@@ -1,6 +1,5 @@
 package org.smirl.julisha.ui.main.controllers;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,30 +12,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
 import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Fragmentation;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
-import org.smirl.julisha.ui.main.models.CaseGraph;
-import org.smirl.julisha.ui.main.models.CaseGraphs;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.views.GraphManager;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 

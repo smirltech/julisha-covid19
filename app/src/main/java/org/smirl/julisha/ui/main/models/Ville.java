@@ -1,6 +1,6 @@
 package org.smirl.julisha.ui.main.models;
 
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 
 public class Ville {
    public int id;

@@ -13,8 +13,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import org.smirl.julisha.Julisha;
 import org.smirl.julisha.R;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CaseGraphs;
 

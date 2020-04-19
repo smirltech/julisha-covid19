@@ -1,7 +1,7 @@
 package org.smirl.julisha.core;
 
 import android.content.Context;
-import org.smirl.julisha.Julisha;
+
 import org.smirl.julisha.core.data.dao.Crud;
 
 import java.io.File;
