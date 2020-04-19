@@ -98,7 +98,7 @@ public class NewAlertActivity extends AppCompatActivity {
 
     private void setCommune() {
 
-        //  Toast.makeText(this, Constants.RDC_URL, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, Constants.URL_RDC, Toast.LENGTH_SHORT).show();
 
         LocationPicker.pickLocation(getCtx(), LocationPicker.VALUE_COMMUNE, (dataId, dataName) -> {
             commune_id = dataId;
@@ -110,7 +110,7 @@ public class NewAlertActivity extends AppCompatActivity {
 
     private void setSymptomes() {
 
-        //  Toast.makeText(this, Constants.RDC_URL, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, Constants.URL_RDC, Toast.LENGTH_SHORT).show();
 
 
         CheckBox smt_1, smt_2, smt_3, smt_4, smt_5, smt_6, smt_7, smt_8, smt_9, smt_10;

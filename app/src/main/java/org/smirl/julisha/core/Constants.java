@@ -9,10 +9,7 @@ public interface Constants {
     String URL_WEB_APP = "https://apps.smirl.org/julisha";
     String URL_DB = BASE_URL + "query/v1/";
     String URL_RDC = BASE_URL + "rdc/";
-
     String URL_UPDATE = URL_WEB_APP + "/update.json";
 
-    int MAX_RISK_LEVEL = 500;
-    int RISK_THRESHOLD_LEVEL = 20;
 
 }

@@ -13,7 +13,7 @@ public class DataUpdater implements Constants {
 
         // Utilities.toastIt(context, "start update...!");
 
-        new Crud(context).get(APP_URL, new Crud.OnResponseListener() {
+        new Crud(context).get(URL_API, new Crud.OnResponseListener() {
             @Override
             public void onResponse(String response, int code) {
                 response = response.replace("null", "1");
