@@ -38,7 +38,7 @@ public class UpdatesChecker {
 
             @Override
             public void onErrorResponse(String error, int code) {
-                DialogFactory.toast(ctx, error);
+               // DialogFactory.toast(ctx, error);
                 check();
 
             }
