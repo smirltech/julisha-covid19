@@ -17,12 +17,15 @@
             android:gravity="center">
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp" app:srcCompat="@mipmap/covid2" android:layout_marginTop="40dp"/>
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/covid2"
+                android:layout_marginTop="40dp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="JULISHA" android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
+                android:text="JULISHA"
+                android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
                 android:textColor="@android:color/white"/>
         <TextView
                 android:id="@+id/label_version"
@@ -30,17 +33,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="v1.0"
-                android:textStyle="bold|italic" android:textColor="#FFC107"/>
+                android:textStyle="bold|italic"
+                android:textColor="#FFC107"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Cette application a été créée par SmirlTech pour le peuple congolais." android:textSize="16sp"
-                android:textStyle="italic" android:layout_marginTop="40dp" android:textColor="@android:color/white"/>
+                android:textStyle="italic"
+                android:layout_marginTop="40dp"
+                android:textColor="@android:color/white"/>
 
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="200dp" app:srcCompat="@mipmap/flag" android:layout_marginTop="40dp"
+                android:layout_height="200dp"
+                app:srcCompat="@mipmap/flag"
+                android:layout_marginTop="40dp"
                 android:visibility="invisible"/>
 
     </LinearLayout>

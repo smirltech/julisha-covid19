@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent" android:layout_height="wrap_content"
-          android:id="@+id/trow">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/trow">
     <TextView
-            android:id="@+id/tr_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:foreground="?attr/selectableItemBackground"
-            android:text="1"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
-            android:textSize="12sp"/>
+        android:id="@+id/tr_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="1"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
+        android:textSize="10sp"/>
     <TextView
-            android:id="@+id/tr_prov"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:foreground="?attr/selectableItemBackground"
-            android:text="Province"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
-            android:textSize="12sp"/>
+        android:id="@+id/tr_prov"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Province"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:layout_weight="1" android:autoLink="web" android:cursorVisible="false" android:hint="voir ville"
+        android:textSize="10sp"/>
 
     <TextView
-            android:id="@+id/tr_inf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Infectés"
-            android:textColor="@color/blue"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:layout_weight="1" android:textSize="12sp"/>
+        android:id="@+id/tr_inf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Infectés"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="1" android:textSize="10sp"/>
 
     <TextView
-            android:id="@+id/tr_dec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Décédés"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:layout_weight="1" android:textSize="12sp"/>
+        android:id="@+id/tr_dec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Décédés"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="1" android:textSize="10sp"/>
 
     <TextView
-            android:id="@+id/tr_guer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guéris"
-            android:textStyle="bold"
-            android:textColor="@color/green"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:layout_weight="1" android:textSize="12sp"/>
+        android:id="@+id/tr_guer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guéris"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_weight="1" android:textSize="10sp"/>
 </TableRow>

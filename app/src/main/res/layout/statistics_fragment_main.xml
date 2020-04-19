@@ -9,75 +9,75 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.main.controllers.StatisticsFragment">
 
-<LinearLayout
-    android:id="@+id/linearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TableLayout
-        android:id="@+id/tableDisplay"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:shrinkColumns="0,2,3,4"
-        android:stretchColumns="1,2,3,4">
+        android:orientation="vertical">
 
-        <TableRow
+        <TableLayout
+            android:id="@+id/tableDisplay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="5dp"
+            android:shrinkColumns="0,2,3,4"
+            android:stretchColumns="1,2,3,4">
 
-            <TextView
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:text="No."
                     android:textAlignment="textStart"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="12sp"/>
-            <TextView
+                    android:textStyle="bold" android:textSize="10sp"/>
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:text="Provinces"
                     android:textAlignment="textStart"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="12sp"/>
+                    android:textStyle="bold" android:textSize="10sp"/>
 
-            <TextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Infectés"
+                    android:text="Confirmés"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="12sp"/>
+                    android:textStyle="bold" android:textSize="10sp"/>
 
-            <TextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Décédés"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="12sp"/>
+                    android:textStyle="bold" android:textSize="10sp"/>
 
-            <TextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Guéris"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    android:textStyle="bold" android:textSize="12sp"/>
-        </TableRow>
+                    android:textStyle="bold" android:textSize="10sp"/>
+            </TableRow>
 
-    </TableLayout>
+        </TableLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

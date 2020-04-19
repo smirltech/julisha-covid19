@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "73444242566",
+    "firebase_url": "https://julisha-b65c0.firebaseio.com",
+    "project_id": "julisha-b65c0",
+    "storage_bucket": "julisha-b65c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73444242566:android:7bdc3bc5bcd91ada3e4d07",
+        "android_client_info": {
+          "package_name": "org.smirl.julisha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73444242566-jr1ka1qs36fdqa8e19ia5e1s3edm3ab6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd_rYo7LjD4mHR1aL8n1QauAtiD8DBFfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73444242566-jr1ka1qs36fdqa8e19ia5e1s3edm3ab6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

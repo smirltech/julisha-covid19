@@ -15,16 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
-import org.smirl.julisha.core.Fragmentation;
-import org.smirl.julisha.core.Julisha;
-import org.smirl.julisha.core.Utilities;
-import org.smirl.julisha.ui.main.models.Cases;
-import org.smirl.julisha.ui.main.models.Provinces;
+import org.smirl.julisha.Julisha;
 import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.views.DetailsActivity;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
-
-import java.util.HashSet;
 
 /**
  * A placeholder fragment containing a simple view.
