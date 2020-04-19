@@ -125,13 +125,14 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
                             .setMessage(update.releaseNote)
+                            //.setMessage(update.path)
                             .setCancelable(false)
                             .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent i = new Intent();
                                     i.setAction(Intent.ACTION_VIEW);
-                                    i.setData(Uri.parse(URL_WEB_APP));
+                                    i.setData(Uri.parse(update.path));
                                     startActivity(i);
                                 }
                             }).setNeutralButton("PLUS TARD", null)
