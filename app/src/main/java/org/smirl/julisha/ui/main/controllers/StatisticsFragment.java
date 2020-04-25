@@ -10,6 +10,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -27,6 +28,7 @@ public class StatisticsFragment extends Fragment {
 
   private static final String ARG_SECTION_NUMBER = "section_number";
   private MainActivity mActivity;
+  private NestedScrollView sfNestedSV;
 
   private StatisticsViewModel statisticsViewModel;
 
@@ -57,11 +59,22 @@ public class StatisticsFragment extends Fragment {
       @NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View root = inflater.inflate(R.layout.statistics_fragment_main, container, false);
+    sfNestedSV = root.findViewById(R.id.sf_nested_sv);
     tableDisplay = root.findViewById(R.id.tableDisplay);
     tableDisplay.removeViews(1, tableDisplay.getChildCount() - 1);
     populateTable();
 
-
+    sfNestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+      @Override
+      public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+          //Utilities.toastIt(getContext(), "bottom scroll reached !");
+          mActivity.toggleFab(false);
+        }else{
+          mActivity.toggleFab(true);
+        }
+      }
+    });
     return root;
   }
 

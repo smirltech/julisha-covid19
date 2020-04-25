@@ -44,12 +44,10 @@ public class Julisha {
     }
 
     public static CaseGraphs getCaseGraphs() {
-        // prepareCaseGraphs();
         return julisha.caseGraphs;
     }
 
     public static CaseGraphs getCaseGraphs2() {
-        // prepareCaseGraphs();
         return julisha.caseGraphs2;
     }
 
@@ -241,10 +239,10 @@ public class Julisha {
     public static void prepareCaseGraphs2() {
 
         julisha.caseGraphs2.clear();
-        CaseGraph initt = new CaseGraph(0, "0");
+       // CaseGraph initt = new CaseGraph(0, "0");
 
-        initt.infected = 0;
-        julisha.caseGraphs2.newCaseGraph(initt);
+        //initt.infected = 0;
+        //julisha.caseGraphs2.newCaseGraph(initt);
 
         int cnt = 1;
         Calendar caln = Calendar.getInstance();
@@ -261,7 +259,7 @@ public class Julisha {
             cal0.add(Calendar.DATE, 1);
         }
 
-        Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.get(35).date);
+        //Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.get(35).date);
 
         for (int i = 0; i < julisha.cases.size(); i++) {
             Case c = julisha.cases.get(i);
