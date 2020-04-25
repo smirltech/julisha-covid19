@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -35,6 +36,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private MainActivity mActivity;
     private SwipeRefreshLayout gfSwipe;
+    private NestedScrollView gfNestedSV;
 
     private PageViewModel pageViewModel;
     private GraphManager graphManager;
@@ -73,6 +75,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.graphics_fragment_main, container, false);
         gfSwipe = root.findViewById(R.id.gf_swipe);
+        gfNestedSV = root.findViewById(R.id.gf_nested_sv);
 
         final TextView textView = root.findViewById(R.id.section_label);
         infectionLabel = root.findViewById(R.id.infection_label);
@@ -87,6 +90,18 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         graphManager.generateGraph();
 
         refreshMe();
+
+        gfNestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                    //Utilities.toastIt(getContext(), "bottom scroll reached !");
+                    mActivity.toggleFab(false);
+                }else{
+                    mActivity.toggleFab(true);
+                }
+            }
+        });
 
         gfSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

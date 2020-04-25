@@ -21,6 +21,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     private static final int REQUEST_WRITE = 2;
     private static final int REQUEST_ACCESS_NETWORK_STATE = 3;
     private FirebaseAnalytics mFirebaseAnalytics;
-
+    private FloatingActionButton mainFab;
 
     ViewPager viewPager;
     SectionsPagerAdapter sectionsPagerAdapter;
@@ -62,17 +63,14 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         check4update();
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -81,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         permissionManager = new PermissionManager(this);
         verifier();
-
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
@@ -99,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
             @Override
             public void onPageSelected(int position) {
+                toggleFab(true);
                 refreshThem();
             }
 
@@ -109,13 +107,18 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         });
 
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        mainFab = findViewById(R.id.fab);
+        mainFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), NewAlertActivity.class));
             }
         });
+    }
 
+    public void toggleFab(boolean b){
+        if (b) mainFab.show();
+        else mainFab.hide();
     }
 
     private void check4update() {
@@ -143,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         });
     }
-
 
 
     @Override
@@ -332,6 +334,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         });
 
     }
+
     /*
     Update from menu
          */
@@ -355,8 +358,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                                 }
                             }).setNeutralButton("PLUS TARD", null)
                             .create().show();
-                }
-                else
+                } else
                     Toast.makeText(getApplicationContext(), "Aucune mise à jour disponible!", Toast.LENGTH_SHORT).show();
 
 
