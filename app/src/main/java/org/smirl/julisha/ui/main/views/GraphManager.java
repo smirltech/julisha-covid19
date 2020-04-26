@@ -116,9 +116,9 @@ public class GraphManager {
     }
 
     private final int[] colors = new int[]{
-            ColorTemplate.rgb("#0000ff"),
-            ColorTemplate.rgb("#ff0000"),
-            ColorTemplate.rgb("#00ff00")
+            ColorTemplate.rgb("#1E88E5"),
+            ColorTemplate.rgb("#D32F2F"),
+            ColorTemplate.rgb("#7CB342")
     };
 
     private void setData(LineChart chart, CaseGraphs caseGraphs) {
@@ -147,7 +147,7 @@ public class GraphManager {
 
     private LineDataSet getLineDateSet(CaseGraphs caseGraphs, int caseType, int colorTemplate) {
         ArrayList<Entry> values = new ArrayList<>();
-        String lbl = "Infectés";
+        String lbl = "Actifs";
         for (CaseGraph c : caseGraphs) {
             switch (caseType) {
                 case 1:

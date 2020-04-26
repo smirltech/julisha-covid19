@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
             case R.id.action_apropos:
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
-
             case R.id.action_contact:
                 //
                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(

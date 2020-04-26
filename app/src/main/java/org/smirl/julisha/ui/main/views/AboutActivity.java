@@ -1,12 +1,13 @@
 package org.smirl.julisha.ui.main.views;
 
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import fnn.smirl.appinfo.AppInfo;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.smirl.julisha.R;
 
-import java.util.Objects;
+import fnn.smirl.appinfo.AppInfo;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -15,6 +16,8 @@ public class AboutActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.about);
     TextView labelVersion = findViewById(R.id.label_version);
-   labelVersion.setText("v" + AppInfo.from(this).getAppVersionName() +"(" + AppInfo.from(this).getAppVersionCode() +")");
+    try {
+      labelVersion.setText("v" + AppInfo.from(this).getAppVersionName() + "(" + AppInfo.from(this).getAppVersionCode() + ")");
+    }catch(Exception ex){}
   }
 }

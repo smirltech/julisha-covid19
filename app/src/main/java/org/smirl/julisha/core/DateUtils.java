@@ -29,10 +29,6 @@ public class DateUtils {
         return formatDate(date, srcFormat, destFormat, Locale.ENGLISH);
     }
 
-   /* public static String formatDate(String date, String destFormat, Locale locale) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat(destFormat, locale);
-        return sdf.format(sdf.parse(date));
-    }*/
 
     public static String formatDate(long date, String destFormat, Locale locale) {
         SimpleDateFormat sdf = new SimpleDateFormat(destFormat, locale);

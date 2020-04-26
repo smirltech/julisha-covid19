@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
 
@@ -17,11 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.views.UrgencesActivity"></activity>
+        <activity android:name=".ui.main.views.UrgencesActivity"/>
         <activity android:name=".ui.main.views.GestesBarrieresActivity" />
-        <activity
-            android:name=".ui.main.views.AboutActivity"
-            android:label="@string/action_apropos" />
+        <activity android:name=".ui.main.views.AboutActivity" />
         <activity android:name=".ui.main.views.CovidResultatActivity" />
         <activity android:name=".ui.main.views.DiagnosticActivity" />
         <activity android:name=".ui.main.views.CovidTestActivity" />

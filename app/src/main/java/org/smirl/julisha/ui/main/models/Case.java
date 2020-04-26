@@ -40,7 +40,7 @@ public class Case {
     public String toText() {
         String tty = Julisha.getType(type).toUpperCase();
         if (nombre < 2) tty = tty.substring(0, tty.length() - 1);
-        return Julisha.getVille(ville_id).nom.toUpperCase() + ": " +
+        return Julisha.getVille(ville_id).nom.toUpperCase() /*+ " - " + Julisha.getProvince(province_id).nom.toUpperCase()*/ + " : " +
                 nombre + " " + tty;
     }
 }
