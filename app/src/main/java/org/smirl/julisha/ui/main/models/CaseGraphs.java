@@ -26,6 +26,12 @@ public class CaseGraphs extends ArrayList<CaseGraph> {
         return null;
     }
 
+    public CaseGraph getLatestCaseGraph() {
+      if (size() > 0)  return get(size()-1);
+      return null;
+    }
+
+
 
     public int getMaxInfected() {
         int y = 0;

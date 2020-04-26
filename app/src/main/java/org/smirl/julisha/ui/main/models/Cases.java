@@ -31,6 +31,14 @@ public class Cases extends ArrayList<Case> {
     return null;
   }
 
+  public Cases getCases(String date) {
+    Cases cc = new Cases();
+    for (Case c : this) {
+      if (c.date.equalsIgnoreCase(date)) cc.add(c);
+    }
+    return cc;
+  }
+
   public int number(int villeid, int type) {
     int n = 0;
     for (Case c : this) {
