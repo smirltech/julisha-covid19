@@ -59,6 +59,14 @@ public class Julisha {
         julisha.lastUpdate = lastUpdate;
     }
 
+    public static String getType(int type){
+        switch (type){
+            case 1: return "infectés";
+            case 2: return "décédés";
+            case 3: return "guéris";
+            default: return "iconnus";
+        }
+    }
     /**
      * Sample data for testing purposes only
      **/

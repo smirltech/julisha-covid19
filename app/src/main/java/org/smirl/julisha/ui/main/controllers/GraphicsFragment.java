@@ -1,6 +1,5 @@
 package org.smirl.julisha.ui.main.controllers;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,31 +13,24 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
 import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Fragmentation;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
+import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.CaseGraph;
-import org.smirl.julisha.ui.main.models.CaseGraphs;
+import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.views.GraphManager;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.text.ParseException;
 import java.util.Locale;
+import java.util.Objects;
 
 
 /**
@@ -50,6 +42,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     private MainActivity mActivity;
     private SwipeRefreshLayout gfSwipe;
     private NestedScrollView gfNestedSV;
+    private TextView currEvntDate, currEvnt;
 
     private PageViewModel pageViewModel;
     private GraphManager graphManager;
@@ -58,6 +51,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     TextView deadLabel;
     TextView healedLabel;
     TextView majDate;
+
+    private Cases currCG;
 
     private LineChart chart, chart2;
     //private AnyChartView anyChartView;
@@ -98,6 +93,9 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         chart = root.findViewById(R.id.mchart);
         chart2 = root.findViewById(R.id.mchart2);
         //anyChartView = (AnyChartView)root.findViewById(R.id.any_chart_view);
+        currEvntDate = root.findViewById(R.id.curr_evnt_date);
+        currEvnt = root.findViewById(R.id.curr_evnt);
+        currEvnt.setSelected(true);
 
         graphManager = new GraphManager(root);
         graphManager.generateGraph();
@@ -110,7 +108,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
                 if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
                     //Utilities.toastIt(getContext(), "bottom scroll reached !");
                     mActivity.toggleFab(false);
-                }else{
+                } else {
                     mActivity.toggleFab(true);
                 }
             }
@@ -137,6 +135,27 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         healedLabel.setText("" + cc.healed);
         majDate.setText("Dernière mise à jour : " + DateUtils.formatDate(Julisha.getLastUpdate(), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
 
+        currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", 0));
+        int bs = 0;
+        while (currCG.size() < 1) {
+            currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", bs--));
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int ct = 0;
+                while (true) {
+                    setCurrEventText(currCG.get(ct));
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        // e.printStackTrace();
+                    }
+                    if (++ct >= currCG.size()) ct = 0;
+                }
+            }
+        }).start();
+
         gfSwipe.setRefreshing(false);
 
     }
@@ -162,4 +181,17 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     }
 
+    private void setCurrEventText(final Case cas) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    currEvntDate.setText("À la Une : " + DateUtils.formatDate(cas.date, "yyyy-MM-dd", "E dd-MM-yyyy", Locale.FRANCE));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                currEvnt.setText(cas.toText());
+            }
+        });
+    }
 }
