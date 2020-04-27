@@ -1,6 +1,7 @@
 package org.smirl.julisha;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,7 +30,11 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import org.smirl.julisha.core.Constants;
 import org.smirl.julisha.core.DialogFactory;
 import org.smirl.julisha.core.PermissionManager;
+import org.smirl.julisha.core.PrefManager;
 import org.smirl.julisha.core.UpdatesChecker;
+import org.smirl.julisha.core.Utilities;
+import org.smirl.julisha.core.data.location.LocationPicker;
+import org.smirl.julisha.core.data.location.OnDataSelection;
 import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
@@ -44,6 +49,8 @@ import fnn.smirl.appinfo.AppInfo;
 
 public class MainActivity extends AppCompatActivity implements Constants, NavigationView.OnNavigationItemSelectedListener {
 
+    public static Context THIS;
+    public static PrefManager PREFMANAGER;
     private static final int REQUEST_INTERNET = 1;
     private static final int REQUEST_WRITE = 2;
     private static final int REQUEST_ACCESS_NETWORK_STATE = 3;
@@ -62,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        THIS = this;
+        PREFMANAGER = new PrefManager(this);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         check4update();
@@ -80,6 +89,19 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         permissionManager = new PermissionManager(this);
         verifier();
 
+        handleViewPager();
+
+
+        mainFab = findViewById(R.id.fab);
+        mainFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), NewAlertActivity.class));
+            }
+        });
+    }
+
+    public void handleViewPager() {
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -105,18 +127,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
             }
         });
-
-
-        mainFab = findViewById(R.id.fab);
-        mainFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), NewAlertActivity.class));
-            }
-        });
     }
 
-    public void toggleFab(boolean b){
+    public void toggleFab(boolean b) {
         if (b) mainFab.show();
         else mainFab.hide();
     }
@@ -165,7 +178,23 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
+                handleViewPager();
+                break;
+            case R.id.action_ville:
+                LocationPicker.pickLocation(this, LocationPicker.VALUE_VILLE, new OnDataSelection() {
+                    @Override
+                    public void onDataSet(int dataId, String dataName) {
+                        PREFMANAGER.putInt("maville", dataId);
+                        Utilities.dialog(THIS, "FELICITATION", "Votre nouvelle ville de suivi est maintenant : " + dataName.toUpperCase(), "OK", new Utilities.UtilityListener() {
+                            @Override
+                            public void onAccept() {
+                                //  recreate();
+                                handleViewPager();
+                            }
+                        });
 
+                    }
+                });
                 break;
             case R.id.action_apropos:
                 startActivity(new Intent(this, AboutActivity.class));

@@ -35,6 +35,10 @@ public class Julisha {
         return julisha.cases.cases(province_id);
     }
 
+    public static Cases casesVille(int ville_id) {
+        return julisha.cases.casesVille(ville_id);
+    }
+
     public static Villes villes() {
         return julisha.villes;
     }
@@ -59,14 +63,19 @@ public class Julisha {
         julisha.lastUpdate = lastUpdate;
     }
 
-    public static String getType(int type){
-        switch (type){
-            case 1: return "infectés";
-            case 2: return "décédés";
-            case 3: return "guéris";
-            default: return "iconnus";
+    public static String getType(int type) {
+        switch (type) {
+            case 1:
+                return "infectés";
+            case 2:
+                return "décédés";
+            case 3:
+                return "guéris";
+            default:
+                return "iconnus";
         }
     }
+
     /**
      * Sample data for testing purposes only
      **/
@@ -164,6 +173,16 @@ public class Julisha {
         return td;
     }
 
+    public static TableData getVilleTableData(int villeid) {
+        Cases cs = null;
+        if (villeid < 1) return null;
+        else cs = Julisha.casesVille(villeid);
+        String vname = villes().getVille(villeid).nom;
+       // System.out.println(vname + " >> " + cs.size());
+        if (cs == null) return new TableData(villeid, vname, 0, 0, 0);
+        return new TableData(villeid, vname, cs.number(villeid, 1), cs.number(villeid, 2), cs.number(villeid, 3));
+    }
+
     public static ArrayList<TableData> getVillesTableData(int provinceid) {
         ArrayList<TableData> td = new ArrayList<>();
         Cases cs = null;
@@ -247,7 +266,7 @@ public class Julisha {
     public static void prepareCaseGraphs2() {
 
         julisha.caseGraphs2.clear();
-       // CaseGraph initt = new CaseGraph(0, "0");
+        // CaseGraph initt = new CaseGraph(0, "0");
 
         //initt.infected = 0;
         //julisha.caseGraphs2.newCaseGraph(initt);
@@ -272,7 +291,7 @@ public class Julisha {
         for (int i = 0; i < julisha.cases.size(); i++) {
             Case c = julisha.cases.get(i);
             CaseGraph ds = julisha.caseGraphs2.getCaseGraph(c.date);
-            System.err.println("case at " + ds.date);
+          //  System.err.println("case at " + ds.date);
             if (ds == null) System.err.println("failed at " + i + " => " + c.date);
             switch (c.type) {
                 case 1:
@@ -288,24 +307,8 @@ public class Julisha {
                     ds.infected = 0;
                     ds.dead = 0;
                     ds.healed = 0;
-
             }
-
         }
-
-           /* for (int i = 1; i < julisha.caseGraphs2.size(); i++) {
-
-                CaseGraph ds = julisha.caseGraphs2.get(i);
-                CaseGraph pr = julisha.caseGraphs2.get(i - 1);
-
-               // ds.infected += pr.infected;
-
-
-                // System.out.println(ds.toString());
-            }
-            */
-
-
     }
 
 
