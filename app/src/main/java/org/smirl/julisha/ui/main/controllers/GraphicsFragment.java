@@ -31,10 +31,12 @@ import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
 import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.CaseGraph;
+import org.smirl.julisha.ui.main.models.CaseGraphs;
 import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.views.GraphManager;
+import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
 import java.text.ParseException;
@@ -175,6 +177,14 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             villeInfect.setText("Infectés: " + villeTD.infected);
             villeDead.setText("Décédés: " + villeTD.dead);
             villeHeal.setText("Guéris: "+ villeTD.healed);
+
+            villeName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CaseGraphs vcg =  Julisha.getVilleCaseGraphs(myVille);
+                    new LoneGraph(getLayoutInflater(), villeTD.name.toUpperCase(), vcg);
+                }
+            });
         }
         CasesSummary cc = Julisha.countrySummary();
         infectionLabel.setText("" + cc.infected);

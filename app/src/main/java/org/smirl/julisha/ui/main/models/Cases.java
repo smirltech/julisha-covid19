@@ -24,6 +24,14 @@ public class Cases extends ArrayList<Case> {
     return cc;
   }
 
+  public Cases casesProvince(int provinceid) {
+    Cases cc = new Cases();
+    for (Case c : this) {
+      if (c.province_id == provinceid) cc.add(c);
+    }
+    return cc;
+  }
+
   public Cases casesBy(int type) {
     Cases cc = new Cases();
     for (Case c : this) {
