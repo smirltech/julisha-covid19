@@ -4,51 +4,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
+    android:layout_height="match_parent"
+    android:background="#463D98"
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-    <LinearLayout
+
+        <LinearLayout
             android:gravity="center"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/emergency_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:orientation="vertical">
-        <ImageView
+            <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/covid2"
+                android:src="@mipmap/covid3"
                 android:layout_margin="10dp"/>
-        <TextView
+            <TextView
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="18dp"
                 android:layout_width="wrap_content"
                 android:text="JULISHA COVID-19 RDC"
                 android:textStyle="bold"/>
-        <TextView
+            <TextView
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorPrimaryLight"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="Version 2.0.0"
                 android:id="@+id/label_version"/>
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/app_DRC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:text="Made with ❤ in DRC"
+                />
+        </LinearLayout>
 
 
-    <TextView
+        <TextView
             android:padding="10dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:text="@string/about"/>
 
-    <TextView
+        <TextView
             android:linksClickable="true"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -57,37 +77,65 @@
             android:text=" to : \nPapy Maotala  \nMarien Mupenda\nJonas Kaninda\nFrancis N Numbi"
             android:layout_marginBottom="50dp"
             android:visibility="gone"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:src="@mipmap/flag"/>
-    <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:src="@mipmap/flag"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Qui sommes-nous ?"
+            android:id="@+id/about_us"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="18dp"
+            android:text="SMIRLTECH est un groupe des jeunes congolais (RDC) talentueux en informatique. Les jeunes qui mettent ensemble leurs compétences pour offrir des services aux autres entreprises et individus. Poussés par l'envi de participer à la création d'emploi pour les jeunes et les nouvelles compétences."
+            android:id="@+id/about_us_text"
+            android:layout_marginBottom="05dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="contact@smirl.org"
             android:linksClickable="true"
             android:autoLink="email"/>
-    <TextView
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="https://facebook.com/SmirlTech"
             android:autoLink="web"
             android:linksClickable="true"/>
-    <TextView
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="https://www.smirl.org"
             android:autoLink="web"
             android:linksClickable="true"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/footer_logo"
+            />
 
-    <TextView
+
+
+        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="©2020 by SmirlTech"
+            android:text="©2020 by SmirlTech| Lubumbashi Haut-Katanga"
             android:id="@+id/copy"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"/>
 
-</LinearLayout>
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

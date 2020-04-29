@@ -174,7 +174,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             villeName.setText(villeTD.name.toUpperCase());
             villeInfect.setText("Infectés: " + villeTD.infected);
             villeDead.setText("Décédés: " + villeTD.dead);
-            villeHeal.setText("Guéris: " + villeTD.healed);
+            villeHeal.setText("Guéris: "+ villeTD.healed);
         }
         CasesSummary cc = Julisha.countrySummary();
         infectionLabel.setText("" + cc.infected);

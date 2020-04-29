@@ -1,64 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".IntroActivity" android:background="@color/colorPrimaryDark">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".ui.main.views.AboutActivity">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/ee1"
-            android:gravity="center">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                app:srcCompat="@mipmap/covid2"
-                android:layout_marginTop="40dp"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="JULISHA"
-                android:textSize="36sp" android:textStyle="bold" android:textScaleX="2"
-                android:textColor="@android:color/white"/>
-        <TextView
-                android:id="@+id/label_version"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="v1.0"
-                android:textStyle="bold|italic"
-                android:textColor="#FFC107"/>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Cette application a été créée par SmirlTech pour le peuple congolais." android:textSize="16sp"
-                android:textStyle="italic"
-                android:layout_marginTop="40dp"
-                android:textColor="@android:color/white"/>
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                app:srcCompat="@mipmap/flag"
-                android:layout_marginTop="40dp"
-                android:visibility="invisible"/>
 
-    </LinearLayout>
 
-    <TextView
-            android:id="@+id/ee1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="©2020, SmirlTech. All rights reserved." android:layout_alignParentBottom="true"
-            android:textStyle="bold|italic" android:textColor="#8BC34A" android:padding="10dp"/>
+    <include
+        layout="@layout/containt_about"/>
+    <include
+        layout="@layout/toolbarcovid"/>
+
+
+
+
+
+
 
 </RelativeLayout>

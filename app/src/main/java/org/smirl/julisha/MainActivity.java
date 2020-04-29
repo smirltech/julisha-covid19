@@ -185,10 +185,13 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                     @Override
                     public void onDataSet(int dataId, String dataName) {
                         PREFMANAGER.putInt("maville", dataId);
-                        Utilities.dialog(THIS, "FELICITATION", "Votre nouvelle ville de suivi est maintenant : " + dataName.toUpperCase(), "OK", new Utilities.UtilityListener() {
+                        Utilities.dialog(THIS, "DESORMAIS", "Votre nouvelle ville de suivi est maintenant : " + dataName.toUpperCase(), "OK", new Utilities.UtilityListener() {
+
                             @Override
                             public void onAccept() {
                                 //  recreate();
+                                Toast.makeText(getApplicationContext(), dataName+ " est maintenant votre nouvelle ville de suivi", Toast.LENGTH_SHORT).show();
+
                                 handleViewPager();
                             }
                         });

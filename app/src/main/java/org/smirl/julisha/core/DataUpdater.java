@@ -17,7 +17,7 @@ public class DataUpdater implements Constants {
             @Override
             public void onResponse(String response, int code) {
                 response = response.replace("null", "1");
-                Utilities.toastIt(context, "update done!");
+                Utilities.toastIt(context, "Mise à jour de données effectuée");
                 Julisha.load(response);
                 Julisha.setLastUpdate(System.currentTimeMillis());
 
@@ -40,7 +40,7 @@ public class DataUpdater implements Constants {
 
             @Override
             public void onErrorResponse(String error, int code) {
-                Utilities.toastIt(context, "update failed, view saved!");
+                Utilities.toastIt(context, "Échec de mise à jour, chargement de données enregistrées!");
                 File baseFolder = FileManager.getBaseDir(context, "julisha");
                 if (!baseFolder.exists()) baseFolder.mkdirs();
                 File dataFile = new File(baseFolder, "data.json");

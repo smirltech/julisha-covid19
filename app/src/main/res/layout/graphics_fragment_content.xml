@@ -56,13 +56,15 @@
         android:layout_weight="1"
         android:padding="2dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="0dp"
+        app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
         <TextView
@@ -109,13 +111,15 @@
             android:layout_weight="1"
             android:padding="2dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="0dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="10dp"
             app:cardMaxElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
                 <TextView
@@ -141,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:text="Infectés : 10000"
                     android:textSize="8sp"
+                    android:layout_marginStart="05dp"
                     android:textColor="@color/blue_gray"
                     android:layout_weight="1"
                     android:gravity="left"
@@ -165,6 +170,7 @@
                     android:layout_marginLeft="2dp"
                     android:textColor="@color/green"
                     android:layout_weight="1"
+                    android:layout_marginEnd="05dp"
                     android:gravity="right"
                     android:textStyle="bold|italic" />
             </LinearLayout>
@@ -188,7 +194,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:padding="2dp"
-                    app:cardBackgroundColor="@color/white"
+                    app:cardBackgroundColor="@color/charts"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:cardMaxElevation="10dp">
@@ -200,7 +206,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:text="NOMBRE DE CAS" android:textStyle="bold"
                         android:textSize="9sp"/>
                     <com.github.mikephil.charting.charts.PieChart
@@ -234,7 +240,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="@color/charts"
                         android:text="TAUX DE CAS" android:textStyle="bold"
                         android:textSize="9sp"/>
 
@@ -375,7 +381,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                app:contentPadding="2dp">
+                app:cardCornerRadius="5dp"
+
+            app:contentPadding="2dp">
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -403,7 +411,8 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                app:cardCornerRadius="5dp"
+            android:layout_margin="5dp"
                 app:contentPadding="2dp">
             <LinearLayout
                     android:orientation="vertical"
