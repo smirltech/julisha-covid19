@@ -40,7 +40,7 @@ public class DataUpdater implements Constants {
 
             @Override
             public void onErrorResponse(String error, int code) {
-                Utilities.toastIt(context, "Échec de mise à jour, chargement de données enregistrées!");
+                Utilities.toastIt(context, "Échec de la mise à jour, chargement de données enregistrées...");
                 File baseFolder = FileManager.getBaseDir(context, "julisha");
                 if (!baseFolder.exists()) baseFolder.mkdirs();
                 File dataFile = new File(baseFolder, "data.json");

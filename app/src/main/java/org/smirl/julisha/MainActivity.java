@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         check4update();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                             @Override
                             public void onAccept() {
                                 //  recreate();
-                                Toast.makeText(getApplicationContext(), dataName+ " est maintenant votre nouvelle ville de suivi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), dataName + " est maintenant votre nouvelle ville de suivi", Toast.LENGTH_SHORT).show();
 
                                 handleViewPager();
                             }
@@ -211,6 +213,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                 String message = null;
                 intent.putExtra(Intent.EXTRA_TEXT, message);
                 startActivity(Intent.createChooser(intent, ""));
+                break;
+            case R.id.action_support:
+                SupportsUS();
                 break;
 
             case R.id.action_share:
@@ -261,6 +266,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                 startActivity(new Intent(this, AboutActivity.class));
 
 
+                break;
+            case R.id.nav_support:
+                SupportsUS();
                 break;
 
 
@@ -397,4 +405,44 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         });
     }
+
+    public void SupportsUS() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Nous soutenir !")
+                .setMessage("Pourquoi nous soutenir?\n" +
+                        "- Votre soutien nous encouragera à améliorer le projet Julisha d’avantage \n" +
+                        "- A continuer les développements\n")
+                .setCancelable(false)
+                .setPositiveButton("Airtel Money", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String numero = "+243977779579";
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
+                        Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
+
+                        startActivity(intent);
+
+                    }
+                }).setNeutralButton("M-Pesa", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String numero = "+243810311929";
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
+                Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
+
+                startActivity(intent);
+
+
+            }
+
+        })
+                .create().show();
+
+
+
+    }
+
 }
+
+
+
