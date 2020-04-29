@@ -8,8 +8,8 @@ android {
         applicationId "org.smirl.julisha"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 13
-        versionName "1.2.5"
+        versionCode 15
+        versionName "1.2.7"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         
@@ -53,7 +53,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
 
-   // implementation 'com.github.luweibin3118:PieChartView:v1.1.2'
+    implementation 'com.github.luweibin3118:PieChartView:v1.1.2'
    // implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
     //implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
     implementation files('libs/Serializer.jar')
