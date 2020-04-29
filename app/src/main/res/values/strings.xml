@@ -37,5 +37,8 @@
     <string name="abandonner_le_test">Abandonner le test en cours ?</string>
     <string name="nav_alert">Signaler un cas</string>
     <string name="action_update">"Vérifier la mise à jour "</string>
+    <string name="copyrigth">©2020 by SmirlTech| Haut-Katanga/RDC</string>
+    <string name="about_us_text">Nous sommes un  groupe des jeunes congolais (RDC) talentueux en informatique, les jeunes qui mettent ensemble leurs compétences pour offrir des services aux  entreprises et aux particuliers, motivés par le désir de participer à la création d\'emplois pour les jeunes et les nouvelles compétences.</string>
+    <string name="action_support">Nous soutenir</string>
 
 </resources>
