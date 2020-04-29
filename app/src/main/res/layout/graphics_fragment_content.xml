@@ -249,7 +249,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:background="#00FFFFFF" />-->
-                    <com.github.mikephil.charting.charts.PieChart
+                    <com.lwb.piechart.PieChartView
                         android:id="@+id/pie_chart2"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"

@@ -1,6 +1,5 @@
 package org.smirl.julisha.ui.main.controllers;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +14,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.lwb.piechart.PieChartView;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
@@ -30,7 +27,6 @@ import org.smirl.julisha.core.Fragmentation;
 import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
 import org.smirl.julisha.ui.main.models.Case;
-import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.CasesSummary;
 import org.smirl.julisha.ui.main.models.TableData;
@@ -64,7 +60,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
      * ./information for your town
      */
 
-    private PieChart pieChart1, pieChart2;
+    private PieChart pieChart1;
+    private PieChartView pieChart2;
 
     private PageViewModel pageViewModel;
     private GraphManager graphManager;
@@ -125,7 +122,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
 
         pieChart2 = root.findViewById(R.id.pie_chart2);
-        pieChart2.setUsePercentValues(true);
+       // pieChart2.setUsePercentValues(true);
         pieChart1 = root.findViewById(R.id.pie_chart1);
         pieChart1.setUsePercentValues(false);
 
@@ -210,31 +207,17 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         /** ./pieChart1 */
 
         /** pieChart2 */
-        ArrayList<PieEntry> yVals = new ArrayList<>();
-        yVals.add(new PieEntry((cc.infected - cc.dead - cc.healed), "Actifs"));
-        yVals.add(new PieEntry(cc.dead, "Décédés"));
-        yVals.add(new PieEntry(cc.healed, "Guéris"));
-        PieDataSet pieDataSet = new PieDataSet(yVals, "");
-        pieDataSet.setColors(chartColors);
+        pieChart2.addItemType(new PieChartView.ItemType("Actifs", (cc.infected - cc.dead - cc.healed), getResources().getColor(R.color.blue)));
+        pieChart2.addItemType(new PieChartView.ItemType("Décédés", cc.dead, getResources().getColor(R.color.red)));
+        pieChart2.addItemType(new PieChartView.ItemType("Guéris", cc.healed, getResources().getColor(R.color.green)));
 
-        PieData pdata = new PieData(pieDataSet);
-        pdata.setValueFormatter(new PercentFormatter());
-        pdata.setValueTextColor(getResources().getColor(R.color.white));
-        pdata.setValueTextSize(12f);
-        pdata.setHighlightEnabled(true);
-
-        pieChart2.setHighlightPerTapEnabled(true);
-        pieChart2.setDescription(null);
-        pieChart2.setData(pdata);
-        pieChart2.setDrawEntryLabels(false);
-        pieChart2.setCenterText("%");
-        pieChart2.setCenterTextSize(30f);
-        pieChart2.setHoleRadius(35f);
-        pieChart2.setTransparentCircleRadius(40f);
-        pieChart2.getLegend().setEnabled(false);
-
-        pieChart2.animateXY(2000, 2000);
-        /** ./pieChart2 */
+        pieChart2.setBackgroundColor(getResources().getColor(R.color.white));
+        pieChart2.setCell(10);
+        pieChart2.setInnerRadius(0.4f);
+        pieChart2.setItemTextSize(30);
+        pieChart2.setTextPadding(10);
+        pieChart2.animate();
+         /** ./pieChart2 */
 
         currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", 0));
         int bs = 0;
