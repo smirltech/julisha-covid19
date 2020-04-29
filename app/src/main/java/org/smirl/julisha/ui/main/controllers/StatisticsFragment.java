@@ -16,9 +16,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
+import org.smirl.julisha.ui.main.models.CaseGraphs;
 import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.views.DetailsActivity;
+import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
 
 /**
@@ -101,6 +103,22 @@ public class StatisticsFragment extends Fragment {
         ((TextView) row.findViewById(R.id.tr_inf)).setText(c.infected + "");
         ((TextView) row.findViewById(R.id.tr_dec)).setText(c.dead + "");
         ((TextView) row.findViewById(R.id.tr_guer)).setText(c.healed + "");
+        tv0.setOnLongClickListener(new View.OnLongClickListener() {
+          @Override
+          public boolean onLongClick(View v) {
+            CaseGraphs vcg =  Julisha.getProvinceCaseGraphs(c.id);
+            new LoneGraph(getLayoutInflater(), c.name.toUpperCase(), vcg);
+            return true;
+          }
+        });
+        row.setOnLongClickListener(new View.OnLongClickListener() {
+          @Override
+          public boolean onLongClick(View v) {
+            CaseGraphs vcg =  Julisha.getProvinceCaseGraphs(c.id);
+            new LoneGraph(getLayoutInflater(), c.name.toUpperCase(), vcg);
+            return true;
+          }
+        });
 
         tableDisplay.addView(row);
 

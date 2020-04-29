@@ -15,8 +15,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
+import org.smirl.julisha.ui.main.models.CaseGraphs;
 import org.smirl.julisha.ui.main.models.TableData;
+import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.StatisticsViewModel;
 
 /**
@@ -89,6 +91,13 @@ public class StatisticsVillesFragment extends Fragment {
                 ((TextView) row.findViewById(R.id.tr_dec)).setText(c.dead + "");
                 ((TextView) row.findViewById(R.id.tr_guer)).setText(c.healed + "");
 
+                row.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      CaseGraphs vcg =  Julisha.getVilleCaseGraphs(c.id);
+                        new LoneGraph(getLayoutInflater(), c.name.toUpperCase(), vcg);
+                    }
+                });
                 tableDisplay.addView(row);
 
                 tableDisplay.invalidate();
