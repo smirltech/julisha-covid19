@@ -19,8 +19,6 @@ import org.smirl.julisha.ui.main.models.TableData;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.smirl.julisha.core.Constants.*;
-
 public class MapMe extends View {
 
     private Paint paint;
@@ -39,7 +37,7 @@ public class MapMe extends View {
         for (TableData td : Julisha.getProvincesTableData()) {
             try {
                 // mapProvs.add(new MapProv(assetManager, td.id, td.infected, Julisha.maxCase()));
-                mapProvs.add(new MapProv(assetManager, td.id, (td.infected - td.healed - td.dead), MAX_RISK_LEVEL));
+                mapProvs.add(new MapProv(assetManager, td.id, (td.infected - td.healed - td.dead), 500));
             } catch (IOException e) {
                 e.printStackTrace();
             }
