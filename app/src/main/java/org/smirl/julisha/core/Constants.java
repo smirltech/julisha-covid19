@@ -12,5 +12,7 @@ public interface Constants {
 
     String URL_UPDATE = URL_WEB_APP + "/update.json";
 
+    int MAX_RISK_LEVEL = 500;
+    int RISK_THRESHOLD_LEVEL = 20;
 
 }

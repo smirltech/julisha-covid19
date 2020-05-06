@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,6 +63,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
      */
     private int myVille = 126;
     private TextView villeName, villeInfect, villeDead, villeHeal;
+    private ImageView gView;
     /**
      * ./information for your town
      */
@@ -78,7 +80,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     private Cases currCG;
 
-    private LineChart chart, chart2;
 
     public static GraphicsFragment newInstance(MainActivity activity, int index) {
         GraphicsFragment fragment = new GraphicsFragment();
@@ -109,6 +110,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         gfNestedSV = root.findViewById(R.id.gf_nested_sv);
 
         villeName = root.findViewById(R.id.ville_name);
+        gView = root.findViewById(R.id.gview);
         villeInfect = root.findViewById(R.id.ville_infect);
         villeDead = root.findViewById(R.id.ville_dead);
         villeHeal = root.findViewById(R.id.ville_heal);
@@ -118,8 +120,6 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         deadLabel = root.findViewById(R.id.dead_label);
         healedLabel = root.findViewById(R.id.healed_label);
         majDate = root.findViewById(R.id.maj_date);
-        chart = root.findViewById(R.id.mchart);
-        chart2 = root.findViewById(R.id.mchart2);
 
         currEvntDate = root.findViewById(R.id.curr_evnt_date);
         currEvnt = root.findViewById(R.id.curr_evnt);
@@ -165,7 +165,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     @Override
     public void refreshMe() {
-        List<Integer> chartColors = new ArrayList();
+        List<Integer> chartColors = new ArrayList<>();
         chartColors.add(getResources().getColor(R.color.blue));
         chartColors.add(getResources().getColor(R.color.red));
         chartColors.add(getResources().getColor(R.color.green));
@@ -178,7 +178,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             villeDead.setText("Décédés: " + villeTD.dead);
             villeHeal.setText("Guéris: "+ villeTD.healed);
 
-            villeName.setOnClickListener(new View.OnClickListener() {
+
+            gView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CaseGraphs vcg =  Julisha.getVilleCaseGraphs(myVille);
