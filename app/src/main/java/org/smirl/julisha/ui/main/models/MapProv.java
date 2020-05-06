@@ -11,8 +11,6 @@ import android.graphics.PorterDuffColorFilter;
 
 import java.io.IOException;
 
-import static org.smirl.julisha.core.Constants.*;
-
 public class MapProv {
     private int id;
     private int value, max;
@@ -25,7 +23,7 @@ public class MapProv {
         this.max = max;
         int alfa = value;
         // int alfa = (int) ((value * 255) / max);
-        int tt = RISK_THRESHOLD_LEVEL;
+        int tt = 20;
         //if (value > 0 && (alfa + tt) < 255) alfa += tt;
         if (value > 0) alfa += tt;
 
