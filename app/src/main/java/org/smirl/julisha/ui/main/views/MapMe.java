@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import org.smirl.julisha.core.Julisha;
@@ -18,6 +19,8 @@ import org.smirl.julisha.ui.main.models.TableData;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static org.smirl.julisha.core.Constants.*;
 
 public class MapMe extends View {
 
@@ -33,11 +36,10 @@ public class MapMe extends View {
         super(context, attrs);
         assetManager = context.getAssets();
 
-
         for (TableData td : Julisha.getProvincesTableData()) {
             try {
-                // mapProvs.add(new MapProv(assetManager, td.id, td.infected, Julisha.maxCase()));
-                mapProvs.add(new MapProv(assetManager, td.id, (td.infected - td.healed - td.dead), 500));
+                //// mapProvs.add(new MapProv(assetManager, td.id, td.infected, Julisha.maxCase()));
+                mapProvs.add(new MapProv(assetManager, td.id, td.name, (td.infected - td.healed - td.dead), MAX_RISK_LEVEL));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -55,9 +57,10 @@ public class MapMe extends View {
         super.onDraw(canvas);
         canvas.drawColor(Color.WHITE);
         paint = new Paint();
+        paint.setAntiAlias(true);
 
         drc_base = Bitmap.createScaledBitmap(drc_base, getWidth(), getHeight(), true);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
         canvas.drawBitmap(drc_base, 0, 0, paint);
 
         for (int v = 0; v < mapProvs.size(); v++) {
@@ -65,6 +68,22 @@ public class MapMe extends View {
         }
 
         paint.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
+
     }
 
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+       // System.out.println("touched : " +event.getX() + " ; " + event.getY());
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+
+        for (int v = 0; v < mapProvs.size(); v++) {
+            mapProvs.get(v).isTouched(x, y);
+            invalidate();
+        }
+
+        return super.onTouchEvent(event);
+
+    }
 }
