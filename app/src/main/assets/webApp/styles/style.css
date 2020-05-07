@@ -1,0 +1,62 @@
+/*
+Author Jonas Kaninda
+*/
+  body{
+    padding:10;
+    margin:10;
+    background-color:#FFEBEE;
+  }
+
+h1{
+text-align:center;
+/*
+color:#511AEA;
+*/
+font-family:serif;
+font-style:italic;
+
+}
+h2{
+text-align:center;
+color:#511AEA;
+
+}
+ul{
+  /*margin:0;
+  padding:0;*/
+  color:#511AEA;
+  font-size:18px;
+
+}
+
+p2{
+background-color:#75507b;
+/*border:#000000 1px solid;*/
+border-radius: 20px;
+display: block;
+  padding: 10px;
+    color:#f3f3f3;
+    text_size:16px;
+
+}
+ p1{
+ display: block;
+
+  border-radius: 15px;
+    background: #73AD21;
+    padding: 20px;
+
+
+}
+
+p3 {
+display: block;
+
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+
+}
+
+
+

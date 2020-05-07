@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Julisha</string>
-    <string name="tab_text_1">GRAPHIQUE</string>
+    <string name="tab_text_1">ACCUEIL</string>
     <string name="tab_text_2">PROVINCES</string>
     <string name="tab_text_3">VILLES</string>
+    <string name="tab_text_4">CARTE</string>
     <string name="title_activity_details">Villes</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -20,6 +21,7 @@
     <string name="app_version">Version: 1.2.0</string>
 
     <string name="action_share">Partager</string>
+    <string name="action_ville">Choisir Ville</string>
     <string name="noter_app">Noter l\'app</string>
     <string name="action_contact">Nous contacter</string>
     <string name="smirltech_mail">contact@smirl.org</string>
@@ -36,5 +38,8 @@
     <string name="abandonner_le_test">Abandonner le test en cours ?</string>
     <string name="nav_alert">Signaler un cas</string>
     <string name="action_update">"Vérifier la mise à jour "</string>
+    <string name="copyrigth">©2020 by SmirlTech| Haut-Katanga/RDC</string>
+    <string name="about_us_text">Nous sommes un  groupe des jeunes congolais (RDC) talentueux en informatique, les jeunes qui mettent ensemble leurs compétences pour offrir des services aux  entreprises et aux particuliers, motivés par le désir de participer à la création d\'emplois pour les jeunes et les nouvelles compétences.</string>
+    <string name="action_support">Nous soutenir</string>
 
 </resources>

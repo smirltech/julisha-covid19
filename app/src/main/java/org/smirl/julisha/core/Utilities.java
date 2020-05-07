@@ -31,7 +31,26 @@ public class Utilities {
                 .setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(listener != null)listener.onAccept();
+                        if (listener != null) listener.onAccept();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    public static void success(Context context, String message) {
+        dialog(context, "FELICITATION", message, "OK", null);
+    }
+
+    public static void dialog(Context context, String title, String message, String positiveButtonText, final UtilityListener listener) {
+
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(positiveButtonText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (listener != null) listener.onAccept();
                     }
                 })
                 .create()
@@ -53,29 +72,7 @@ public class Utilities {
                 .show();
     }
 
-    public static boolean checkInternetAvailable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        //   Network activeNetwork = cm.getActiveNetwork();
-        //  return activeNetwork != null && activeNetwork.;
-        return true;
-    }
-
-    public static class dateUtilities {
-
-        public static String dateToString(Date date, String template) {
-            return dateToString(date, template, Locale.getDefault());
-        }
-
-        public static String dateToString(Date date, String template, Locale locale) {
-            return new SimpleDateFormat(template, locale).format(date);
-        }
-
-        public static String today(String template, Locale locale){
-            return dateToString(new Date(), template, locale);
-        }
-    }
-
-    public static void dateChooser(LayoutInflater inflater, final CalendarListener listener){
+    public static void dateChooser(LayoutInflater inflater, final CalendarListener listener) {
         View view = inflater.inflate(R.layout.date_selector, null, false);
         final DatePicker dp = view.findViewById(R.id.date_picker);
 
@@ -87,7 +84,7 @@ public class Utilities {
                     public void onClick(DialogInterface dialog, int which) {
                         Calendar cc = Calendar.getInstance();
                         cc.set(dp.getYear(), dp.getMonth(), dp.getDayOfMonth());
-                        if(listener != null)listener.onChosen(cc);
+                        if (listener != null) listener.onChosen(cc);
                     }
                 })
                 .setNeutralButton("CANCEL", null)
@@ -97,7 +94,9 @@ public class Utilities {
     }
 
 
-    /** listeners **/
+    /**
+     * listeners
+     **/
 
     public interface UtilityListener {
         void onAccept();

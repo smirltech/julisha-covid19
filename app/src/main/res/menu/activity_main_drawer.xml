@@ -35,6 +35,11 @@
     </group>
     <group
         android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/ic_baseline_attach_money_24"
+            android:title="Faire un don"
+            />
 
         <item
             android:id="@+id/nav_share"

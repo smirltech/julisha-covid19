@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
+        tools:context=".ui.main.views.CovidResultatActivity">
+    <include
+        layout="@layout/toolbarcovid"/>
+
+        <include
+            layout="@layout/containt_resultat"/>
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Reprendre"
+                android:id="@+id/btnRestart"
+                android:layout_marginEnd="20dp"
+                android:textAllCaps="true"
+                android:background="@drawable/covidbackground_btn"
+                android:textColor="#ffffff"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Quitter"
+                android:textAllCaps="true"
+                android:id="@+id/btnexit"
+                android:background="@drawable/covidbackground_btn"
+                android:textColor="#ffffff" />
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </RelativeLayout>
+

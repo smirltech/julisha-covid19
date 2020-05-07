@@ -1,7 +1,7 @@
 package org.smirl.julisha.core;
 
 import android.content.Context;
-import org.smirl.julisha.Julisha;
+
 import org.smirl.julisha.core.data.dao.Crud;
 
 import java.io.File;
@@ -13,14 +13,13 @@ public class DataUpdater implements Constants {
 
         // Utilities.toastIt(context, "start update...!");
 
-        new Crud(context).get(APP_URL, new Crud.OnResponseListener() {
+        new Crud(context).get(URL_API, new Crud.OnResponseListener() {
             @Override
             public void onResponse(String response, int code) {
                 response = response.replace("null", "1");
-                Utilities.toastIt(context, "update done!");
+                Utilities.toastIt(context, "Mise à jour de données effectuée");
                 Julisha.load(response);
                 Julisha.setLastUpdate(System.currentTimeMillis());
-
 
                 try {
                     Julisha.prepareCaseGraphs();
@@ -40,7 +39,7 @@ public class DataUpdater implements Constants {
 
             @Override
             public void onErrorResponse(String error, int code) {
-                Utilities.toastIt(context, "update failed, view saved!");
+                Utilities.toastIt(context, "Échec de la mise à jour, chargement de données enregistrées...");
                 File baseFolder = FileManager.getBaseDir(context, "julisha");
                 if (!baseFolder.exists()) baseFolder.mkdirs();
                 File dataFile = new File(baseFolder, "data.json");

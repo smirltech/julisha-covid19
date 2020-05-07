@@ -1,6 +1,6 @@
 package org.smirl.julisha.ui.main.models;
 
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +11,22 @@ public class Cases extends ArrayList<Case> {
     Cases cc = new Cases();
     for (Case c : this) {
      // Ville v = Julisha.getVille(c.ville_id);
+      if (c.province_id == provinceid) cc.add(c);
+    }
+    return cc;
+  }
+
+  public Cases casesVille(int villeid) {
+    Cases cc = new Cases();
+    for (Case c : this) {
+      if (c.ville_id == villeid) cc.add(c);
+    }
+    return cc;
+  }
+
+  public Cases casesProvince(int provinceid) {
+    Cases cc = new Cases();
+    for (Case c : this) {
       if (c.province_id == provinceid) cc.add(c);
     }
     return cc;
@@ -29,6 +45,14 @@ public class Cases extends ArrayList<Case> {
       if (c.date.equalsIgnoreCase(date)) return c;
     }
     return null;
+  }
+
+  public Cases getCases(String date) {
+    Cases cc = new Cases();
+    for (Case c : this) {
+      if (c.date.equalsIgnoreCase(date)) cc.add(c);
+    }
+    return cc;
   }
 
   public int number(int villeid, int type) {

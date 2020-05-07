@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                tools:context=".MainActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:gravity="center"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:textStyle="bold"
+                        android:textColor="#fff"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                        android:layout_height="wrap_content"
+                        android:text="SYMPTOMES"
+                        android:layout_width="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ProgressBar
+                        android:id="@+id/picker_prog"
+                        android:indeterminate="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:indeterminateBehavior="cycle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp">
+
+                <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <CheckBox
+                            android:text="La fièvre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_1"
+                            android:textStyle="bold"
+                            android:layout_weight="1"/>
+
+                    <CheckBox
+                            android:text="La toux"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_2"
+                            android:textStyle="bold"
+                            android:layout_weight="2"/>
+
+                    <CheckBox
+                            android:text="Gene respiratoire"
+                            android:layout_width="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_3"
+                            android:layout_weight="3"/>
+
+
+
+
+
+
+
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="10sp"/>
+
+                    <CheckBox
+                            android:text="La fatigue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_4"
+                            android:layout_weight="1"/>
+
+                    <CheckBox
+                            android:text="Les douleurs musculaires"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_5"
+                            android:layout_weight="1"
+                            />
+
+                    <CheckBox
+                            android:text="Des maux de gorge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_6"
+                            android:layout_weight="1"/>
+
+                    <CheckBox
+                            android:text="Des crachats"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_7"
+                            android:layout_weight="1"/>
+                    <CheckBox
+                            android:text="Une perte totale de l'odorat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_8"
+                            android:layout_weight="1"
+                            />
+                    <CheckBox
+                            android:text="Une perte du goût"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_9"
+                            android:layout_weight="1"
+                            />
+
+                    <CheckBox
+                            android:text="Perte d’appétit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/smt_10"
+                            android:layout_weight="1"/>
+
+
+
+                </RadioGroup>
+
+
+                <TextView
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:text="source Wikipedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="35dp"
+                        android:text="valider"
+                        android:textSize="20sp"
+                        android:drawablePadding="-15sp"
+                        android:paddingRight="16dp"
+                        android:textColor="#FFFFFF"
+                        android:elevation="15dp"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/roundcorner_button"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

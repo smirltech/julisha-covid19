@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sf_nested_sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.main.controllers.StatisticsFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="PROVINCES AVEC CAS ACTIFS"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="2dp"
+            android:background="@color/blue_gray"/>
+
+        <org.smirl.julisha.ui.main.views.MapMe
+            android:id="@+id/provs_map"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

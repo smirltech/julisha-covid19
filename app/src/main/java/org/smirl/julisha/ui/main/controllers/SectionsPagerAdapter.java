@@ -19,7 +19,7 @@ import org.smirl.julisha.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
   @StringRes
-  private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
+  private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3, R.string.tab_text_4};
   // private final Context mContext;
   private MainActivity mActivity;
 
@@ -38,6 +38,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return StatisticsFragment.newInstance(mActivity, position);
       case 2:
         return StatisticsVillesFragment.newInstance(mActivity, position);
+      case 3:
+        return CartographieFragment.newInstance(mActivity, position);
 
       default:
         return GraphicsFragment.newInstance(mActivity, position);
@@ -55,6 +57,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
   @Override
   public int getCount() {
     // Show 2 total pages.
-    return 3;
+    return TAB_TITLES.length;
   }
 }

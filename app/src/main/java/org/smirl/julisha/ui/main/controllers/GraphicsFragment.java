@@ -5,38 +5,46 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import org.smirl.julisha.MainActivity;
 import org.smirl.julisha.R;
 import org.smirl.julisha.core.DataUpdater;
+import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Fragmentation;
-import org.smirl.julisha.Julisha;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.core.Utilities;
+import org.smirl.julisha.ui.main.models.Case;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CaseGraphs;
+import org.smirl.julisha.ui.main.models.Cases;
 import org.smirl.julisha.ui.main.models.CasesSummary;
+import org.smirl.julisha.ui.main.models.TableData;
 import org.smirl.julisha.ui.main.views.GraphManager;
+import org.smirl.julisha.ui.main.views.LoneGraph;
 import org.smirl.julisha.ui.main.views.PageViewModel;
 
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 /**
@@ -47,6 +55,20 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private MainActivity mActivity;
     private SwipeRefreshLayout gfSwipe;
+    private NestedScrollView gfNestedSV;
+    private TextView currEvntDate, currEvnt;
+
+    /**
+     * information for your town
+     */
+    private int myVille = 126;
+    private TextView villeName, villeInfect, villeDead, villeHeal;
+    private ImageView gView;
+    /**
+     * ./information for your town
+     */
+
+    private PieChart pieChart1, pieChart2;
 
     private PageViewModel pageViewModel;
     private GraphManager graphManager;
@@ -56,8 +78,8 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     TextView healedLabel;
     TextView majDate;
 
-    private LineChart chart, chart2;
-    //private AnyChartView anyChartView;
+    private Cases currCG;
+
 
     public static GraphicsFragment newInstance(MainActivity activity, int index) {
         GraphicsFragment fragment = new GraphicsFragment();
@@ -85,25 +107,53 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.graphics_fragment_main, container, false);
         gfSwipe = root.findViewById(R.id.gf_swipe);
+        gfNestedSV = root.findViewById(R.id.gf_nested_sv);
+
+        villeName = root.findViewById(R.id.ville_name);
+        gView = root.findViewById(R.id.gview);
+        villeInfect = root.findViewById(R.id.ville_infect);
+        villeDead = root.findViewById(R.id.ville_dead);
+        villeHeal = root.findViewById(R.id.ville_heal);
 
         final TextView textView = root.findViewById(R.id.section_label);
         infectionLabel = root.findViewById(R.id.infection_label);
         deadLabel = root.findViewById(R.id.dead_label);
         healedLabel = root.findViewById(R.id.healed_label);
         majDate = root.findViewById(R.id.maj_date);
-        chart = root.findViewById(R.id.mchart);
-        chart2 = root.findViewById(R.id.mchart2);
-        //anyChartView = (AnyChartView)root.findViewById(R.id.any_chart_view);
+
+        currEvntDate = root.findViewById(R.id.curr_evnt_date);
+        currEvnt = root.findViewById(R.id.curr_evnt);
+        currEvnt.setSelected(true);
+
+
+        pieChart2 = root.findViewById(R.id.pie_chart2);
+        pieChart2.setUsePercentValues(true);
+        pieChart1 = root.findViewById(R.id.pie_chart1);
+        pieChart1.setUsePercentValues(false);
 
         graphManager = new GraphManager(root);
         graphManager.generateGraph();
 
         refreshMe();
 
+        gfNestedSV.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                    //Utilities.toastIt(getContext(), "bottom scroll reached !");
+                    mActivity.toggleFab(false);
+                } else {
+                    mActivity.toggleFab(true);
+                }
+            }
+        });
+
         gfSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshNext();
+                mActivity.handleViewPager();
+                //refreshNext();
+                gfSwipe.setRefreshing(false);
             }
         });
         gfSwipe.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -115,11 +165,108 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     @Override
     public void refreshMe() {
+        List<Integer> chartColors = new ArrayList<>();
+        chartColors.add(getResources().getColor(R.color.blue));
+        chartColors.add(getResources().getColor(R.color.red));
+        chartColors.add(getResources().getColor(R.color.green));
+
+       myVille = MainActivity.PREFMANAGER.getInt("maville", 1);
+        TableData villeTD = Julisha.getVilleTableData(myVille);
+        if(villeTD != null) {
+            villeName.setText(villeTD.name.toUpperCase());
+            villeInfect.setText("Infectés: " + villeTD.infected);
+            villeDead.setText("Décédés: " + villeTD.dead);
+            villeHeal.setText("Guéris: "+ villeTD.healed);
+
+
+            gView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CaseGraphs vcg =  Julisha.getVilleCaseGraphs(myVille);
+                    new LoneGraph(getLayoutInflater(), villeTD.name.toUpperCase(), vcg);
+                }
+            });
+        }
         CasesSummary cc = Julisha.countrySummary();
         infectionLabel.setText("" + cc.infected);
         deadLabel.setText("" + cc.dead);
         healedLabel.setText("" + cc.healed);
-        majDate.setText("Dernière mise à jour : " + Utilities.dateUtilities.dateToString(new Date(Julisha.getLastUpdate()), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
+        majDate.setText("Dernière mise à jour : " + DateUtils.formatDate(Julisha.getLastUpdate(), "E dd MMM yyyy HH:mm:ss", Locale.FRANCE));
+
+
+        /** pieChart1 */
+        ArrayList<PieEntry> yVals1 = new ArrayList<>();
+        yVals1.add(new PieEntry((cc.infected - cc.dead - cc.healed), "Actifs"));
+        yVals1.add(new PieEntry(cc.dead, "Décédés"));
+        yVals1.add(new PieEntry(cc.healed, "Guéris"));
+        PieDataSet pieDataSet1 = new PieDataSet(yVals1, "");
+        pieDataSet1.setColors(chartColors);
+
+        PieData pdata1 = new PieData(pieDataSet1);
+        pdata1.setValueTextColor(getResources().getColor(R.color.white));
+        pdata1.setValueTextSize(12f);
+        pdata1.setHighlightEnabled(true);
+
+        pieChart1.setHighlightPerTapEnabled(true);
+        pieChart1.setDescription(null);
+        pieChart1.setData(pdata1);
+        pieChart1.setDrawEntryLabels(false);
+        pieChart1.setCenterText("" + cc.infected);
+        pieChart1.setCenterTextSize(16f);
+        pieChart1.setHoleRadius(35f);
+        pieChart1.setTransparentCircleRadius(40f);
+        pieChart1.getLegend().setEnabled(false);
+
+        pieChart1.animateXY(1400, 1400);
+        /** ./pieChart1 */
+
+        /** pieChart2 */
+        ArrayList<PieEntry> yVals = new ArrayList<>();
+        yVals.add(new PieEntry((cc.infected - cc.dead - cc.healed), "Actifs"));
+        yVals.add(new PieEntry(cc.dead, "Décédés"));
+        yVals.add(new PieEntry(cc.healed, "Guéris"));
+        PieDataSet pieDataSet = new PieDataSet(yVals, "");
+        pieDataSet.setColors(chartColors);
+
+        PieData pdata = new PieData(pieDataSet);
+        pdata.setValueFormatter(new PercentFormatter());
+        pdata.setValueTextColor(getResources().getColor(R.color.white));
+        pdata.setValueTextSize(12f);
+        pdata.setHighlightEnabled(true);
+
+        pieChart2.setHighlightPerTapEnabled(true);
+        pieChart2.setDescription(null);
+        pieChart2.setData(pdata);
+        pieChart2.setDrawEntryLabels(false);
+        pieChart2.setCenterText("%");
+        pieChart2.setCenterTextSize(30f);
+        pieChart2.setHoleRadius(35f);
+        pieChart2.setTransparentCircleRadius(40f);
+        pieChart2.getLegend().setEnabled(false);
+
+        pieChart2.animateXY(2000, 2000);
+        /** ./pieChart2 */
+
+        currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", 0));
+        int bs = 0;
+        while (currCG.size() < 1) {
+            currCG = Julisha.cases().getCases(DateUtils.getFromCurrentDate("yyyy-MM-dd", bs--));
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int ct = 0;
+                while (true) {
+                    setCurrEventText(currCG.get(ct));
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        // e.printStackTrace();
+                    }
+                    if (++ct >= currCG.size()) ct = 0;
+                }
+            }
+        }).start();
 
         gfSwipe.setRefreshing(false);
 
@@ -146,4 +293,19 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
     }
 
+    private void setCurrEventText(final Case cas) {
+        try {
+            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        currEvntDate.setText("À la Une : " + DateUtils.formatDate(cas.date, "yyyy-MM-dd", "E dd-MM-yyyy", Locale.FRANCE));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    currEvnt.setText(cas.toText());
+                }
+            });
+        }catch (Exception npe){}
+    }
 }

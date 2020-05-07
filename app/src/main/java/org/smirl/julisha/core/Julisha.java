@@ -18,6 +18,9 @@ public class Julisha {
     public Villes villes = new Villes();
     public Provinces provinces = new Provinces();
 
+    public CaseGraphs villeCaseGraphs = new CaseGraphs();
+    public CaseGraphs provinceCaseGraphs = new CaseGraphs();
+
     public CaseGraphs caseGraphs = new CaseGraphs();
     public CaseGraphs caseGraphs2 = new CaseGraphs();
 
@@ -35,6 +38,14 @@ public class Julisha {
         return julisha.cases.cases(province_id);
     }
 
+    public static Cases casesVille(int ville_id) {
+        return julisha.cases.casesVille(ville_id);
+    }
+
+    public static Cases casesProvince(int province_id) {
+        return julisha.cases.casesProvince(province_id);
+    }
+
     public static Villes villes() {
         return julisha.villes;
     }
@@ -43,13 +54,21 @@ public class Julisha {
         return julisha.provinces;
     }
 
+    public static CaseGraphs getVilleCaseGraphs(int ville_id) {
+        prepareVilleCaseGraphs(ville_id);
+        return julisha.villeCaseGraphs;
+    }
+
+    public static CaseGraphs getProvinceCaseGraphs(int province_id) {
+        prepareProvinceCaseGraphs(province_id);
+        return julisha.provinceCaseGraphs;
+    }
+
     public static CaseGraphs getCaseGraphs() {
-        // prepareCaseGraphs();
         return julisha.caseGraphs;
     }
 
     public static CaseGraphs getCaseGraphs2() {
-        // prepareCaseGraphs();
         return julisha.caseGraphs2;
     }
 
@@ -59,6 +78,19 @@ public class Julisha {
 
     public static void setLastUpdate(long lastUpdate) {
         julisha.lastUpdate = lastUpdate;
+    }
+
+    public static String getType(int type) {
+        switch (type) {
+            case 1:
+                return "infectés";
+            case 2:
+                return "décédés";
+            case 3:
+                return "guéris";
+            default:
+                return "iconnus";
+        }
     }
 
     /**
@@ -158,6 +190,16 @@ public class Julisha {
         return td;
     }
 
+    public static TableData getVilleTableData(int villeid) {
+        Cases cs = null;
+        if (villeid < 1) return null;
+        else cs = Julisha.casesVille(villeid);
+        String vname = villes().getVille(villeid).nom;
+       // System.out.println(vname + " >> " + cs.size());
+        if (cs == null) return new TableData(villeid, vname, 0, 0, 0);
+        return new TableData(villeid, vname, cs.number(villeid, 1), cs.number(villeid, 2), cs.number(villeid, 3));
+    }
+
     public static ArrayList<TableData> getVillesTableData(int provinceid) {
         ArrayList<TableData> td = new ArrayList<>();
         Cases cs = null;
@@ -170,6 +212,138 @@ public class Julisha {
         }
         Collections.sort(td);
         return td;
+    }
+
+    public static void prepareProvinceCaseGraphs(int province_id) {
+        julisha.provinceCaseGraphs.clear();
+        CaseGraph initt = new CaseGraph(0, "0");
+        initt.healed = 0;
+        initt.dead = 0;
+        initt.infected = 0;
+        julisha.provinceCaseGraphs.newCaseGraph(initt);
+
+        int cnt = 1;
+        Calendar caln = Calendar.getInstance();
+        Calendar cal0 = Calendar.getInstance();
+        cal0.set(2020, 2, 10);
+        SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
+        String dNow = myFormatObj.format(caln.getTime());
+
+
+        while (cal0.compareTo(caln) < 1) {
+            String formattedDate = myFormatObj.format(cal0.getTime());
+            julisha.provinceCaseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+            if (formattedDate.equalsIgnoreCase(dNow)) break;
+            cal0.add(Calendar.DATE, 1);
+        }
+
+        //System.out.println("CaseGraphs count : " + getCaseGraphs().size());
+
+        for (int i = 0; i < casesProvince(province_id).size(); i++) {
+            Case c = casesProvince(province_id).get(i);
+            CaseGraph ds = julisha.provinceCaseGraphs.getCaseGraph(c.date);
+            //Case c = cases.getCase(ds.date);
+            //System.out.println("ds: " + ds.id);
+            // System.out.println(c.toString());
+
+            switch (c.type) {
+                case 1:
+                    ds.infected += c.nombre;
+                    break;
+                case 2:
+                    ds.dead += c.nombre;
+                    break;
+                case 3:
+                    ds.healed += c.nombre;
+                    break;
+                default:
+                    ds.infected += 0;
+                    ds.dead += 0;
+                    ds.healed += 0;
+
+            }
+
+        }
+
+        for (int i = 1; i < julisha.provinceCaseGraphs.size(); i++) {
+            CaseGraph ds = julisha.provinceCaseGraphs.get(i);
+            CaseGraph pr = julisha.provinceCaseGraphs.get(i - 1);
+
+            ds.infected += pr.infected;
+            ds.dead += pr.dead;
+            ds.healed += pr.healed;
+
+
+            // System.out.println(ds.toString());
+        }
+
+
+    }
+
+    public static void prepareVilleCaseGraphs(int ville_id) {
+        julisha.villeCaseGraphs.clear();
+        CaseGraph initt = new CaseGraph(0, "0");
+        initt.healed = 0;
+        initt.dead = 0;
+        initt.infected = 0;
+        julisha.villeCaseGraphs.newCaseGraph(initt);
+
+        int cnt = 1;
+        Calendar caln = Calendar.getInstance();
+        Calendar cal0 = Calendar.getInstance();
+        cal0.set(2020, 2, 10);
+        SimpleDateFormat myFormatObj = new SimpleDateFormat("yyyy-MM-dd");
+        String dNow = myFormatObj.format(caln.getTime());
+
+
+        while (cal0.compareTo(caln) < 1) {
+            String formattedDate = myFormatObj.format(cal0.getTime());
+            julisha.villeCaseGraphs.newCaseGraph(new CaseGraph(cnt++, formattedDate));
+            if (formattedDate.equalsIgnoreCase(dNow)) break;
+            cal0.add(Calendar.DATE, 1);
+        }
+
+        //System.out.println("CaseGraphs count : " + getCaseGraphs().size());
+
+        for (int i = 0; i < casesVille(ville_id).size(); i++) {
+            Case c = casesVille(ville_id).get(i);
+            CaseGraph ds = julisha.villeCaseGraphs.getCaseGraph(c.date);
+            //Case c = cases.getCase(ds.date);
+            //System.out.println("ds: " + ds.id);
+            // System.out.println(c.toString());
+
+            switch (c.type) {
+                case 1:
+                    ds.infected += c.nombre;
+                    break;
+                case 2:
+                    ds.dead += c.nombre;
+                    break;
+                case 3:
+                    ds.healed += c.nombre;
+                    break;
+                default:
+                    ds.infected += 0;
+                    ds.dead += 0;
+                    ds.healed += 0;
+
+            }
+
+        }
+
+        for (int i = 1; i < julisha.villeCaseGraphs.size(); i++) {
+            CaseGraph ds = julisha.villeCaseGraphs.get(i);
+            CaseGraph pr = julisha.villeCaseGraphs.get(i - 1);
+
+            ds.infected += pr.infected;
+            ds.dead += pr.dead;
+            ds.healed += pr.healed;
+
+
+            // System.out.println(ds.toString());
+        }
+
+
     }
 
     public static void prepareCaseGraphs() {
@@ -241,10 +415,10 @@ public class Julisha {
     public static void prepareCaseGraphs2() {
 
         julisha.caseGraphs2.clear();
-        CaseGraph initt = new CaseGraph(0, "0");
+        // CaseGraph initt = new CaseGraph(0, "0");
 
-        initt.infected = 0;
-        julisha.caseGraphs2.newCaseGraph(initt);
+        //initt.infected = 0;
+        //julisha.caseGraphs2.newCaseGraph(initt);
 
         int cnt = 1;
         Calendar caln = Calendar.getInstance();
@@ -261,12 +435,12 @@ public class Julisha {
             cal0.add(Calendar.DATE, 1);
         }
 
-        Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.get(35).date);
+        //Log.e("CaseGraphs","CaseGraphs: " +julisha.caseGraphs2.get(35).date);
 
         for (int i = 0; i < julisha.cases.size(); i++) {
             Case c = julisha.cases.get(i);
             CaseGraph ds = julisha.caseGraphs2.getCaseGraph(c.date);
-            System.err.println("case at " + ds.date);
+          //  System.err.println("case at " + ds.date);
             if (ds == null) System.err.println("failed at " + i + " => " + c.date);
             switch (c.type) {
                 case 1:
@@ -282,32 +456,18 @@ public class Julisha {
                     ds.infected = 0;
                     ds.dead = 0;
                     ds.healed = 0;
-
             }
-
         }
-
-           /* for (int i = 1; i < julisha.caseGraphs2.size(); i++) {
-
-                CaseGraph ds = julisha.caseGraphs2.get(i);
-                CaseGraph pr = julisha.caseGraphs2.get(i - 1);
-
-               // ds.infected += pr.infected;
-
-
-                // System.out.println(ds.toString());
-            }
-            */
-
-
     }
 
 
     public static void save(File file) {
+        if(julisha == null) julisha = new Julisha();
         new Serializer().serialize(file.getAbsolutePath(), julisha, Julisha.class);
     }
 
     public static void read(File file) {
+        if(julisha == null) julisha = new Julisha();
         julisha = new Serializer().deserialize(file.getAbsolutePath(), Julisha.class);
     }
 }
