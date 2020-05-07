@@ -21,7 +21,6 @@ public class DataUpdater implements Constants {
                 Julisha.load(response);
                 Julisha.setLastUpdate(System.currentTimeMillis());
 
-
                 try {
                     Julisha.prepareCaseGraphs();
                     Julisha.prepareCaseGraphs2();

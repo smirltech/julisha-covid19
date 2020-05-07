@@ -72,14 +72,6 @@ public class Utilities {
                 .show();
     }
 
-    public static boolean checkInternetAvailable(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        //   Network activeNetwork = cm.getActiveNetwork();
-        //  return activeNetwork != null && activeNetwork.;
-        return true;
-    }
-
-
     public static void dateChooser(LayoutInflater inflater, final CalendarListener listener) {
         View view = inflater.inflate(R.layout.date_selector, null, false);
         final DatePicker dp = view.findViewById(R.id.date_picker);
