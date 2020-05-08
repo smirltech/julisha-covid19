@@ -2,6 +2,7 @@ package org.smirl.julisha.ui.main.views;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,6 +12,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import org.smirl.julisha.core.Julisha;
@@ -26,9 +28,12 @@ public class MapMe extends View {
 
     private Paint paint;
 
+
     AssetManager assetManager;
 
     ArrayList<MapProv> mapProvs = new ArrayList<>();
+
+    private int WIDTH = 200, HEIGHT = 200;
 
     Bitmap drc_base;
 
@@ -53,28 +58,37 @@ public class MapMe extends View {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        WIDTH = w;
+        HEIGHT = h;
+        //   System.out.println("========width: " + w);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.WHITE);
         paint = new Paint();
         paint.setAntiAlias(true);
+        float scaleDensity = getResources().getDisplayMetrics().scaledDensity;
 
-        drc_base = Bitmap.createScaledBitmap(drc_base, getWidth(), getHeight(), true);
+        drc_base = Bitmap.createScaledBitmap(drc_base, WIDTH, HEIGHT, true);
         paint.setColor(Color.BLACK);
         canvas.drawBitmap(drc_base, 0, 0, paint);
 
         for (int v = 0; v < mapProvs.size(); v++) {
-            mapProvs.get(v).draw(canvas, paint, getWidth(), getHeight());
+            mapProvs.get(v).draw(scaleDensity, canvas, paint, WIDTH, HEIGHT);
         }
 
         paint.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
-
     }
+
 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-       // System.out.println("touched : " +event.getX() + " ; " + event.getY());
+        // System.out.println("touched : " +event.getX() + " ; " + event.getY());
         int x = (int)event.getX();
         int y = (int)event.getY();
 

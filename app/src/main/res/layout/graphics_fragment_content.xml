@@ -179,7 +179,7 @@
                             android:layout_marginStart="05dp"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="Infectés : 10000"
+                            android:text="Infectés : 000"
                             android:textColor="@color/blue_gray"
                             android:textSize="8sp"
                             android:textStyle="bold|italic" />
@@ -191,7 +191,7 @@
                             android:layout_marginLeft="2dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Décédés : 10000"
+                            android:text="Décédés : 000"
                             android:textColor="@color/red"
                             android:textSize="8sp"
                             android:textStyle="bold|italic" />
@@ -204,7 +204,7 @@
                             android:layout_marginEnd="05dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="Guéris : 10000"
+                            android:text="Guéris : 000"
                             android:textColor="@color/green"
                             android:textSize="8sp"
                             android:textStyle="bold|italic" />

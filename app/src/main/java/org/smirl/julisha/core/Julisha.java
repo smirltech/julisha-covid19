@@ -462,12 +462,10 @@ public class Julisha {
 
 
     public static void save(File file) {
-        if(julisha == null) julisha = new Julisha();
         new Serializer().serialize(file.getAbsolutePath(), julisha, Julisha.class);
     }
 
     public static void read(File file) {
-        if(julisha == null) julisha = new Julisha();
         julisha = new Serializer().deserialize(file.getAbsolutePath(), Julisha.class);
     }
 }

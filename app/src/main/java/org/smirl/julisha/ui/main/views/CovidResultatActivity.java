@@ -66,7 +66,7 @@ public class CovidResultatActivity extends AppCompatActivity {
                     "\n" +
                     "\n" +
                     "#Restez chez vous, limitez les contacts avec d'autres personnes. Le virus peut être propagé par des porteurs ne montrant pas de symptômes. ");            messageap.setVisibility(View.VISIBLE);
-            imagealert.setBackground(getDrawable(R.drawable.negatif));
+            imagealert.setBackground(getDrawable(R.drawable.ic_add_alert_white_24dp));
             imagealert.setVisibility(View.VISIBLE);
             Toast.makeText(getApplicationContext(), "Vous ne présentez aucun symptômes", Toast.LENGTH_SHORT).show();
             alert = MediaPlayer.create (contex, R.raw.alert);
