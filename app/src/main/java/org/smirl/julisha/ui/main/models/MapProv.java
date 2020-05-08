@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
+import android.os.Build;
 
 import java.io.IOException;
 
@@ -44,13 +45,13 @@ public class MapProv {
 
     }
 
-    public void draw(Canvas canvas, Paint paint, int parentW, int parentH) {
+    public void draw(float scaleDensity, Canvas canvas, Paint paint, int parentW, int parentH) {
         bmp = Bitmap.createScaledBitmap(bmp, parentW, parentH, true);
         paint.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bmp, 0, 0, paint);
         if (showText) {
             paint.setColorFilter(new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN));
-            paint.setTextSize(40);
+            paint.setTextSize(10*scaleDensity);
             int tl = (int) paint.measureText(name.toUpperCase());
             canvas.drawRoundRect(lx - 5, ly - 105, lx + tl + 5, ly + 15, 10, 10, paint);
             paint.setColorFilter(new PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN));
@@ -63,17 +64,26 @@ public class MapProv {
             System.out.println(id + " has been touched at " + lx + " ; " + ly);
         }
     }
-
     public boolean isTouched(int x, int y) {
-        Color cf = bmp.getColor(x, y);
-        float k = cf.alpha();
+        float k = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Color cf = bmp.getColor(x, y);
+            k = cf.alpha();
+
+        } else {
+            k = Color.alpha(bmp.getPixel(x, y));
+
+        }
         if (k > 0) {
             lx = x;
             ly = y;
             showText = !showText;
+
         } else {
             showText = false;
+
         }
+
 
         return k > 0;
     }

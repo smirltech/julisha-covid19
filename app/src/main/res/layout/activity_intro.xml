@@ -8,6 +8,26 @@
     tools:context=".IntroActivity">
 
     <LinearLayout
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:gravity="left"
+            android:textSize="22dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:text="ENSEMBLE LUTTONS CONTRE \n LE CORONA VIRUS EN RDC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
             android:layout_centerInParent="true"
             android:orientation="vertical"
             android:layout_width="match_parent"

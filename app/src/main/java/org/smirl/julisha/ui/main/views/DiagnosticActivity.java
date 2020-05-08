@@ -32,7 +32,7 @@ public class DiagnosticActivity extends AppCompatActivity {
     RadioButton rb1, rb2, rb3, rb4;
    // Context contex = this;
     //String asText;
-    public static int temps=3000;
+    public static int temps=2000;
    ProgressDialog progressDialog;
    String[] questions= DiagnosticData.questions;
    String[] reponses =DiagnosticData.reponses;

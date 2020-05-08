@@ -294,18 +294,16 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
     }
 
     private void setCurrEventText(final Case cas) {
-        try {
-            Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        currEvntDate.setText("À la Une : " + DateUtils.formatDate(cas.date, "yyyy-MM-dd", "E dd-MM-yyyy", Locale.FRANCE));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    currEvnt.setText(cas.toText());
+        Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    currEvntDate.setText("À la Une : " + DateUtils.formatDate(cas.date, "yyyy-MM-dd", "E dd-MM-yyyy", Locale.FRANCE));
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            });
-        }catch (Exception npe){}
+                currEvnt.setText(cas.toText());
+            }
+        });
     }
 }
