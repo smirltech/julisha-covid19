@@ -2,6 +2,7 @@ package org.smirl.julisha.ui.main.views;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,9 +31,13 @@ public class AboutActivity extends AppCompatActivity {
     setContentView(R.layout.activity_about);
     Toolbar toolbar = (findViewById(R.id.toolbarCovid));
     setSupportActionBar(toolbar);
-   // Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-   getSupportActionBar().setDisplayShowHomeEnabled(true);
-    setTitle(getString(R.string.action_apropos));
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+          Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+      } else {
+          getSupportActionBar().setDisplayShowHomeEnabled(true);
+      }
+
+   getSupportActionBar().setTitle(getString(R.string.action_apropos));
     toolbar.getBackground().setAlpha(0);
     //toolbar.setTitleTextColor(getColor(R.color.black));
       Button supportsUS=findViewById(R.id.support_us_btn);
