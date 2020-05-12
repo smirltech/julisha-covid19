@@ -40,6 +40,7 @@ import org.smirl.julisha.ui.main.controllers.SectionsPagerAdapter;
 import org.smirl.julisha.ui.main.controllers.StatisticsFragment;
 import org.smirl.julisha.ui.main.controllers.StatisticsVillesFragment;
 import org.smirl.julisha.ui.main.views.AboutActivity;
+import org.smirl.julisha.ui.main.views.LogActivity;
 import org.smirl.julisha.ui.main.views.UrgencesActivity;
 import org.smirl.julisha.ui.main.views.CovidTestActivity;
 import org.smirl.julisha.ui.main.views.GestesBarrieresActivity;
@@ -266,6 +267,9 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                 startActivity(new Intent(this, AboutActivity.class));
 
 
+                break;
+            case R.id.nav_log:
+                startActivity(new Intent(this, LogActivity.class));
                 break;
             case R.id.nav_support:
                 SupportsUS();

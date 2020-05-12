@@ -5,5 +5,4 @@ public class CasesSummary {
     public int infected;
     public int dead;
     public int healed;
-
 }

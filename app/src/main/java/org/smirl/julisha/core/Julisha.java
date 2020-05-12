@@ -1,15 +1,9 @@
 package org.smirl.julisha.core;
 
-import android.util.Log;
-
 import org.smirl.julisha.ui.main.models.*;
-
 import fnn.smirl.simple.Serializer;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Julisha {

@@ -30,7 +30,7 @@ public class AboutActivity extends AppCompatActivity {
     setContentView(R.layout.activity_about);
     Toolbar toolbar = (findViewById(R.id.toolbarCovid));
     setSupportActionBar(toolbar);
-    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+   // Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
    getSupportActionBar().setDisplayShowHomeEnabled(true);
     setTitle(getString(R.string.action_apropos));
     toolbar.getBackground().setAlpha(0);

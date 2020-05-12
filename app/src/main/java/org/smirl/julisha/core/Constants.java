@@ -1,7 +1,5 @@
 package org.smirl.julisha.core;
 
-import java.io.File;
-
 public interface Constants {
     String BASE_URL = "https://api.smirl.org/"; //"http://192.168.13.102/api/
     String URL_API = BASE_URL + "covid19/v1/";

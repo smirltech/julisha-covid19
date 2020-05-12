@@ -3,10 +3,9 @@ package org.smirl.julisha.ui.main.models;
 import org.smirl.julisha.core.DateUtils;
 import org.smirl.julisha.core.Julisha;
 
-import java.text.ParseException;
-import java.util.Locale;
+import java.util.Objects;
 
-public class Case {
+public class Case implements Comparable<Case>  {
     public int id;
     public int ville_id;
     public int province_id;
@@ -22,6 +21,24 @@ public class Case {
         this.type = type;
         this.date = date;
         this.nombre = nombre;
+    }
+
+    @Override
+    public int compareTo(Case o) {
+        return o.date.compareToIgnoreCase(date);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Case aCase = (Case) o;
+        return Objects.equals(date, aCase.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date);
     }
 
     @Override

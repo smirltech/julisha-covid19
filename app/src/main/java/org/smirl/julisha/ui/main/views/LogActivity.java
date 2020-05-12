@@ -1,0 +1,75 @@
+package org.smirl.julisha.ui.main.views;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import org.smirl.julisha.R;
+import org.smirl.julisha.core.Julisha;
+import org.smirl.julisha.ui.main.models.Case;
+
+import java.util.Objects;
+
+public class LogActivity extends AppCompatActivity {
+
+    private TextView m_infected;
+    private TextView m_dead;
+    private TextView m_healed;
+
+    TableLayout tableLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log);
+        Toolbar toolbar = (findViewById(R.id.toolbar));
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+       getSupportActionBar().setTitle(R.string.app_log_name);
+        tableLayout = findViewById(R.id.table_layout);
+
+       loadData();
+    }
+
+
+    private void loadData() {
+        try {
+            tableLayout.removeAllViews();
+        } catch (Exception ee) {
+        }
+        for (final Case cas : Julisha.cases().copy()) {
+            TableRow row = (TableRow) getLayoutInflater().inflate(R.layout.row_model, null);
+            TextView case_date = row.findViewById(R.id.cas_date);
+            TextView case_type = row.findViewById(R.id.case_type);
+            TextView case_ville = row.findViewById(R.id.case_ville);
+            TextView case_province = row.findViewById(R.id.case_province);
+            TextView case_nombre = row.findViewById(R.id.case_nombre);
+
+            String _type = "Infectés";
+            switch (cas.type) {
+                case 2:
+                    _type = "Décédés";
+                    break;
+                case 3:
+                    _type = "Guéris";
+                    break;
+                default:
+                    _type = "Infectés";
+            }
+
+            case_date.setText(cas.date);
+            case_type.setText(_type);
+            case_ville.setText(Julisha.getVille(cas.ville_id).nom.toUpperCase());
+            case_province.setText(Julisha.getProvince(cas.province_id).nom.toUpperCase());
+            case_nombre.setText(cas.nombre + "");
+            tableLayout.addView(row);
+        }
+    }
+}
