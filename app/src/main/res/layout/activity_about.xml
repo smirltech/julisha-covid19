@@ -7,19 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
     tools:context=".ui.main.views.AboutActivity">
-
-
-
-
     <include
         layout="@layout/containt_about"/>
     <include
         layout="@layout/toolbarcovid"/>
-
-
-
-
-
-
 
 </RelativeLayout>

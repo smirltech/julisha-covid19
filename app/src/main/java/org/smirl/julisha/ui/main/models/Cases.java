@@ -3,6 +3,7 @@ package org.smirl.julisha.ui.main.models;
 import org.smirl.julisha.core.Julisha;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class Cases extends ArrayList<Case> {
@@ -55,6 +56,22 @@ public class Cases extends ArrayList<Case> {
     return cc;
   }
 
+  public Cases copy() {
+    Cases cc = new Cases();
+    for (Case c : this) {
+     cc.add(c);
+    }
+    Collections.sort(cc);
+    return cc;
+  }
+
+  public int number(int type) {
+    int n = 0;
+    for (Case c : this) {
+      if (c.type == type) n += c.nombre;
+    }
+    return n;
+  }
   public int number(int villeid, int type) {
     int n = 0;
     for (Case c : this) {

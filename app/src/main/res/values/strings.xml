@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Julisha</string>
+    <string name="app_log_name">Julisha - Consulter Log</string>
     <string name="tab_text_1">ACCUEIL</string>
     <string name="tab_text_2">PROVINCES</string>
     <string name="tab_text_3">VILLES</string>

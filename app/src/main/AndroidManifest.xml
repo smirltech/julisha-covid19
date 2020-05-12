@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.views.UrgencesActivity"/>
+        <activity
+            android:label="@string/app_log_name"
+            android:name=".ui.main.views.LogActivity"
+            android:parentActivityName=".MainActivity" ></activity>
+        <activity android:name=".ui.main.views.UrgencesActivity" />
         <activity android:name=".ui.main.views.GestesBarrieresActivity" />
-        <activity android:name=".ui.main.views.AboutActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ui.main.views.AboutActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".ui.main.views.CovidResultatActivity" />
         <activity android:name=".ui.main.views.DiagnosticActivity" />
         <activity android:name=".ui.main.views.CovidTestActivity" />
@@ -53,11 +58,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.views.NewAlertActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name="MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

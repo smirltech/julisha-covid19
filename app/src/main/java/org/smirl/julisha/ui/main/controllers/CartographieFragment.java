@@ -55,6 +55,7 @@ public class CartographieFragment extends Fragment {
     View root = inflater.inflate(R.layout.cartographie_fragment_main, container, false);
     provsMap = root.findViewById(R.id.provs_map);
 
+
     return root;
   }
 
