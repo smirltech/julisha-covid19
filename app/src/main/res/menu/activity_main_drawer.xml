@@ -38,7 +38,7 @@
         <item
             android:id="@+id/nav_log"
             android:icon="@drawable/ic_baseline_update_24"
-            android:title="Consulter Log"
+            android:title="Afficher l\'historique"
             />
     </group>
     <group

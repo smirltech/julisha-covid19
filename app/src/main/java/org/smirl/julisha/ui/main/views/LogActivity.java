@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TableLayout;
@@ -30,8 +31,11 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
         Toolbar toolbar = (findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        } else {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
        getSupportActionBar().setTitle(R.string.app_log_name);
         tableLayout = findViewById(R.id.table_layout);
 
@@ -71,5 +75,11 @@ public class LogActivity extends AppCompatActivity {
             case_nombre.setText(cas.nombre + "");
             tableLayout.addView(row);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
