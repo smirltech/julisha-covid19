@@ -34,7 +34,7 @@ public class LogActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         } else {
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
         }
        getSupportActionBar().setTitle(R.string.app_log_name);
         tableLayout = findViewById(R.id.table_layout);
