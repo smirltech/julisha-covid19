@@ -34,7 +34,7 @@ public class AboutActivity extends AppCompatActivity {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
           Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
       } else {
-          getSupportActionBar().setDisplayShowHomeEnabled(true);
+          Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
       }
 
    getSupportActionBar().setTitle(getString(R.string.action_apropos));
