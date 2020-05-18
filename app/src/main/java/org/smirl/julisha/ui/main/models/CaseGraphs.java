@@ -27,11 +27,15 @@ public class CaseGraphs extends ArrayList<CaseGraph> {
     }
 
     public CaseGraph getLatestCaseGraph() {
-      if (size() > 0)  return get(size()-1);
-      return null;
+        if (size() > 0) return get(size() - 1);
+        return null;
     }
 
-
+    public void trimRight() {
+        while (get(size() - 1).isZeroed()) {
+            remove(size() - 1);
+        }
+    }
 
     public int getMaxInfected() {
         int y = 0;

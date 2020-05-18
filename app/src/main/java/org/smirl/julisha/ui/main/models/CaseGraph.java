@@ -23,6 +23,10 @@ public class CaseGraph implements Comparable<CaseGraph>{
         '}';
   }
 
+  public boolean isZeroed(){
+    return infected == 0 && dead == 0 && healed == 0;
+  }
+
   @Override
   public int compareTo(CaseGraph p1) {
     // TODO: Implement this method

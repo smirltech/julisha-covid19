@@ -409,11 +409,6 @@ public class Julisha {
     public static void prepareCaseGraphs2() {
 
         julisha.caseGraphs2.clear();
-        // CaseGraph initt = new CaseGraph(0, "0");
-
-        //initt.infected = 0;
-        //julisha.caseGraphs2.newCaseGraph(initt);
-
         int cnt = 1;
         Calendar caln = Calendar.getInstance();
         Calendar cal0 = Calendar.getInstance();
@@ -452,6 +447,7 @@ public class Julisha {
                     ds.healed = 0;
             }
         }
+        julisha.caseGraphs2.trimRight();
     }
 
 

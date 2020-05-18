@@ -13,12 +13,14 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import org.smirl.julisha.Julisha;
 import org.smirl.julisha.R;
+import org.smirl.julisha.core.Julisha;
 import org.smirl.julisha.ui.main.models.CaseGraph;
 import org.smirl.julisha.ui.main.models.CaseGraphs;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class GraphManager {
     final private View view;
@@ -30,40 +32,34 @@ public class GraphManager {
         chart2 = view.findViewById(R.id.mchart2);
     }
 
-    public void generateGraph(){
-        CaseGraphs caseGraphs = Julisha.getCaseGraphs();
-        CaseGraphs caseGraphs2 = Julisha.getCaseGraphs2();
-
-        setUpChart(chart, caseGraphs);
-        setUpChart(chart2, caseGraphs2);
-
-        setData(chart, caseGraphs);
-        setData(chart2, caseGraphs2);
+    public void generateGraph() {
+        setUpChart(chart, Julisha.getCaseGraphs(), true);
+        setUpChart(chart2, Julisha.getCaseGraphs2(), false);
     }
 
-    public void refreshGraph(){
+    public void refreshGraph() {
         chart.notifyDataSetChanged();
         chart2.notifyDataSetChanged();
     }
 
-    private void setUpChart(LineChart chart, CaseGraphs caseGraphs) {
-        chart.getDescription().setEnabled(false);
-        chart.setDrawBorders(false);
-        chart.setTouchEnabled(true);
-        chart.setPinchZoom(true);
-        chart.setHorizontalScrollBarEnabled(true);
-        chart.setVerticalScrollBarEnabled(true);
-        chart.setDragDecelerationFrictionCoef(0.9f);
-        // chart.setDragEnabled(true);
-        chart.setScaleEnabled(true);
-        chart.setDrawGridBackground(false);
-        chart.setHighlightPerDragEnabled(true);
+    private void setUpChart(LineChart charty, CaseGraphs caseGraphs, boolean actif) {
+        charty.getDescription().setEnabled(false);
+        charty.setDrawBorders(false);
+        charty.setTouchEnabled(true);
+        charty.setPinchZoom(true);
+        charty.setHorizontalScrollBarEnabled(true);
+        charty.setVerticalScrollBarEnabled(true);
+        charty.setDragDecelerationFrictionCoef(0.9f);
+        // charty.setDragEnabled(true);
+        charty.setScaleEnabled(true);
+        charty.setDrawGridBackground(false);
+        charty.setHighlightPerDragEnabled(true);
 
-        chart.setBackgroundColor(Color.WHITE);
-        chart.setViewPortOffsets(0f, 0f, 0f, 0f);
+        charty.setBackgroundColor(Color.WHITE);
+        charty.setViewPortOffsets(0f, 0f, 0f, 0f);
 
         // get the legend (only possible after setting data)
-        Legend l = chart.getLegend();
+        Legend l = charty.getLegend();
         l.setEnabled(true);
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
@@ -73,7 +69,7 @@ public class GraphManager {
 
         // System.out.println("CaseGraphs : " + Julisha.getCaseGraphs().getCaseGraph(0).date);
 
-        XAxis xAxis = chart.getXAxis();
+        XAxis xAxis = charty.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
         //xAxis.setTypeface(tfLight);
         xAxis.setTextSize(8f);
@@ -92,14 +88,14 @@ public class GraphManager {
             public String getFormattedValue(float value) {
                 CaseGraph cgg = caseGraphs.getCaseGraph((int) value);
                 if (cgg == null) {
-                    return "Aujourd'hui";
+                    return "*";
                 }
                 return cgg.date.replaceFirst("2020-", "");
             }
         });
 
         float _max = (float) caseGraphs.getMax();
-        YAxis leftAxis = chart.getAxisLeft();
+        YAxis leftAxis = charty.getAxisLeft();
         leftAxis.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
         //leftAxis.setTypeface(tfLight);
         //leftAxis.setTextColor(ColorTemplate.getHoloBlue());
@@ -107,12 +103,14 @@ public class GraphManager {
         leftAxis.setGranularityEnabled(true);
 
         leftAxis.setAxisMinimum(_max / (-15));
-        leftAxis.setAxisMaximum(_max + 0f);
+        //leftAxis.setAxisMaximum(_max + 0f);
         leftAxis.setYOffset(-9f);
         leftAxis.setTextColor(Color.rgb(3, 3, 3));
 
-        YAxis rightAxis = chart.getAxisRight();
+        YAxis rightAxis = charty.getAxisRight();
         rightAxis.setEnabled(false);
+
+        setData(charty, caseGraphs, actif);
     }
 
     private final int[] colors = new int[]{
@@ -121,15 +119,11 @@ public class GraphManager {
             ColorTemplate.rgb("#7CB342")
     };
 
-    private void setData(LineChart chart, CaseGraphs caseGraphs) {
-
-        // List<DataEntry> anyData = new ArrayList<>();
-
-
-// create a data object with the data sets
-        LineDataSet infectLD = getLineDateSet(caseGraphs, 1, colors[0]);
-        LineDataSet deadLD = getLineDateSet(caseGraphs, 2, colors[1]);
-        LineDataSet healLD = getLineDateSet(caseGraphs, 3, colors[2]);
+    private void setData(LineChart charty, CaseGraphs caseGraphs, boolean actif) {
+        // create a data object with the data sets
+        LineDataSet infectLD = getLineDateSet(caseGraphs, 1, colors[0], actif);
+        LineDataSet deadLD = getLineDateSet(caseGraphs, 2, colors[1], actif);
+        LineDataSet healLD = getLineDateSet(caseGraphs, 3, colors[2], actif);
 
         LineData data = new LineData();
 
@@ -142,28 +136,34 @@ public class GraphManager {
         data.setHighlightEnabled(true);
 
         // set data
-        chart.setData(data);
+        charty.setData(data);
     }
 
-    private LineDataSet getLineDateSet(CaseGraphs caseGraphs, int caseType, int colorTemplate) {
+    private LineDataSet getLineDateSet(CaseGraphs caseGraphs, int caseType, int colorTemplate, boolean actif) {
         ArrayList<Entry> values = new ArrayList<>();
-        String lbl = "Actifs";
-        for (CaseGraph c : caseGraphs) {
-            switch (caseType) {
-                case 1:
-                    values.add(new Entry(c.id, (c.infected - c.dead - c.healed)));
-                    break;
-                case 2:
-                    values.add(new Entry(c.id, c.dead));
-                    lbl = "Décédés";
-                    break;
-                case 3:
-                    values.add(new Entry(c.id, c.healed));
-                    lbl = "Guéris";
-                    break;
-                default:
-                    values.add(new Entry(c.id, (c.infected - c.dead - c.healed)));
-            }
+        String lbl = actif ? "Actifs" : "Infectés";
+        int act = 0;
+        ListIterator<CaseGraph> iterator = caseGraphs.listIterator();
+        while (iterator.hasNext()){
+            CaseGraph c = iterator.next();
+                switch (caseType) {
+                    case 1:
+                        act = actif ? (c.infected - c.dead - c.healed) : c.infected;
+                        values.add(new Entry(c.id, act));
+                        break;
+                    case 2:
+                        values.add(new Entry(c.id, c.dead));
+                        lbl = "Décédés";
+                        break;
+                    case 3:
+                        values.add(new Entry(c.id, c.healed));
+                        lbl = "Guéris";
+                        break;
+                    default:
+                        act = actif ? (c.infected - c.dead - c.healed) : c.infected;
+                        values.add(new Entry(c.id, act));
+                }
+
         }
 
         // create a dataset and give it a type
