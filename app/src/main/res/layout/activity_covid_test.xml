@@ -36,7 +36,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:textColor="#FDFBFB"
-            android:background="@color/colorPrimary"
+            android:background="?colorPrimary"
             android:text="Démarrer le Questionnaire"/>
 
 
