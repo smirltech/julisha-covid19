@@ -62,7 +62,6 @@ class SettingsActivity : AppCompatActivity() {
         card_style.setOnClickListener {
             chooseStyleDialog()
         }
-        // style_status.text = "Bnn"
 
 
     }

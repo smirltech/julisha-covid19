@@ -63,10 +63,9 @@
         <item name="colorPrimaryDark">@color/dayNight</item>
         <item name="colorAccent">@color/dayNight</item>
         <item name="colorSecondary">@color/dayNight</item>
-
         <item name="colorSecondaryVariant">@color/dayNight</item>
-        <item name="colorOnSecondary">@color/white</item>
 
+        <item name="colorOnSecondary">@color/white</item>
 
 
     </style>
@@ -75,8 +74,6 @@
         <item name="colorPrimary">@color/dayNight</item>
         <item name="colorPrimaryDark">@color/dayNight</item>
         <item name="colorAccent">@color/dayNight</item>
-
-
         <item name="colorSecondaryVariant">@color/dayNight</item>
         <item name="colorOnSecondary">@color/white</item>
 

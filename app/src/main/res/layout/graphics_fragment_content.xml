@@ -246,7 +246,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NOMBRE DE CAS"
-                        android:textColor="@color/textcolor" />
+                        android:textColor="?colorOnSecondary" />
                         android:textSize="9sp"
                         android:textStyle="bold" />
 
@@ -284,7 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TAUX DE CAS"
-                        android:textColor="@color/textcolor" />
+                        android:textColor="?colorOnSecondary" />
                         android:textSize="9sp"
                         android:textStyle="bold" />
 

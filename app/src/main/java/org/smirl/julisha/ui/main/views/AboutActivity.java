@@ -49,6 +49,8 @@ public class AboutActivity extends AppCompatActivity {
           Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
       }
 
+
+
    getSupportActionBar().setTitle(getString(R.string.action_apropos));
     toolbar.getBackground().setAlpha(0);
     //toolbar.setTitleTextColor(getColor(R.color.black));
