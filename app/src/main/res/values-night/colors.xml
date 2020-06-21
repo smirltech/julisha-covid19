@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryLight">#FFEBEE</color>
+    <color name="colorPrimaryLight">#000000</color>
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">@color/colorPrimaryDark</color>
@@ -10,21 +10,16 @@
     <color name="green">#7CB342</color>
     <color name="blue">#1E88E5</color>
     <color name="blue_gray">#607D8B</color>
+    <color name="background_color">#000000</color>
+    <color name="charts">#000000</color>
+
+
     <color name="white">#FFFFFF</color>
-    <color name="background_color">#FFFFFF</color>
-    <color name="charts">#FFFFFF</color>
-    <color name="textcolor">#000000</color>
+    <color name="textcolor">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="header">#babdb6</color>
-    <color name="move">#463D98</color>
+    <color name="dayNight">#3c3b3e</color>
 
-    <color name="movePrimary">#796DED</color>
-
-
-    <color name="md_lime_500">#6D9904</color>
-    <color name="md_lime_700">#587C02</color>
-    <color name="md_amber_A400">#6D9904</color>
-    <color name="dayNight">#FFFFFFFF</color>
 
 
 </resources>

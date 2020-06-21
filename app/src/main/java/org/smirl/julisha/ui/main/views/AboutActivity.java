@@ -1,7 +1,9 @@
 package org.smirl.julisha.ui.main.views;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -23,11 +25,21 @@ import java.util.Objects;
 import fnn.smirl.appinfo.AppInfo;
 
 public class AboutActivity extends AppCompatActivity {
+    String themeKey = "currentTheme";
+    String thememode = "currentSTyle";
+    SharedPreferences sharedPreferences;
 
-  //@RequiresApi(api = Build.VERSION_CODES.M)
+
+    //@RequiresApi(api = Build.VERSION_CODES.M)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+      sharedPreferences = getSharedPreferences(
+              "ThemePref",
+              Context.MODE_PRIVATE
+      );
+      applyStyle();
+
     setContentView(R.layout.activity_about);
     Toolbar toolbar = (findViewById(R.id.toolbarCovid));
     setSupportActionBar(toolbar);
@@ -93,6 +105,27 @@ public class AboutActivity extends AppCompatActivity {
 
 
 
+    }
+    public void applyStyle () {
+
+        switch (sharedPreferences.getInt(themeKey, 0)) {
+            case 0: {
+                getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+                break;
+
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+
+
+
+            }
+
+        }
     }
 
 }

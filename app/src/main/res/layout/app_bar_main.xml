@@ -18,7 +18,8 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"/>
+                 app:tabTextColor="@color/white"
+            android:background="?attr/colorPrimary"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
@@ -31,11 +32,11 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add_alert_white_24dp"
+            android:src="@drawable/ic_baseline_add_alert_24"
             app:fabSize="auto"
             android:layout_margin="15dp"
             android:layout_gravity="bottom|right"
-            app:backgroundTint="@color/colorAccent"
-            app:rippleColor="@color/colorPrimary"/>
+            app:backgroundTint="?colorPrimary"
+            app:rippleColor="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -203,7 +203,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
         pieDataSet1.setColors(chartColors);
 
         PieData pdata1 = new PieData(pieDataSet1);
-        pdata1.setValueTextColor(getResources().getColor(R.color.white));
+        pdata1.setValueTextColor(getResources().getColor(R.color.textcolor));
         pdata1.setValueTextSize(12f);
         pdata1.setHighlightEnabled(true);
 
@@ -230,7 +230,7 @@ public class GraphicsFragment extends Fragment implements Fragmentation {
 
         PieData pdata = new PieData(pieDataSet);
         pdata.setValueFormatter(new PercentFormatter());
-        pdata.setValueTextColor(getResources().getColor(R.color.white));
+        pdata.setValueTextColor(getResources().getColor(R.color.textcolor));
         pdata.setValueTextSize(12f);
         pdata.setHighlightEnabled(true);
 

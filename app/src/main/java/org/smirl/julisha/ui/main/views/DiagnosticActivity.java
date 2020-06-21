@@ -1,7 +1,9 @@
 package org.smirl.julisha.ui.main.views;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.smirl.julisha.R;
 import org.smirl.julisha.ui.main.models.DiagnosticData;
@@ -39,10 +42,18 @@ public class DiagnosticActivity extends AppCompatActivity {
    String[] choix =DiagnosticData.choix;
     int flag = 0;
     public static int Etat = 0, Positif = 0, Nagatif = 0;
+    String themeKey = "currentTheme";
+    String thememode = "currentSTyle";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(
+                "ThemePref",
+                Context.MODE_PRIVATE
+        );
+        applyStyle();
         setContentView(R.layout.activity_diagnostic);
         Toolbar toolbar = (findViewById(R.id.toolbarCovid));
         setSupportActionBar(toolbar);
@@ -200,7 +211,27 @@ public class DiagnosticActivity extends AppCompatActivity {
         super.onPause();
 
     }
+    public void applyStyle () {
 
+        switch (sharedPreferences.getInt(themeKey, 0)) {
+            case 0: {
+                getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+                break;
+
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+
+
+
+            }
+
+        }
+    }
 
 }
 

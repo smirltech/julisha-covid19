@@ -1,5 +1,6 @@
 package org.smirl.julisha.ui.main.controllers;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -91,6 +92,10 @@ public class StatisticsFragment extends Fragment {
         TextView tv0 = row.findViewById(R.id.tr_prov);
 
         tv0.setText(c.name.toUpperCase());
+        tv0.setTextColor(getResources().getColor(R.color.textcolor));
+
+
+
         tv0.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {

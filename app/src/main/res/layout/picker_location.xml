@@ -14,7 +14,7 @@
                 android:orientation="vertical">
             <LinearLayout
                     android:gravity="center"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="?colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -61,6 +61,7 @@
                         <TextView android:layout_width="wrap_content"
                                   style="@style/profileEditText"
                                   android:text="Province :"
+                            android:textColor="@color/black"
                                   android:layout_height="wrap_content"/>
                         <Spinner
                                 android:id="@+id/picker_provinces"
@@ -87,7 +88,9 @@
                         <TextView
                                 android:layout_width="wrap_content"
                                 style="@style/profileEditText"
-                                android:text="Ville :"
+                            android:textColor="@color/black"
+
+                            android:text="Ville :"
                                 android:layout_height="wrap_content"/>
                         <Spinner
                                 android:id="@+id/picker_villes"
@@ -114,11 +117,13 @@
                                 android:layout_width="wrap_content"
                                 style="@style/profileEditText"
                                 android:text="Commune :"
-                                android:layout_height="wrap_content"/>
+                            android:textColor="@color/black"
+
+                            android:layout_height="wrap_content"/>
                         <Spinner
                                 android:id="@+id/picker_commune"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <View

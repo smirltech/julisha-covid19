@@ -1,6 +1,7 @@
 package org.smirl.julisha.ui.main.views;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -27,11 +28,21 @@ public class NewAlertActivity extends AppCompatActivity {
     private int commune_id;
     private TextView tv_commune, tv_smt;
     private  String symptomes;
+    String themeKey = "currentTheme";
+    String thememode = "currentSTyle";
+    SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences(
+                "ThemePref",
+                Context.MODE_PRIVATE
+        );
+        applyStyle();
+
         setContentView(R.layout.activity_alert_new);
 
         crud = new Crud(this);
@@ -161,6 +172,27 @@ public class NewAlertActivity extends AppCompatActivity {
             }
         }
         return symptomes;
+    }
+    public void applyStyle () {
+
+        switch (sharedPreferences.getInt(themeKey, 0)) {
+            case 0: {
+                getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+                break;
+
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+
+
+
+            }
+
+        }
     }
 
 }

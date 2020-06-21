@@ -11,7 +11,7 @@
 
     <LinearLayout
             android:gravity="center"
-            android:background="@color/colorPrimaryDark"
+            android:background="?colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -67,7 +67,10 @@
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
                     android:lines="1"
-                    android:background="#00000000"
+                   android:textColorHint="@color/black"
+                   android:textColor="?colorPrimary"
+
+                android:background="#00000000"
                     android:inputType="textPersonName"
                     android:visibility="visible"/>
 
@@ -85,6 +88,8 @@
                     android:layout_marginTop="10dp"
                     android:maxLines="1"
                     android:lines="1"
+                android:textColorHint="@color/black"
+                android:textColor="?colorPrimary"
                     android:background="#00000000"
                     android:inputType="phone"
                     android:visibility="visible"/>
@@ -102,6 +107,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         style="@style/profileEditText"
+                    android:textColor="@color/black"
                         android:drawableLeft="@drawable/ic_donut_small_black_24dp"
                         android:layout_height="wrap_content"
                         android:text="Symptomes :"/>
@@ -110,7 +116,8 @@
                         android:textAppearance="@style/TextAppearance.Design.Hint"
                         android:text="Cliquez pour choisir"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
                         android:id="@+id/tv_smt"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -118,7 +125,7 @@
                         style="@style/Base.Widget.AppCompat.ButtonBar"
                         app:srcCompat="@drawable/ic_mode_edit_black_24dp"
                         android:scaleType="fitCenter"
-                        android:tint="@color/colorPrimaryDark"
+                        android:tint="?colorPrimaryDark"
                         android:layout_marginLeft="5dp"
                         android:id="@+id/btn_smt"
                         android:layout_height="32dp"/>
@@ -142,7 +149,9 @@
                         style="@style/profileEditText"
                         android:drawableLeft="@drawable/ic_account_balance_black_24dp"
                         android:layout_height="wrap_content"
-                        android:text="Adresse :"/>
+                    android:textColor="@color/black"
+
+                    android:text="Adresse :"/>
 
                 <TextView
                         android:textAppearance="@style/TextAppearance.Design.Hint"
@@ -156,7 +165,7 @@
                         style="@style/Base.Widget.AppCompat.ButtonBar"
                         app:srcCompat="@drawable/ic_mode_edit_black_24dp"
                         android:scaleType="fitCenter"
-                        android:tint="@color/colorPrimaryDark"
+                        android:tint="?colorPrimaryDark"
                         android:layout_marginLeft="5dp"
                         android:id="@+id/btn_commune"
                         android:layout_height="32dp"
@@ -195,7 +204,7 @@
                         app:srcCompat="@drawable/ic_mode_edit_black_24dp"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="5dp"
-                        android:tint="@color/colorPrimaryDark"
+                        android:tint="?colorPrimaryDark"
                         android:id="@+id/btn_location"
                         android:layout_height="32dp"/>
             </LinearLayout>
@@ -207,7 +216,7 @@
     <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="35dp"
             android:text="SOUMETTRE"
             android:textSize="20sp"

@@ -3,7 +3,9 @@ package org.smirl.julisha.ui.main.views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -24,10 +26,18 @@ public class LogActivity extends AppCompatActivity {
     private TextView m_healed;
 
     TableLayout tableLayout;
+    String themeKey = "currentTheme";
+    String thememode = "currentSTyle";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(
+                "ThemePref",
+                Context.MODE_PRIVATE
+        );
+        applyStyle();
         setContentView(R.layout.activity_log);
         Toolbar toolbar = (findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
@@ -81,5 +91,26 @@ public class LogActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    public void applyStyle () {
+
+        switch (sharedPreferences.getInt(themeKey, 0)) {
+            case 0: {
+                getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+                break;
+
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+
+
+
+            }
+
+        }
     }
 }

@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,12 +22,21 @@ public class GestesBarrieresActivity extends AppCompatActivity {
    // String url=getString(R.string.webload);
     ProgressDialog progressDialog;
     private FirebaseAnalytics mFirebaseAnalytics;
-
+    String themeKey = "currentTheme";
+    String thememode = "currentSTyle";
+    SharedPreferences sharedPreferences;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences(
+                "ThemePref",
+                Context.MODE_PRIVATE
+        );
+        applyStyle();
+
         setContentView(R.layout.activity_gestes_barrieres);
         Toolbar toolbar=(findViewById(R.id.toolbarCovid));
         setSupportActionBar(toolbar);
@@ -76,5 +87,26 @@ public class GestesBarrieresActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+    public void applyStyle () {
+
+        switch (sharedPreferences.getInt(themeKey, 0)) {
+            case 0: {
+                getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+                break;
+
+            }
+            case 1: {
+                getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+                break;
+            }
+            case 2: {
+                getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+
+
+
+            }
+
+        }
     }
 }

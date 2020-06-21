@@ -1,0 +1,88 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+
+
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar2">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="profileEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:drawablePadding">15dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="ThemeMove" parent="AppTheme">
+        <item name="colorPrimary">@color/move</item>
+        <item name="colorPrimaryDark">@color/movePrimary</item>
+        <item name="colorAccent">@color/move</item>
+        <item name="colorSecondary">@color/move</item>
+
+        <item name="colorSecondaryVariant">@color/move</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
+
+
+
+
+    <style name="ThemeLime" parent="AppTheme">
+        <item name="colorPrimary">@color/md_lime_500</item>
+        <item name="colorPrimaryDark">@color/md_lime_700</item>
+        <item name="colorAccent">@color/md_amber_A400</item>
+
+        <item name="colorSecondaryVariant">@color/md_lime_500</item>
+        <item name="colorOnSecondary">@color/white</item>
+    </style>
+
+    <!-- No Action Bar -->
+    <style name="ThemeMoveNoActionBar" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/move</item>
+        <item name="colorPrimaryDark">@color/move</item>
+        <item name="colorAccent">@color/move</item>
+        <item name="colorSecondary">@color/move</item>
+
+        <item name="colorSecondaryVariant">@color/move</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
+
+    <style name="ThemeLimeNoActionBar" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/md_lime_500</item>
+        <item name="colorPrimaryDark">@color/md_lime_500</item>
+        <item name="colorAccent">@color/md_amber_A400</item>
+        <item name="colorSecondary">@color/md_lime_500</item>
+
+
+        <item name="colorSecondaryVariant">@color/md_lime_500</item>
+
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
+</resources>

@@ -1,7 +1,13 @@
 package org.smirl.julisha.ui.main.views;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -26,6 +32,7 @@ public class GraphManager {
     final private View view;
     final private LineChart chart, chart2;
 
+
     public GraphManager(View view) {
         this.view = view;
         chart = view.findViewById(R.id.mchart);
@@ -42,7 +49,9 @@ public class GraphManager {
         chart2.notifyDataSetChanged();
     }
 
+    @SuppressLint("ResourceAsColor")
     private void setUpChart(LineChart charty, CaseGraphs caseGraphs, boolean actif) {
+
         charty.getDescription().setEnabled(false);
         charty.setDrawBorders(false);
         charty.setTouchEnabled(true);
@@ -55,7 +64,8 @@ public class GraphManager {
         charty.setDrawGridBackground(false);
         charty.setHighlightPerDragEnabled(true);
 
-        charty.setBackgroundColor(Color.WHITE);
+        //charty.setBackgroundColor(Color.WHITE);
+
         charty.setViewPortOffsets(0f, 0f, 0f, 0f);
 
         // get the legend (only possible after setting data)
@@ -184,4 +194,5 @@ public class GraphManager {
         d.setDrawHighlightIndicators(true);
         return d;
     }
+
 }

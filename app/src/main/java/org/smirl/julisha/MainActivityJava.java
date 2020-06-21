@@ -1,3 +1,4 @@
+/*
 package org.smirl.julisha;
 
 import android.Manifest;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // appTheme= MyPreferences(this).darkMode;
+       // appTheme= MyPreferences(this).darkMode;
 
         sharedPreferences = getSharedPreferences(
                 "ThemePref",
@@ -164,28 +165,28 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
     private void check4update() {
         new UpdatesChecker(this, URL_UPDATE, new UpdatesChecker.OnUpdateListener() {
-        @Override
-        public void onUpdate(boolean found, UpdatesChecker.Update update) {
-            if (found) {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
-                        .setMessage(update.releaseNote)
-                        //.setMessage(update.path)
-                        .setCancelable(false)
-                        .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent();
-                                i.setAction(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(update.path));
-                                startActivity(i);
-                            }
-                        }).setNeutralButton("PLUS TARD", null)
-                        .create().show();
+            @Override
+            public void onUpdate(boolean found, UpdatesChecker.Update update) {
+                if (found) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
+                            .setMessage(update.releaseNote)
+                            //.setMessage(update.path)
+                            .setCancelable(false)
+                            .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent i = new Intent();
+                                    i.setAction(Intent.ACTION_VIEW);
+                                    i.setData(Uri.parse(update.path));
+                                    startActivity(i);
+                                }
+                            }).setNeutralButton("PLUS TARD", null)
+                            .create().show();
+                }
             }
-        }
 
-    });
+        });
     }
 
 
@@ -206,66 +207,66 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-            handleViewPager();
-            break;
+                handleViewPager();
+                break;
             case R.id.action_ville:
-            LocationPicker.pickLocation(this, LocationPicker.VALUE_VILLE, new OnDataSelection() {
-                @Override
-                public void onDataSet(int dataId, String dataName) {
-                    PREFMANAGER.putInt("maville", dataId);
-                    Utilities.dialog(THIS, "DESORMAIS", "Votre nouvelle ville de suivi est maintenant : " + dataName.toUpperCase(), "OK", new Utilities.UtilityListener() {
+                LocationPicker.pickLocation(this, LocationPicker.VALUE_VILLE, new OnDataSelection() {
+                    @Override
+                    public void onDataSet(int dataId, String dataName) {
+                        PREFMANAGER.putInt("maville", dataId);
+                        Utilities.dialog(THIS, "DESORMAIS", "Votre nouvelle ville de suivi est maintenant : " + dataName.toUpperCase(), "OK", new Utilities.UtilityListener() {
 
-                        @Override
-                        public void onAccept() {
-                            //  recreate();
-                            Toast.makeText(getApplicationContext(), dataName + " est maintenant votre nouvelle ville de suivi", Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onAccept() {
+                                //  recreate();
+                                Toast.makeText(getApplicationContext(), dataName + " est maintenant votre nouvelle ville de suivi", Toast.LENGTH_SHORT).show();
 
-                            handleViewPager();
-                        }
-                    });
+                                handleViewPager();
+                            }
+                        });
 
-                }
-            });
-            break;
+                    }
+                });
+                break;
             case R.id.action_apropos:
-            startActivity(new Intent(this, AboutActivity.class));
-            break;
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
             case R.id.action_contact:
-            //
-            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto", getString(R.string.smirltech_mail), null));
-            String subject = null;
-            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-            String message = null;
-            intent.putExtra(Intent.EXTRA_TEXT, message);
-            startActivity(Intent.createChooser(intent, ""));
-            break;
+                //
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto", getString(R.string.smirltech_mail), null));
+                String subject = null;
+                intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                String message = null;
+                intent.putExtra(Intent.EXTRA_TEXT, message);
+                startActivity(Intent.createChooser(intent, ""));
+                break;
             case R.id.action_support:
-            SupportsUS();
-            break;
+                SupportsUS();
+                break;
             case R.id.action_settings:
-            Intent intentset= new Intent(this,SettingsActivity.class);
-            startActivityForResult(intentset,REQUEST_CODE);
-            break;
+                Intent intentset= new Intent(this,SettingsActivity.class);
+                startActivityForResult(intentset,REQUEST_CODE);
+                break;
 
             case R.id.action_share:
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.message_send));
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-            break;
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.message_send));
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
             case R.id.action_update:
 
-            check4updatemenu();
+                check4updatemenu();
 
 
-            //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
-            break;
+                //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
+                break;
 
             case R.id.action_exit:
-            finish();
-            break;
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -275,50 +276,50 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
         switch (item.getItemId()) {
             case R.id.nav_gb:
-            // fragger.switchFragment(2);
-            startActivity(new Intent(this, GestesBarrieresActivity.class));
-            break;
+                // fragger.switchFragment(2);
+                startActivity(new Intent(this, GestesBarrieresActivity.class));
+                break;
             case R.id.nav_diag:
-            // fragger.switchFragment(3);
-            startActivity(new Intent(this, CovidTestActivity.class));
+                // fragger.switchFragment(3);
+                startActivity(new Intent(this, CovidTestActivity.class));
 
-            break;
+                break;
             case R.id.nav_alert:
-            // fragger.switchFragment(3);
-            startActivity(new Intent(this, NewAlertActivity.class));
+                // fragger.switchFragment(3);
+                startActivity(new Intent(this, NewAlertActivity.class));
 
-            break;
+                break;
             case R.id.nav_contacterurgence:
-            startActivity(new Intent(this, UrgencesActivity.class));
-            break;
+                startActivity(new Intent(this, UrgencesActivity.class));
+                break;
 
             case R.id.nav_a_propos:
-            startActivity(new Intent(this, AboutActivity.class));
-            break;
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
             case R.id.nav_settings:
-            Intent intent=new Intent(this,SettingsActivity.class);
-            startActivityForResult(intent,REQUEST_CODE);
-            break;
+                Intent intent=new Intent(this,SettingsActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+                break;
             case R.id.nav_log:
-            startActivity(new Intent(this, LogActivity.class));
-            break;
+                startActivity(new Intent(this, LogActivity.class));
+                break;
             case R.id.nav_support:
-            SupportsUS();
-            break;
+                SupportsUS();
+                break;
 
 
             case R.id.nav_share:
 
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.message_send));
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-            break;
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.message_send));
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+                break;
 
             case R.id.nav_exit:
-            finish();
-            break;
+                finish();
+                break;
 
             default:
 
@@ -412,131 +413,138 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
     /*
     Update from menu
          */
-    private void check4updatemenu() {
+/*
+
+import androidx.annotation.Nullable;
+
+private void check4updatemenu() {
         new UpdatesChecker(this, URL_UPDATE, new UpdatesChecker.OnUpdateListener() {
-        @Override
-        public void onUpdate(boolean found, UpdatesChecker.Update update) {
-            if (found) {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
-                        .setMessage(update.releaseNote)
-                        //.setMessage(update.path)
-                        .setCancelable(false)
-                        .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent();
-                                i.setAction(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(update.path));
-                                startActivity(i);
-                            }
-                        }).setNeutralButton("PLUS TARD", null)
-                        .create().show();
-            } else
-                Toast.makeText(getApplicationContext(), "Aucune mise à jour disponible!", Toast.LENGTH_SHORT).show();
+@Override
+public void onUpdate(boolean found, UpdatesChecker.Update update) {
+        if (found) {
+        new AlertDialog.Builder(MainActivity.this)
+        .setTitle("MISE A JOUR DISPONIBLE v" + update.versionName)
+        .setMessage(update.releaseNote)
+        //.setMessage(update.path)
+        .setCancelable(false)
+        .setPositiveButton("TELECHARGER", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(update.path));
+        startActivity(i);
+        }
+        }).setNeutralButton("PLUS TARD", null)
+        .create().show();
+        } else
+        Toast.makeText(getApplicationContext(), "Aucune mise à jour disponible!", Toast.LENGTH_SHORT).show();
 
 
         }
 
-    });
-    }
+        });
+        }
 
-    public void SupportsUS() {
+public void SupportsUS() {
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Nous soutenir !")
-                .setMessage("Pourquoi nous soutenir?\n" +
-                        "- Votre soutien nous encouragera à améliorer le projet Julisha d’avantage \n" +
-                        "- A continuer les développements\n")
-                .setCancelable(false)
-                .setPositiveButton("Airtel Money", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String numero = "+243977779579";
-                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
-                        Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
+        .setTitle("Nous soutenir !")
+        .setMessage("Pourquoi nous soutenir?\n" +
+        "- Votre soutien nous encouragera à améliorer le projet Julisha d’avantage \n" +
+        "- A continuer les développements\n")
+        .setCancelable(false)
+        .setPositiveButton("Airtel Money", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+        String numero = "+243977779579";
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
+        Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
 
-                        startActivity(intent);
+        startActivity(intent);
 
-                    }
-                }).setNeutralButton("M-Pesa", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String numero = "+243810311929";
-                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
-                        Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
+        }
+        }).setNeutralButton("M-Pesa", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+        String numero = "+243810311929";
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", numero, null));
+        Toast.makeText(getApplicationContext(), "Merci d'avance ❤ !", Toast.LENGTH_SHORT).show();
 
-                        startActivity(intent);
-
-
-                    }
-
-                })
-                .create().show();
+        startActivity(intent);
 
 
+        }
 
-    }
+        })
+        .create().show();
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        }
+
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                checkStyle();
-                finish();
+        if (resultCode == Activity.RESULT_OK) {
+        checkStyle();
+        finish();
 
-            }
+        }
 
 
         }
-    }
+        }
 
-    public void checkStyle () {
+public void checkStyle () {
 
         switch (sharedPreferences.getInt(themeKey, 0)) {
-            case 0: {
-            getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
-            break;
+        case 0: {
+        getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+        break;
 
         }
-            case 1: {
-            getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
-            break;
+        case 1: {
+        getTheme().applyStyle(R.style.ThemeMoveNoActionBar, true);
+        break;
         }
-            case 2: {
-            getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+        case 2: {
+        getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
 
 
-
-        }
 
         }
-    }
-    public void checkTheme () {
+
+        }
+        }
+public void checkTheme () {
 
         switch (sharedPreferences.getInt(thememode, 2)) {
-            case 0: {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            getDelegate().applyDayNight();
-            break;
+        case 0: {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        getDelegate().applyDayNight();
+        break;
 
         }
-            case 1: {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            getDelegate().applyDayNight();
-            break;
+        case 1: {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        getDelegate().applyDayNight();
+        break;
         }
-            case 2: {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-            getDelegate().applyDayNight();
+        case 2: {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        getDelegate().applyDayNight();
 
 
 
-
-        }
 
         }
-    }
 
-}
+        }
+        }
+
+        }
+
+
+ */

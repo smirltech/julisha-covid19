@@ -86,6 +86,9 @@ public class StatisticsVillesFragment extends Fragment {
                 TextView tv0 = row.findViewById(R.id.tr_prov);
 
                 tv0.setText(c.name.toUpperCase());
+                tv0.setTextColor(getResources().getColor(R.color.textcolor));
+
+
                 ((TextView) row.findViewById(R.id.tr_no)).setText((_i++) + "");
                 ((TextView) row.findViewById(R.id.tr_inf)).setText(c.infected + "");
                 ((TextView) row.findViewById(R.id.tr_dec)).setText(c.dead + "");
