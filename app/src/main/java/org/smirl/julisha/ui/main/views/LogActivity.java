@@ -108,6 +108,12 @@ public class LogActivity extends AppCompatActivity {
                 getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
 
 
+                break;
+
+            }
+            case 3: {
+                getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+                break;
 
             }
 

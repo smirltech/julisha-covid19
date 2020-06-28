@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSecondary">@color/colorPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorSecondaryVariant">@color/colorPrimary</item>
         <item name="colorOnSecondary">@color/black</item>
 
 
@@ -43,7 +43,6 @@
         <item name="colorPrimaryDark">@color/movePrimary</item>
         <item name="colorAccent">@color/move</item>
         <item name="colorSecondary">@color/move</item>
-
         <item name="colorSecondaryVariant">@color/move</item>
         <item name="colorOnSecondary">@color/white</item>
 
@@ -56,9 +55,17 @@
         <item name="colorPrimary">@color/md_lime_500</item>
         <item name="colorPrimaryDark">@color/md_lime_700</item>
         <item name="colorAccent">@color/md_amber_A400</item>
-
         <item name="colorSecondaryVariant">@color/md_lime_500</item>
         <item name="colorOnSecondary">@color/white</item>
+    </style>
+    <style name="ThemeDark" parent="AppTheme">
+        <item name="colorPrimary">@color/DarkMode</item>
+        <item name="colorPrimaryDark">@color/DarkMode</item>
+        <item name="colorAccent">@color/DarkMode</item>
+        <item name="colorSecondary">@color/DarkMode</item>
+        <item name="colorSecondaryVariant">@color/DarkMode</item>
+        <item name="colorOnSecondary">@color/white</item>
+
     </style>
 
     <!-- No Action Bar -->
@@ -79,7 +86,14 @@
         <item name="colorAccent">@color/md_amber_A400</item>
         <item name="colorSecondary">@color/md_lime_500</item>
         <item name="colorSecondaryVariant">@color/md_lime_500</item>
-
+        <item name="colorOnSecondary">@color/white</item>
+    </style>
+    <style name="ThemeDarkNoActionBar" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/DarkMode</item>
+        <item name="colorPrimaryDark">@color/DarkMode</item>
+        <item name="colorAccent">@color/DarkMode</item>
+        <item name="colorSecondary">@color/DarkMode</item>
+        <item name="colorSecondaryVariant">@color/DarkMode</item>
         <item name="colorOnSecondary">@color/white</item>
 
     </style>

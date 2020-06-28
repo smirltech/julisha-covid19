@@ -262,10 +262,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
 
             //Toast.makeText(this, "en cours d'implémentation", Toast.LENGTH_SHORT).show();
             break;
-
-            case R.id.action_exit:
-            finish();
-            break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -316,9 +312,6 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
             startActivity(sendIntent);
             break;
 
-            case R.id.nav_exit:
-            finish();
-            break;
 
             default:
 
@@ -506,9 +499,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
         }
             case 2: {
             getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
-
-
-
+            break;
+          }
+        case 3: {
+            getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+            break;
         }
 
         }
@@ -528,13 +523,11 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
             break;
         }
             case 2: {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-            getDelegate().applyDayNight();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                getDelegate().applyDayNight();
 
 
-
-
-        }
+            }
 
         }
     }

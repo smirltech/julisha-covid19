@@ -6,7 +6,7 @@ import android.preference.PreferenceManager
 class MyPreferences(context: Context?) {
     companion object {
 
-        private const val DARK_STATUS = "io.github.manuelernest.DARK_STATUS"
+        private const val DARK_STATUS = "io.github.jkantech.DARK_STATUS"
 
 
     }

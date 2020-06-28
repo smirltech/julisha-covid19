@@ -165,7 +165,7 @@ public class DiagnosticActivity extends AppCompatActivity {
                     .setActionTextColor(getResources().getColor(R.color.white));
             View sview = snackbar.getView();
 
-            sview.setBackgroundColor(Color.RED);
+            //sview.setBackgroundColor(getColor(R.color.colorPrimary));
             snackbar.show();
 
 
@@ -226,7 +226,13 @@ public class DiagnosticActivity extends AppCompatActivity {
             case 2: {
                 getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
 
+                break;
 
+
+            }
+            case 3: {
+                getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+                break;
 
             }
 

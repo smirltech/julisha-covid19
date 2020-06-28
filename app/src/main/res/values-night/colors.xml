@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryLight">#000000</color>
-    <color name="colorPrimary">#F44336</color>
-    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorPrimary">#970606</color>
+    <color name="colorPrimaryDark">#970606</color>
     <color name="colorAccent">@color/colorPrimaryDark</color>
 
-    <color name="red">#D32F2F</color>
-    <color name="redsplash">#CF0000</color>
+    <color name="red">#970606</color>
+    <color name="redsplash">#970606</color>
     <color name="green">#7CB342</color>
     <color name="blue">#1E88E5</color>
     <color name="blue_gray">#607D8B</color>
@@ -18,7 +18,16 @@
     <color name="textcolor">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="header">#babdb6</color>
+
+    <color name="md_lime_500">#3c3b3e</color>
+    <color name="md_lime_700">#3c3b3e</color>
+    <color name="md_amber_A400">#3c3b3e</color>
+
+
+
     <color name="dayNight">#3c3b3e</color>
+    <color name="DarkMode">#3c3b3e</color>
+
 
 
 

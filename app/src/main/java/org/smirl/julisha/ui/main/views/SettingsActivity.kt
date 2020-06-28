@@ -184,6 +184,23 @@ class SettingsActivity : AppCompatActivity() {
                         finish()
                     }
 
+                }
+                3->{
+                    sharedPreferences.edit().putInt(themeKey, 3).apply()
+                    if (checkedItem==3){
+
+                        dialog.dismiss()
+                    }else {
+
+                        val rIntent = Intent()
+                        rIntent.putExtra(themeKey, 2)
+                        setResult(Activity.RESULT_OK, rIntent)
+                        //startActivity(rIntent)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
 
 
 
@@ -210,12 +227,16 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             1 -> {
-                style_status.text = "Move"
+                style_status.text = "Mauve"
 
             }
             2 -> {
                 style_status.text = "Lime"
 
+            }
+            3->{
+
+                style_status.text="Sombre"
             }
 
         }
@@ -265,6 +286,11 @@ class SettingsActivity : AppCompatActivity() {
             }
             2 -> {
                 theme.applyStyle(R.style.ThemeLimeNoActionBar, true)
+
+
+            }
+            3 -> {
+                theme.applyStyle(R.style.ThemeDarkNoActionBar, true)
 
 
             }

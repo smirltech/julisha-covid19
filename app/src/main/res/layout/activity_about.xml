@@ -9,7 +9,6 @@
     tools:context=".ui.main.views.AboutActivity">
     <include
         layout="@layout/containt_about"/>
-    <include
-        layout="@layout/toolbarcovid"/>
+
 
 </RelativeLayout>

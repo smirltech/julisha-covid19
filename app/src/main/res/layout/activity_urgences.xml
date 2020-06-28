@@ -9,11 +9,11 @@
 
     tools:context=".ui.main.views.UrgencesActivity">
 
-    <include
-        layout="@layout/toolbarcovid"/>
+
 
     <include
-        layout="@layout/containt_urgences"/>
+        layout="@layout/containt_urgences"
+        />
 
 
 </RelativeLayout>

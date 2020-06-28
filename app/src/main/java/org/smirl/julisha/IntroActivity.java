@@ -62,6 +62,7 @@ public class IntroActivity extends AppCompatActivity implements Constants {
             Julisha.loadProvinces(dd);
         } catch (IOException e) {
             e.printStackTrace();
+
         }
 
     }
@@ -110,9 +111,12 @@ public class IntroActivity extends AppCompatActivity implements Constants {
             }
             case 2: {
                 getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+                break;
 
-
-
+            }
+            case 3: {
+                getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+                break;
             }
 
         }

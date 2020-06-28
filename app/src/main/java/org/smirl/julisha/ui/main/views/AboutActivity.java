@@ -41,6 +41,7 @@ public class AboutActivity extends AppCompatActivity {
       applyStyle();
 
     setContentView(R.layout.activity_about);
+    /*
     Toolbar toolbar = (findViewById(R.id.toolbarCovid));
     setSupportActionBar(toolbar);
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -53,6 +54,8 @@ public class AboutActivity extends AppCompatActivity {
 
    getSupportActionBar().setTitle(getString(R.string.action_apropos));
     toolbar.getBackground().setAlpha(0);
+
+     */
     //toolbar.setTitleTextColor(getColor(R.color.black));
       Button supportsUS=findViewById(R.id.support_us_btn);
       supportsUS.setOnClickListener(view ->{
@@ -122,8 +125,13 @@ public class AboutActivity extends AppCompatActivity {
             }
             case 2: {
                 getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+                break;
 
 
+            }
+            case 3: {
+                getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+                break;
 
             }
 

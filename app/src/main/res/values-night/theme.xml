@@ -56,6 +56,15 @@
         <item name="colorSecondaryVariant">@color/dayNight</item>
         <item name="colorOnSecondary">@color/white</item>
     </style>
+    <style name="ThemeDark" parent="AppTheme">
+        <item name="colorPrimary">@color/DarkMode</item>
+        <item name="colorPrimaryDark">@color/DarkMode</item>
+        <item name="colorAccent">@color/DarkMode</item>
+        <item name="colorSecondary">@color/DarkMode</item>
+        <item name="colorSecondaryVariant">@color/DarkMode</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
 
     <!-- No Action Bar -->
     <style name="ThemeMoveNoActionBar" parent="AppTheme.NoActionBar">
@@ -75,6 +84,15 @@
         <item name="colorPrimaryDark">@color/dayNight</item>
         <item name="colorAccent">@color/dayNight</item>
         <item name="colorSecondaryVariant">@color/dayNight</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+    </style>
+    <style name="ThemeDarkNoActionBar" parent="AppTheme.NoActionBar">
+        <item name="colorPrimary">@color/DarkMode</item>
+        <item name="colorPrimaryDark">@color/DarkMode</item>
+        <item name="colorAccent">@color/DarkMode</item>
+        <item name="colorSecondary">@color/DarkMode</item>
+        <item name="colorSecondaryVariant">@color/DarkMode</item>
         <item name="colorOnSecondary">@color/white</item>
 
     </style>

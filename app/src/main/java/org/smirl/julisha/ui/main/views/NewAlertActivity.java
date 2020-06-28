@@ -187,8 +187,15 @@ public class NewAlertActivity extends AppCompatActivity {
             }
             case 2: {
                 getTheme().applyStyle(R.style.ThemeLimeNoActionBar, true);
+                break;
 
 
+
+
+            }
+            case 3: {
+                getTheme().applyStyle(R.style.ThemeDarkNoActionBar, true);
+                break;
 
             }
 
