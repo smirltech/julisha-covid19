@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity implements Constants, Naviga
                 .setMessage("Pourquoi nous soutenir?\n" +
                         "- Votre soutien nous encouragera à améliorer le projet Julisha d’avantage \n" +
                         "- A continuer les développements\n")
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton("Airtel Money", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

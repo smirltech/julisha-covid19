@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -209,7 +209,7 @@
                     android:layout_gravity="start"
                     android:layout_span="3"
                     android:text="Préventions"
-                    android:textColor="@color/black"
+                    android:shadowColor="@color/textcolor"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -225,7 +225,7 @@
                 <LinearLayout
                     android:id="@+id/home_preventive_1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_preventive"
@@ -247,6 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:shadowColor="@color/textcolor"
                         android:text="GARDEZ une distance de sécurité."
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -257,7 +258,7 @@
                 <LinearLayout
                     android:id="@+id/home_preventive_2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_preventive"
@@ -279,8 +280,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
-                        android:text="Se laver fréquemment les mains
-"
+                        android:text="Se laver fréquemment les mains"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -290,7 +290,7 @@
                 <LinearLayout
                     android:id="@+id/home_preventive_3"
                     android:layout_width="wrap_content"
-                    android:layout_height="130dp"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_preventive"
                     android:clickable="true"

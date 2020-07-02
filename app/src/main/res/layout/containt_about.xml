@@ -57,6 +57,17 @@
                 android:gravity="center_vertical"
                 android:text="Made with ❤ in DRC"
                 />
+            <TextView
+                android:id="@+id/smirl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:text="Copyright © 2020 -SmirlTech"
+                />
+
         </LinearLayout>
 
 
