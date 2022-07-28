@@ -2,6 +2,6 @@
 
 ## Contributors
 
-<a href="https://github.com/julisha-covid19/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=julisha-covid19"/>
+<a href="https://github.com/smirltech/julisha-covid19/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=smirltech/julisha-covid19"/>
 </a>
